@@ -1,0 +1,63 @@
+:root {
+  --blue: #2a20fe;
+  --purple: #ccc1e9;
+  --yellow: #fdc435;
+  --pink: #eb8270;
+  --gray: #c4c4c4;
+  --black: #000;
+  --notWhite: #f7f2f2;
+  --headings-font-family: 'Open Sans', sans-serif;
+}
+
+/*************Home page*****************/
+.homePage {
+  display: flex;
+  justify-content: space-between;
+}
+.homePage--hero {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.homePage--about {
+  background-color: var(--yellow);
+  font-family: var(--headings-font-family);
+  font-weight: bold;
+  color: var(--notWhite);
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  font-size: 2em;
+}
+.homePage--hero_text {
+  font-family: var(--headings-font-family);
+  font-size: 3rem;
+}
+.homePage--hero_text > h1 {
+  font-weight: 900;
+}
+.homePage--btn{
+  background-color: var(--yellow);
+  font-size: 2rem;
+
+}
+.homePage > p {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  text-align: center;
+  align-items: center;
+
+
+}
+
+/* color: var(--blue); */
+.confetti-wrap {
+  background-color: aliceblue;
+  padding: 30px;
+  margin: 0;
+  height: 100vh;
+}
