@@ -7,8 +7,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {deleteConfirmation} from '../../actions/orders'
 
-const ConfirmationItem = ({ orderId, auth,
-    confirmation: { firstName, lastName, text, title, avatar, date }
+const ConfirmationItem = ({ 
+    orderId, 
+    auth,
+    confirmation: 
+    { firstName, lastName, text, title, avatar, date }
 }) => {
     return (
         <div>

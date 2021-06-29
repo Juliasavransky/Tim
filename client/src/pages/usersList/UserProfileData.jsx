@@ -9,14 +9,13 @@ import Moment from 'react-moment'
 const UserProfileData = ({
     profile: { city, dob, categories, subCategories, avatar, bio,
         user: { firstName, lastName, gender, email }
-    } }) => {
+    } 
+}) => {
 
     const userProfileAvatar = gender === 'female' ? 'ade' : 'elliot';
     const userProfileImg = avatar;
     const fName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
     const lName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
-
-    // string.charAt(0).toUpperCase() + string.slice(1);
 
     return (
         <Container text >
@@ -43,12 +42,6 @@ const UserProfileData = ({
             <br />
             <br />
 
-
-            <div>
-                user Rating
-                <Rating maxRating={5} defaultRating={1} icon='star' size='massive' />
-            </div>
-
             <div>
                 send email to user
                 <Icon aria-hidden="true" link name='mail' size='huge' />
@@ -63,7 +56,7 @@ const UserProfileData = ({
             </Link>
 
 
-            <Link to="/orders">
+            <Link to="/ordersForm">
                 <Button>
                     Order one of the Services
              </Button>

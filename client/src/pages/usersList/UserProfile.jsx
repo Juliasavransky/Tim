@@ -1,25 +1,33 @@
 import React, { Fragment, useEffect } from 'react';
 import Spinner from '../../components/Spinner';
+import UserProfileData from '../../pages/usersList/UserProfileData';
 
 //redux
 import { connect } from 'react-redux';
 import { getProfileById } from '../../actions/profile';
 import PropTypes from 'prop-types'
-import UserProfileData from '../../pages/usersList/UserProfileData';
 
 
 
-const UserProfile = ({ getProfileById, profile: { profile, loading }, auth, match }) => {
+const UserProfile = ({
+    getProfileById,
+    profile: { profile, loading },
+    auth, match
+}) => {
 
     useEffect(() => {
         getProfileById(match.params.id);
     }, [getProfileById, match.params.id]);
-    
+
     return (<Fragment>
         {profile === null || loading
             ? <Spinner />
             : <Fragment>
-                <UserProfileData key={profile._id} profile={profile} />
+                <UserProfileData
+                    key={profile._id}
+                    profile={profile}
+                />
+             
             </Fragment>
         }
     </Fragment>

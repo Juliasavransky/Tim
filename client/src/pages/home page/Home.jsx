@@ -28,29 +28,64 @@ const Home = ({
     // }
 
     return (
-        <div >
-            <div className="homePage">
+        <div className="homePage" >
+            <div className="homePage-container">
                 <div className="homePage--hero">
-                    <div className="homePage--hero_text">
-                        <h2 >Welcome to </h2>
-                        <h1>T.I.M.</h1>
-                        {/* <h2>Time Is Money</h2> */}
+                    <div className="homePage--hero_content">
+
+                        <div className="homePage--hero_icons">
+                            <i className="fab fa-instagram"></i>
+                            <i className="fab fa-twitter"></i>
+                            <i className="fab fa-facebook-f"></i>
+                            <i className="fab fa-linkedin-in"></i>
+                        </div>
+
+                        <div className="homePage--hero_text">
+                            <div className="homePage--hero_heder">
+                                <h2 >Welcome to </h2>
+                                <h1>T.I.M.</h1>
+                                <h2>Time Is Money</h2>
+                            </div>
+
+                            <div className="homePage--hero_btn">
+                                <Link to="logIn">
+                                    <button >log IN</button>
+                                </Link>
+                            </div>
+
+                        </div>
+
                     </div>
 
+                    <div className="homePage--hero_img">
+                        {/* <img src={Artboard}
+                            style={{ border: '1px solid red' }}
 
-                    <Link to="logIn">
-                        <button className="homePage--btn"  >log IN</button>
-                    </Link>
+                        /> */}
+                        <div className="homePage--borderRadius-1">
+                        <div className="homePage--borderRadius-2">
+                        <div className="homePage--borderRadius-3">
+                        <img src='https://images.unsplash.com/photo-1569437061238-3cf61084f487?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80'
+                            style={{
+                                'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72%  ',
+                                height: '500px',
+                                width: '400px'
+                            }}
+
+                        />
+                        </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="homePage-img">
-                    <img src={Artboard}
-                        style={{ border: '1px solid red' }}
 
-                    />
-                </div>
-                <div className="homePage">
-                    <div className="homePage--about">About T.I.M.</div>
+                <div className="homePage--hero">
+                    <div className="homePage--hero_content">
+                        <div className="homePage--hero_about">
+                            <span>About T.I.M.</span>
+                        </div>
+                    </div>
                     <p>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
                         ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et
@@ -58,16 +93,10 @@ const Home = ({
                         ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
                         quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
                         arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                        Nullam dictum felis eu pede link mollis pretium. Integer tincidunt. Cras
-                        dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-                        Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
-                        Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
-                        viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
-                        Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
+
                     </p>
                 </div>
             </div>
-
 
             {/* <SearchByCategories /> */}
 

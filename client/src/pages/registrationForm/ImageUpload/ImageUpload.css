@@ -7,7 +7,7 @@
   min-height: 10rem;
   background: #fef289;
   display: flex;
-  border: 4px dashed #8bcce2;
+  border: 4px dashed var(--yellow);
   /* border-radius: 10%; */
 }
 .container {
@@ -46,7 +46,7 @@ button {
   width: 100%;
   margin: 10px 0 0 0;
   padding: 14px 10px;
-  background: #8bcce2;
+  background: var(--yellow);
   font-size: 2rem;
   cursor: pointer;
   color: white;

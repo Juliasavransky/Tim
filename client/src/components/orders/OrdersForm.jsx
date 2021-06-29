@@ -1,16 +1,20 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addOrder } from '../../actions/orders'
+import { addOrder } from '../../actions/orders';
+
 
 
 const OrdersForm = ({
     addOrder,
+    profile: { city, dob, categories, subCategories, avatar, bio, _id,
+        user
+    }
+
 
 }) => {
 
@@ -45,14 +49,16 @@ const OrdersForm = ({
         <Fragment>
             <Form onSubmit={e => orderFormSubmit(e)}>
                 <h1>Form for Orders!!!</h1>
-                {/* <div>order from: {firstName && firstName}{' '}{lastName && lastName}</div> */}
                 {/* <div>order to: {firstName && firstName}{' '}{lastName && lastName}</div> */}
+                {/* <div>{user && user.firstName}</div>
+                <div>{user && user._id}</div> */}
+
 
                 <FormGroup>
                     <Label
                         for="exampleEmail">
                         title
-                        </Label>
+                    </Label>
                     <Input
                         onChange={e => handleOrderChange(e)}
                         type="text"
@@ -66,7 +72,7 @@ const OrdersForm = ({
                     <Label
                         for="exampleText">
                         Text Area
-                         </Label>
+                    </Label>
                     <Input
                         onChange={e => handleOrderChange(e)}
                         type="textarea"
@@ -80,7 +86,7 @@ const OrdersForm = ({
                     <Label
                         for="exampleEmail">
                         date
-                        </Label>
+                    </Label>
                     <Input
                         type="date"
                         name="dateOfServes"
@@ -106,9 +112,17 @@ const OrdersForm = ({
 OrdersForm.propTypes = {
     addOrder: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired,
 
 };
+const mapStateToProps = state => ({
+    orders: state.orders,
+    profile: state.profile,
+    auth: state.auth
 
 
+});
 
-export default connect(null, { addOrder })(OrdersForm);
+
+export default connect(mapStateToProps, { addOrder })(OrdersForm);

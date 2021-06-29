@@ -6,38 +6,64 @@ import OrdersForm from './OrdersForm';
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getOrders } from '../../actions/orders';
+import { getProfileById } from '../../actions/profile';
 
 
-const Order = ({
+
+const Orders = ({
     getOrders,
-    orders:
-    { orders, loading }
+    orders: { orders, loading },
+    getProfileById,
+    profile: { profile },
+    auth,
+    match
 }) => {
 
     useEffect(() => {
-        getOrders();
-    }, [getOrders])
+        getProfileById(match.params.id);
+    }, [getProfileById, match.params.id]);
 
-
-
-    return loading 
+    return loading
         ? <Spinner />
         : <Fragment>
-            {orders.map(order =>(
-            <OrderItem key={order._id} order={order}/>
-            ))}
-            <OrdersForm />
+            {/* {orders.map(order => (
+                <OrderItem
+                    key={order._id}
+                    profile={profile}
+                    order={order}
+                    auth={auth}
+                    match={match}
+
+                />
+            ))} */}
+
+            {profile === null || loading
+                ? <Spinner />
+                : <Fragment>
+                    <OrdersForm
+                        key={profile._id}
+                        profile={profile}
+                      
+                    />
+
+                </Fragment>
+            }
+
         </Fragment>;
 };
 
-Order.propTypes = {
+Orders.propTypes = {
+    getProfileById: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
     getOrders: PropTypes.func.isRequired,
-    orders: PropTypes.object.isRequired
+    orders: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-    orders: state.orders
+    orders: state.orders,
+    profile: state.profile,
+    auth: state.auth
 });
 
-export default connect(mapStateToProps, { getOrders })(Order);
+export default connect(mapStateToProps, {  getProfileById })(Orders);

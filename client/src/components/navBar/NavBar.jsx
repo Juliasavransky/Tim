@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Image, Icon, Input } from 'semantic-ui-react';
 import tim from './tim.svg';
+import SearchBar from '../../pages/search/SearchBar'
 
 //redux
 import { connect } from 'react-redux';
@@ -51,23 +52,27 @@ const NavBar = ({
                 </Menu.Item>
 
                 <Menu.Item >
-                    <Image
+                    {/* <Image
                         avatar
                         src={userProfileImg
                             ? userProfileImg
-                            : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} />
+                            : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} /> */}
 
-                    <Link to="/userDashboard">{profile && profile.user.firstName}{" "}{profile && profile.user.lastName}</Link>
+                    <Link to="/userDashboard"> My profile </Link>
+                    {/* {profile && profile.user.firstName}{" "}{profile && profile.user.lastName} */}
+
                 </Menu.Item>
 
                 <Menu.Item
                     onClick={logout}
                 >
                     Log-out
-            </Menu.Item>
-                <Menu.Item>
-                    <Input icon='search' placeholder='Search...' />
                 </Menu.Item>
+
+                <Menu.Item>
+                    <SearchBar />
+                </Menu.Item>
+
             </Menu.Menu>
 
 
@@ -109,8 +114,9 @@ const NavBar = ({
                 </Menu.Item>
 
                 <Menu.Item>
-                    <Input icon='search' placeholder='Search...' />
+                    <SearchBar />
                 </Menu.Item>
+
             </Menu.Menu>
         </Menu>
     );

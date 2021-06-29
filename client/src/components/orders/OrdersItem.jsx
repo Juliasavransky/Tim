@@ -11,10 +11,12 @@ import { deletePayment, makePayment, deleteOrder } from '../../actions/orders';
 
 const OrderItem = ({
     auth,
+    match,
     deletePayment,
     makePayment,
     deleteOrder,
     showActions,
+    profile,
     order: {
         _id,
         title,
@@ -27,9 +29,12 @@ const OrderItem = ({
         balance,
         confirmation,
         date
-    }
+    },
+    // profile: { city, dob, categories, subCategories, avatar, bio,
+    //     user: { firstName, lastName, gender, email }}
 
 }) => {
+
 
     const paymentHandler = e => {
         // if (!auth.loading && user !== auth.user._id) {
@@ -80,25 +85,25 @@ const OrderItem = ({
                     <Card.Meta> Balance: {(balance.length) + 2} </Card.Meta>
 
                     <Card.Meta> Order created in:
-                    <Moment format='DD/MM/YYYY'>{date && date}</Moment>
+                        <Moment format='DD/MM/YYYY'>{date && date}</Moment>
                     </Card.Meta>
 
                     <Card.Meta>Order the service for:
-                    <Moment format='YYYY/MM/DD'>{dateOfServes && dateOfServes}</Moment>
+                        <Moment format='YYYY/MM/DD'>{dateOfServes && dateOfServes}</Moment>
                     </Card.Meta>
 
                     {showActions && <Fragment>
 
-                        <div> confirmation = 
-                         {" "}   {confirmation.length >= 0 && (
+                        <div> confirmation =
+                            {" "}   {confirmation.length >= 0 && (
                                 <span className="comment-count">{confirmation.length}</span>
                             )}
                         </div>
 
                         {!auth.loading && user === auth.user._id && (
-                               <Button color="red"
-                               onClick={deleteOrderHandler}>delete Order
-                               </Button>
+                            <Button color="red"
+                                onClick={deleteOrderHandler}>delete Order
+                            </Button>
                         )}
 
                         {!auth.loading && user === auth.user._id && (
@@ -107,7 +112,7 @@ const OrderItem = ({
                                     Confirm Or add a note
                                 </Button>
                             </Link>
-                              
+
                         )}
 
                         {!auth.loading && user !== auth.user._id
@@ -131,11 +136,11 @@ const OrderItem = ({
                             : (" ")
                         }
 
-                    
+
 
                         <Card.Description>
                             <Link to={`/userProfile/${user}`}>Go back to
-                        <span>{" "}{firstName}{" "} {lastName}{" "} profile</span>
+                                <span>{" "}{firstName}{" "} {lastName}{" "} profile</span>
                                 <div>{avatar && avatar}</div>
 
                             </Link>

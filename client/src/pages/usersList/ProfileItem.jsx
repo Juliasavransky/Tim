@@ -6,7 +6,8 @@ import { Image, List, Container, Label, Rating } from 'semantic-ui-react';
 //redux
 import PropTypes from 'prop-types';
 
-const ProfileItem = ({ profile:
+const ProfileItem = (
+    { profile:
     {
         user: { _id, firstName, lastName, gender },
         avatar,
@@ -46,13 +47,6 @@ const ProfileItem = ({ profile:
                                 <br />
 
                             </List.Header>
-
-                            <List.Description>
-                                Rating
-                                <Rating maxRating={5} icon='star' size='mini' disabled />
-                                <br />
-                                <br />
-                            </List.Description>
 
                             <List.Description>
                                 <List.Icon name='map outline' />{' '}

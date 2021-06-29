@@ -28,9 +28,9 @@ const LogIn = ({ login, isAuthenticated }) => {
     })
 
 
-    const logInSubmit =  e => {
+    const logInSubmit = e => {
         e.preventDefault();
-      
+
         login(formData);
     }
 
@@ -39,8 +39,12 @@ const LogIn = ({ login, isAuthenticated }) => {
         return <Redirect to="/userDashboard" />
     }
     return (
-        <Segment >
-            <Grid columns={2} relaxed='very' stackable>
+        <Segment basic>
+            <Grid
+                className="login-container"
+                columns={2}
+                stackable
+            >
                 <Grid.Column>
                     {error && <Message negative>
                         <Message.Header>{error.title}</Message.Header>
@@ -48,6 +52,7 @@ const LogIn = ({ login, isAuthenticated }) => {
                     </Message>}
                     <Form onClick={e => logInSubmit(e)}>
                         <Form.Input
+                            className="login--input"
                             onChange={e => handleLogInChange(e)}
                             type="text"
                             icon='user'
@@ -58,6 +63,7 @@ const LogIn = ({ login, isAuthenticated }) => {
                             value={email}
                         />
                         <Form.Input
+                            className="login--input"
                             onChange={e => handleLogInChange(e)}
                             icon='lock'
                             iconPosition='left'
@@ -67,21 +73,35 @@ const LogIn = ({ login, isAuthenticated }) => {
                             value={password}
 
                         />
-                        <Button fluid content='Login' primary />
+                        <Button 
+                        fluid 
+                        content='Login'
+                         primary 
+                         />
                     </Form>
                 </Grid.Column>
 
-                <Grid.Column verticalAlign='middle'>
+                <Grid.Column 
+                
+                verticalAlign='middle'
+                >
                     <Link to="/userRegistration">
                         <Button
                             content='Sign up'
                             icon='signup'
-                            size='big' />
+                            size='big' 
+                            className="login--button"
+                            color='yellow'
+                            />
                     </Link>
                 </Grid.Column>
             </Grid>
 
-            <Divider vertical>Or</Divider>
+            <Divider
+                vertical
+                hidden
+                className="login--divider"
+            >Or</Divider>
         </Segment>
     );
 };

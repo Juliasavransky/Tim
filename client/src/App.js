@@ -15,6 +15,7 @@ import UserDashboard from './pages/userDashboard/UserDashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Orders from './components/orders/Orders';
 import Order from './components/order/Order';
+import OrdersForm from './components/orders/OrdersForm'
 
 
 
@@ -27,93 +28,79 @@ import setAuthToken from './utils/setAuthToken';
 
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token)
+    setAuthToken(localStorage.token)
 }
 const App = () => {
 
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, [])
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, [])
 
-  return (
-    <Provider store={store} >
-      <Router>
-        <Fragment >
-          <NavBar />
-          <Container >
-            <AlertComp />
+    return (
+        < Provider store={store} >
+            <  Router >
+                <  Fragment >
+                    <  NavBar />
+                    < Container >
+                        <AlertComp />
 
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={Home}
-              />
+                        < Switch >
+                            < Route exact path="/"
+                                component={Home}
+                            />
 
-              <Route
-                path="/logIn"
-                exact
-                component={LogIn}
-              />
+                            < Route path="/logIn"
+                                exact component={LogIn}
+                            />
 
-              <Route
-                path="/userRegistration"
-                exact
-                component={UserRegistration}
-              />
+                            <  Route path="/userRegistration"
+                                exact component={UserRegistration}
+                            />
 
-              <PrivateRoute
-                path="/userDashboard"
-                exact
-                component={UserDashboard}
-              />
+                            <   PrivateRoute path="/userDashboard"
+                                exact component={UserDashboard}
+                            />
 
-              <Route
-                path="/userProfile/:id"
-                exact
-                component={UserProfile}
-              />
+                            <   Route path="/userProfile/:id"
+                                exact component={UserProfile}
+                            />
 
-              <PrivateRoute
-                path="/userProfileRegistration"
-                exact
-                component={Registration}
-              />
+                            <   PrivateRoute path="/userProfileRegistration"
+                                exact component={Registration}
+                            />
 
-              <PrivateRoute
-                exact
-                path="/orders"
-                component={Orders}
-              />
+                            <   PrivateRoute exact path="/orders"
+                                component={Orders}
+                            />
 
-              <PrivateRoute
-                exact
-                path="/orders/:id"
-                component={Order}
-              />
+                            <   PrivateRoute exact path="/ordersForm/userProfile/:id"
+                                component={OrdersForm}
+                            />
 
-              <Route
-                path="/searchPage"
-                exact
-                component={SearchPage}
-              />
+                            <   PrivateRoute exact path="/orders/:id"
+                                component={Order}
+                            />
 
-              <Route
-                path="/usersList"
-                exact
-                component={UsersList}
-              />
+                            <  Route path="/searchPage"
+                                exact component={SearchPage}
+                            />
 
-              {/* <Route
-                component={Error404}
-              /> */}
+                            <  Route path="/usersList"
+                                exact component={UsersList}
+                            />
 
-            </Switch>
-          </Container>
-        </Fragment>
-      </Router>
-    </Provider>
-  );
+                            {
+                                /* <Route
+                                                component={Error404}
+                                              /> */
+                            }
+
+                        </Switch>
+                    </Container >
+                </Fragment>
+            </Router >
+        </Provider>
+    );
 }
 
 export default App;

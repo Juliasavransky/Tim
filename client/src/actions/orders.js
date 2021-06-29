@@ -121,8 +121,6 @@ export const getOrder = orderId => async dispatch => {
         dispatch({
             type: GET_ORDER,
             payload: res.data
-
-            // payload: {orderId, order:res.data}
         });
 
     } catch (err) {

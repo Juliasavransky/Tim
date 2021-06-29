@@ -15,10 +15,11 @@ import ConfirmationItem from './ConfirmationItem';
 
 const Order = ({
     getOrder,
-    order: {
-         order,
+    orders: {
+        order,
         loading,
     },
+
 
     match }) => {
 
@@ -28,42 +29,35 @@ const Order = ({
     }, [getOrder, match.params.id]);
 
 
-    //     return loading || order === null
-    //         ?( <Spinner />)
-    //         : (
-    //         // <Fragment>
+    return loading || order === null
+        ? (<Spinner />)
+        : (
+            <Fragment>
 
+                <h1>
+                    <ConfirmationForm
+                        orderId={order._id}
+                    />
+                </h1>
+                <Link to='/usersList'>
+                    <Button>go  back to users list</Button>
+                </Link>
 
-    //         //     <Link to='/usersList'>
-    //         //         <Button>go  back to users list</Button>
-    //         //     </Link>
-    //         //     <OrdersItem
-    //         //         order={order}
-    //         //         showActions={false}
-    //         //     />
-    //               <ConfirmationForm 
-    //                       orderId={order._id} 
-    //                />
-    // {order.Confirmation.map(confirmation =>(
-    //   <ConfirmationItem
-    //     key={confirmation._id}
-    //     confirmation={confirmation}
-    //     orderId={order._id}
-    //     />
-    // ))}
-    //         // </Fragment>
-    //         );
+                <OrdersItem
+                    order={order && order}
+                    showActions={false}
+                />
 
-    return (
+                {order && order.confirmation.map(confirmation => (
+                    <ConfirmationItem
+                        key={confirmation._id}
+                        confirmation={confirmation}
+                        orderId={order && order._id}
+                    />
+                ))}
 
-        <h1>
-            <ConfirmationForm
-            // orderId={order._id} 
-            />
-        </h1>
-    );
-
-
+            </Fragment>
+        );
 };
 
 
@@ -73,7 +67,9 @@ Order.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    order: state.order
+    order: state.order,
+    orders: state.orders
+
 })
 
 export default connect(mapStateToProps, { getOrder })(Order);
