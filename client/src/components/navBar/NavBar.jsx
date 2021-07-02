@@ -39,10 +39,7 @@ const NavBar = ({
             </Menu.Menu>
 
             <Menu.Menu position='right'>
-                <Menu.Item >
-                    <Link to="/userRegistration">Registration</Link>
-                </Menu.Item>
-
+              
                 <Menu.Item >
                     <Link to="/searchPage">search</Link>
                 </Menu.Item>

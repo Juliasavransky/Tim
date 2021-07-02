@@ -6,17 +6,25 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addOrder } from '../../actions/orders';
+import { getProfileById } from '../../actions/profile';
 
 
 
 const OrdersForm = ({
     addOrder,
+    getProfileById,
+    auth,
+    match,
     profile: { city, dob, categories, subCategories, avatar, bio, _id,
         user
     }
 
 
 }) => {
+
+    useEffect(() => {
+        getProfileById(match.params.id);
+    }, [getProfileById, match.params.id]);
 
     const [formData, setFormData] = useState({
         text: "",
@@ -49,9 +57,9 @@ const OrdersForm = ({
         <Fragment>
             <Form onSubmit={e => orderFormSubmit(e)}>
                 <h1>Form for Orders!!!</h1>
-                {/* <div>order to: {firstName && firstName}{' '}{lastName && lastName}</div> */}
-                {/* <div>{user && user.firstName}</div>
-                <div>{user && user._id}</div> */}
+
+                <div>{user && user.firstName}</div>
+                <div>{user && user._id || _id}</div>
 
 
                 <FormGroup>
@@ -114,6 +122,8 @@ OrdersForm.propTypes = {
     orders: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
+    getProfileById: PropTypes.func.isRequired,
+
 
 };
 const mapStateToProps = state => ({
@@ -125,4 +135,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, { addOrder })(OrdersForm);
+export default connect(mapStateToProps, { addOrder, getProfileById })(OrdersForm);

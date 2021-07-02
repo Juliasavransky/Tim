@@ -19,9 +19,8 @@ const Order = ({
         order,
         loading,
     },
-
-
-    match }) => {
+    match 
+}) => {
 
     useEffect(() => {
         getOrder(match.params.id);

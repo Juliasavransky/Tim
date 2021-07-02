@@ -8,7 +8,7 @@ import Moment from 'react-moment'
 
 const UserProfileData = ({
     profile: { city, dob, categories, subCategories, avatar, bio,
-        user: { firstName, lastName, gender, email }
+        user: { firstName, lastName, gender, email, _id }
     } 
 }) => {
 
@@ -56,7 +56,7 @@ const UserProfileData = ({
             </Link>
 
 
-            <Link to="/ordersForm">
+            <Link to={`/ordersForm/userProfile/${_id}`}>
                 <Button>
                     Order one of the Services
              </Button>

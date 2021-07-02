@@ -26,16 +26,16 @@ const Orders = ({
     return loading
         ? <Spinner />
         : <Fragment>
-            {/* {orders.map(order => (
+            {orders.map(order => (
                 <OrderItem
                     key={order._id}
-                    profile={profile}
                     order={order}
-                    auth={auth}
-                    match={match}
+                    // profile={profile}
+                    // auth={auth}
+                    // match={match}
 
                 />
-            ))} */}
+            ))}
 
             {profile === null || loading
                 ? <Spinner />
