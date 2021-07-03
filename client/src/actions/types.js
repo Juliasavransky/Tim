@@ -31,6 +31,9 @@ export const GET_ORDER = 'GET_ORDER';
 export const ADD_CONFIRMATION = 'ADD_CONFIRMATION';
 export const DELETE_CONFIRMATION = 'ADD_CONFIRMATION';
 
+export const GET_ORDERS_BYUSER_ID = 'GET_ORDERS_BYUSER_ID';
+
+
 
 
 

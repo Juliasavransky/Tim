@@ -8,10 +8,14 @@ import Moment from 'react-moment'
 //redux
 import { connect } from 'react-redux';
 import { getCurrentProfile } from './../../actions/profile';
+import { getOrdersByUserId } from './../../actions/orders';
+
 import PropTypes from 'prop-types';
 
 const UserDashboard = ({
     getCurrentProfile,
+    getOrdersByUserId,
+    match,
     auth: { user },
     profile: { profile, loading },
 }) => {
@@ -19,6 +23,10 @@ const UserDashboard = ({
     useEffect(() => {
         getCurrentProfile()
     }, [getCurrentProfile]);
+
+    useEffect(() => {
+        getOrdersByUserId(match.params.id);
+    }, [getOrdersByUserId, match.params.id]);
 
     const avatar = user && user.gender === 'female' ? 'ade' : 'elliot';
 
@@ -76,18 +84,17 @@ const UserDashboard = ({
                 <h3>categories- {categories}</h3><br />
                 <h3>subCategories- {subCategories}</h3><br />
 
-
-                <div>
-                    My Rating
-                <Rating maxRating={5} defaultRating={1} icon='star' size='massive' />
-                </div>
-
                 <h2>
-                    My Balances: 
+                    My Balances:
                     <span style={{ fontSize: '2em', color: 'orange' }}>
                         <i className="fas fa-piggy-bank"> = {balance}</i>
                     </span>
                 </h2>
+
+                <Link to={`/orders/user/${user._id}`}>
+                    <Button content='My activities' size='big' />
+                </Link>
+              
 
             </Container>
         </Fragment>);
@@ -97,6 +104,7 @@ const UserDashboard = ({
 
 UserDashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
+    getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired
 }
@@ -105,4 +113,4 @@ const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile
 })
-export default connect(mapStateToProps, { getCurrentProfile })(UserDashboard);
+export default connect(mapStateToProps, { getCurrentProfile,getOrdersByUserId })(UserDashboard);

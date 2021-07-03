@@ -7,7 +7,8 @@ import {
 
     ADD_ORDER,
     GET_ORDER,
-
+    GET_ORDERS_BYUSER_ID,
+    
     ADD_CONFIRMATION,
     DELETE_CONFIRMATION
 } from '../actions/types';
@@ -25,6 +26,7 @@ export default function (state = initialState, action) {
 
     switch (type) {
         case GET_ORDERS:
+        case GET_ORDERS_BYUSER_ID:
             return {
                 ...state,
                 orders: payload,

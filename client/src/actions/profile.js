@@ -2,9 +2,11 @@ import axios from 'axios';
 
 //redux
 import { setAlert } from './alert';
+
 import {
     GET_PROFILE,
     PROFILE_ERROR,
+
     GET_PROFILES,
     CLEAR_PROFILE
 } from './types';
@@ -66,7 +68,7 @@ export const createProfile = (formData, history, edit = false) => async dispatch
 
 //Get all profiles
 export const getProfiles = () => async dispatch => {
-    dispatch({ type: CLEAR_PROFILE });
+    // dispatch({ type: CLEAR_PROFILE });
 
     try {
         const res = await axios.get('/api/profile');

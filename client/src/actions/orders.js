@@ -1,5 +1,8 @@
 import axios from 'axios';
+
+//redux
 import { setAlert } from './alert';
+
 import {
     GET_ORDERS,
     ORDERS_ERROR,
@@ -11,7 +14,9 @@ import {
     GET_ORDER,
 
     ADD_CONFIRMATION,
-    DELETE_CONFIRMATION
+    DELETE_CONFIRMATION,
+
+    GET_ORDERS_BYUSER_ID
 } from './types.js';
 
 // Get orders
@@ -164,6 +169,27 @@ export const deleteConfirmation = (orderId, confirmationId) => async dispatch =>
         });
 
         dispatch(setAlert('confirmation Deleted', 'success'));
+
+    } catch (err) {
+        dispatch({
+            type: ORDERS_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+}
+
+//*********test************************************* */
+
+// Get orders by user id
+export const getOrdersByUserId = userId => async dispatch => {
+    try {
+        const res = await axios.get(`/api/orders/user/${userId}`);
+
+        dispatch({
+            type: GET_ORDERS_BYUSER_ID,
+            payload: res.data,
+        });
 
     } catch (err) {
         dispatch({

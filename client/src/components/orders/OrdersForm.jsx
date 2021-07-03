@@ -22,9 +22,9 @@ const OrdersForm = ({
 
 }) => {
 
-    useEffect(() => {
-        getProfileById(match.params.id);
-    }, [getProfileById, match.params.id]);
+    // useEffect(() => {
+    //     getProfileById(match.params.id);
+    // }, [getProfileById, match.params.id]);
 
     const [formData, setFormData] = useState({
         text: "",

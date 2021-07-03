@@ -83,14 +83,6 @@ router.post('/', [auth,
         if (bio) profileFields.bio = bio;
         if (avatar) profileFields.avatar = avatar;
 
-        //make array from str of items in input 
-        //( basic input words separated by , ) 
-
-        // if (subCategories) {
-        //     profileFields.subCategories = subCategories
-        //         .split(',').map(sub => sub.trim())
-        // };
-
         try {
             let profile = await Profile
                 .findOne({ user: req.user.id });
@@ -144,7 +136,7 @@ router.get('/', async (req, res) => {
 
 
 //@route  Get api/profile/user_id
-//@desc  get all profile by user id
+//@desc  get profile by user id
 //@access Public
 
 router.get('/user/:user_id', async (req, res) => {

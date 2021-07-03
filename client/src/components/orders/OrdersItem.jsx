@@ -6,6 +6,7 @@ import { Button, Card, Image } from 'semantic-ui-react'
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getProfileById } from '../../actions/profile';
 import { deletePayment, makePayment, deleteOrder } from '../../actions/orders';
 
 
@@ -16,6 +17,7 @@ const OrderItem = ({
     makePayment,
     deleteOrder,
     showActions,
+    getProfileById,
     profile,
     order: {
         _id,
@@ -35,6 +37,9 @@ const OrderItem = ({
 
 }) => {
 
+    // useEffect(() => {
+    //     getProfileById(match.params.id);
+    // }, [getProfileById, match.params.id]);
 
     const paymentHandler = e => {
         // if (!auth.loading && user !== auth.user._id) {
@@ -61,7 +66,7 @@ const OrderItem = ({
         deletePayment(_id)
     }
 
-    const userProfileAvatar = user.gender && user.gender === 'female' ? 'ade' : 'elliot';
+    const userProfileAvatar = user && user.gender === 'female' ? 'ade' : 'elliot';
     const userProfileImg = avatar && avatar;
 
     return (
@@ -159,6 +164,9 @@ OrderItem.defaultProps = {
 }
 
 OrderItem.propTypes = {
+    getProfileById: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+
     order: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     makePayment: PropTypes.func.isRequired,
@@ -167,7 +175,9 @@ OrderItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    orders: state.orders,
+    profile: state.profile,
 })
 
-export default connect(mapStateToProps, { deletePayment, makePayment, deleteOrder })(OrderItem);
+export default connect(mapStateToProps, { deletePayment, makePayment, deleteOrder, getProfileById })(OrderItem);

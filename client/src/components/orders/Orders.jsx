@@ -7,6 +7,8 @@ import OrdersForm from './OrdersForm';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProfileById } from '../../actions/profile';
+import { getOrders } from '../../actions/orders';
+
 
 
 
@@ -23,6 +25,10 @@ const Orders = ({
         getProfileById(match.params.id);
     }, [getProfileById, match.params.id]);
 
+    useEffect(() => {
+        getOrders();
+    }, [getOrders]);
+
     return loading
         ? <Spinner />
         : <Fragment>
@@ -36,24 +42,13 @@ const Orders = ({
 
                 />
             ))}
-
-            {profile === null || loading
-                ? <Spinner />
-                : <Fragment>
-                    <OrdersForm
-                        key={profile._id}
-                        profile={profile}
-                      
-                    />
-
-                </Fragment>
-            }
-
         </Fragment>;
 };
 
 Orders.propTypes = {
     getProfileById: PropTypes.func.isRequired,
+    getOrders: PropTypes.func.isRequired,
+
     profile: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     getOrders: PropTypes.func.isRequired,
@@ -66,4 +61,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {  getProfileById })(Orders);
+export default connect(mapStateToProps, {  getProfileById,getOrders })(Orders);

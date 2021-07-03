@@ -15,7 +15,9 @@ import UserDashboard from './pages/userDashboard/UserDashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Orders from './components/orders/Orders';
 import Order from './components/order/Order';
-import OrdersForm from './components/orders/OrdersForm'
+import OrdersForm from './components/orders/OrdersForm';
+import UserOrders from './pages/userDashboard/UserOrders';
+
 
 
 
@@ -65,6 +67,10 @@ const App = () => {
                                 exact component={UserProfile}
                             />
 
+                            <  PrivateRoute path="/orders/user/:id"
+                                exact component={UserOrders}
+                            />
+
                             <   PrivateRoute path="/userProfileRegistration"
                                 exact component={Registration}
                             />
@@ -90,9 +96,9 @@ const App = () => {
                             />
 
                             {
-                                /* <Route
-                                                component={Error404}
-                                              /> */
+                                <Route
+                                    component={Error404}
+                                />
                             }
 
                         </Switch>

@@ -1,0 +1,115 @@
+.homePage {
+    display: flex;
+  }
+  
+  .homePage--hero {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  
+  .homePage--hero_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+  }
+  
+  .homePage--hero_text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .homePage--hero_icons {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+  }
+  .homePage--hero_icons > i {
+    padding-bottom: 1rem;
+    cursor: pointer;
+  }
+  .homePage--img_content {
+    width: 25rem;
+  }
+  img {
+    max-width: 100%;
+  }
+  .homePage--borderRadius-1 {
+    border-radius: 82% 18% 56% 44% / 56% 76% 24% 44%;
+    width: 100%;
+    border: 3px solid var(--yellow);
+    padding: 10px;
+  }
+  
+  .homePage--borderRadius-2 {
+    border-radius: 26% 74% 85% 15% / 82% 29% 71% 18%;
+    width: 100%;
+    border: 3px solid var(--blue);
+    padding: 10px;
+  }
+  
+  .homePage--borderRadius-3 {
+    border-radius: 22% 78% 25% 75% / 22% 53% 47% 78%;
+    width: 100%;
+    border: 3px solid var(--red);
+    padding: 10px;
+  }
+  
+  .homePage--hero_about {
+    display: inline-block;
+    background-color: var(--yellow);
+    color: var(--notWhite);
+    border-radius: 50%;
+    border: 0.2rem solid var(--yellow);
+    margin:5rem 5rem 5rem 0;
+  
+  }
+  .homePage--hero_about div{
+      color: var(--notWhite);
+      /* border: 1px solid green; */
+      padding:5.5rem 0;
+      padding-left: 0;
+      font-size: 3rem;
+  }
+  .homePage--hero_heder {
+    font-family: var(--headings-font-family);
+    font-size: 3rem;
+  }
+  
+  .homePage--hero_heder > h1 {
+    font-weight: 900;
+  }
+  
+  .homePage--hero_btn {
+    background-color: var(--yellow);
+    font-size: 1.5rem;
+    width: 150px;
+    text-align: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-radius: 100px;
+  }
+  
+  .homePage--hero_btn:hover,
+  .homePage--hero_btn:focus {
+    opacity: 0.75;
+  }
+  
+  .homePage--hero > p {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .about > div {
+    text-align: center;
+    justify-content: center;
+    font-family: var(--headings-font-family);
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+  }

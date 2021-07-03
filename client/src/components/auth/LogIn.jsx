@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Divider, Form, Grid, Segment, Message } from 'semantic-ui-react';
 import { Redirect, Link } from 'react-router-dom';
+import loginPage from './loginPage.css';
 
 //redux
 import { connect } from 'react-redux';

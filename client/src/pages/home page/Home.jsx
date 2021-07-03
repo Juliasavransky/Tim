@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 // import { Container, Button } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 import Artboard from './art.svg';
+import homePage from './homePage.css'
 
 
 //redux
@@ -63,28 +64,26 @@ const Home = ({
 
                         /> */}
                         <div className="homePage--borderRadius-1">
-                        <div className="homePage--borderRadius-2">
-                        <div className="homePage--borderRadius-3">
-                        <img src='https://images.unsplash.com/photo-1569437061238-3cf61084f487?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80'
-                            style={{
-                                'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72%  ',
-                                height: '500px',
-                                width: '400px'
-                            }}
+                            <div className="homePage--borderRadius-2">
+                                <div className="homePage--borderRadius-3">
+                                    <div className="homePage--img_content">
+                                        <img src='https://images.unsplash.com/photo-1569437061238-3cf61084f487?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80'
+                                            style={{
+                                                'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72% ',
+                                            }}
 
-                        />
-                        </div>
-                        </div>
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
                 <div className="homePage--hero">
-                    <div className="homePage--hero_content">
-                        <div className="homePage--hero_about">
-                            <span>About T.I.M.</span>
-                        </div>
+                    <div className="homePage--hero_about">
+                        <div >About T.I.M.</div>
                     </div>
                     <p>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo

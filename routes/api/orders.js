@@ -9,7 +9,7 @@ const Orders = require('../../models/Orders');
 
 
 // const Balance = require('../../models/Balance');
-// const Profile = require('../../models/Profile');
+const Profile = require('../../models/Profile');
 
 
 
@@ -49,7 +49,7 @@ router.post(
                 user: req.user.id,
                 title: req.body.title,
                 dateOfServes: req.body.dateOfServes,
-
+                orderFrom: req.user.id
             })
 
             const order = await newOrder.save();
@@ -65,7 +65,7 @@ router.post(
 
 
 // @route    Get api/orders
-// @desc     Create all order
+// @desc     Get all order
 // @access   Private
 
 router.get('/', auth, async (req, res) => {
@@ -83,7 +83,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // @route    get api/orders/:id
-// @desc     get  order by id
+// @desc     get  order by id (order id)
 // @access   Private
 
 router.get('/:id', auth, checkObjectId('id'), async (req, res) => {
@@ -109,7 +109,7 @@ router.get('/:id', auth, checkObjectId('id'), async (req, res) => {
 
 
 // @route    delete api/orders/:id
-// @desc     delete order by id
+// @desc     delete order by id (order id)
 // @access   Private
 
 router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
@@ -140,7 +140,7 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
 });
 
 // @route    put api/orders/balance/:id
-// @desc     balance order +1
+// @desc     balance order +1 (order id)
 // @access   Private
 
 router.put('/balance/:id', auth, checkObjectId('id'), async (req, res) => {
@@ -165,7 +165,7 @@ router.put('/balance/:id', auth, checkObjectId('id'), async (req, res) => {
 
 //****************************************************************************************** */
 // @route    put api/orders/balance(delete payment)/:id
-// @desc     balance order -1
+// @desc     balance order -1 (order id)
 // @access   Private
 
 router.put('/balancedp/:id', auth, checkObjectId('id'), async (req, res) => {
@@ -195,7 +195,7 @@ router.put('/balancedp/:id', auth, checkObjectId('id'), async (req, res) => {
 
 
 // @route    POST api/orders/confirmation/:id
-// @desc     confirmation of order
+// @desc     confirmation of order (confirmation id)
 // @access   Private
 
 router.post(
@@ -242,7 +242,7 @@ router.post(
     });
 
 // @route    delete api/orders/confirmation/:id/:confirmation_id
-// @desc     delete confirmation
+// @desc     delete confirmation (confirmation id)
 // @access   Private
 
 router.delete('/confirmation/:id/:confirmation_id', auth, async (req, res) => {
@@ -278,5 +278,38 @@ router.delete('/confirmation/:id/:confirmation_id', auth, async (req, res) => {
     }
 
 })
+
+
+
+
+//*****************test******** */
+// @route    Get api/orders/user_id
+// @desc     Get orders by user id
+// @access   Private
+
+router.get('/user/:user_id', auth, async (req, res) => {
+    try {
+        const orders = await Orders
+            .find({ user: req.params.user_id })
+            .sort({ date: -1 })
+            .populate('user',
+                [
+                    'firstName',
+                    'lastName',
+                    'email',
+                    'gender'
+                ]);
+        if (!orders)
+            return res.status(400)
+                .json({ msg: 'Order not found' });
+
+        res.json(orders);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+});
+//*****************test******** */
 
 module.exports = router;
