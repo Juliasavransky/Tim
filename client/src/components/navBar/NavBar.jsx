@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Image, Icon, Input } from 'semantic-ui-react';
 import tim from './tim.svg';
-import SearchBar from '../../pages/search/SearchBar'
+import SearchBar from '../../pages/search/SearchBar';
+import navBar from './navBar.css';
 
 //redux
 import { connect } from 'react-redux';
@@ -39,16 +40,16 @@ const NavBar = ({
             </Menu.Menu>
 
             <Menu.Menu position='right'>
-              
-                <Menu.Item >
-                    <Link to="/searchPage">search</Link>
+
+                <Menu.Item className="navBarItem">
+                    <Link to="/searchPage">Search</Link>
                 </Menu.Item>
 
-                <Menu.Item >
+                <Menu.Item className="navBarItem">
                     <Link to="/orders">Orders</Link>
                 </Menu.Item>
 
-                <Menu.Item >
+                <Menu.Item className="navBarItem">
                     {/* <Image
                         avatar
                         src={userProfileImg
@@ -60,13 +61,15 @@ const NavBar = ({
 
                 </Menu.Item>
 
-                <Menu.Item
+                <Menu.Item className="navBarItem"
                     onClick={logout}
                 >
-                    Log-out
+                   <span className="navBarItem"> Log-out</span>
                 </Menu.Item>
 
-                <Menu.Item>
+                <Menu.Item
+                    className="navBarItem"
+                >
                     <SearchBar />
                 </Menu.Item>
 
@@ -97,20 +100,27 @@ const NavBar = ({
             </Menu.Menu>
 
             <Menu.Menu position='right'>
-                <Menu.Item >
-                    <Icon
-                    ><Link to="/logIn">LogIn</Link></Icon>
+                <Menu.Item
+                    className="navBarItem"
+                >
+                    <Link to="/logIn">LogIn</Link>
                 </Menu.Item>
 
-                <Menu.Item >
+                <Menu.Item
+                    className="navBarItem"
+                >
                     <Link to="/userRegistration">Registration</Link>
                 </Menu.Item>
 
-                <Menu.Item >
-                    <Link to="//searchPage">search</Link>
+                <Menu.Item
+                    className="navBarItem"
+                >
+                    <Link to="/searchPage">Search</Link>
                 </Menu.Item>
 
-                <Menu.Item>
+                <Menu.Item
+                    className="navBarItem"
+                >
                     <SearchBar />
                 </Menu.Item>
 

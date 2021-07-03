@@ -1,6 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import Spinner from '../../components/Spinner';
 import UserOrdersData from './UserOrdersData';
+import { Link } from 'react-router-dom';
+import {  Button } from 'semantic-ui-react';
+
 
 //redux
 import PropTypes from 'prop-types';
@@ -20,10 +23,25 @@ const UserOrders = ({
     }, [getOrdersByUserId, match.params.id]);
 
 
+    const balancesSum = orders.map(order => (<li key={order._id} >{(order.balance.length)}</li>))
+    // const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    // const array = orders.map(order =>(Array.from(order.balance.length).reduce(reducer)));
+
+    // console.log(array);
 
     return orders === null || loading
         ? <Spinner />
         : <Fragment>
+            <h1>My activities</h1>
+
+            <h2
+                style={{ fontSize: '2em', color: "var(--yellow)" }}>
+                My Balance {" "}
+                <i className="fas fa-piggy-bank">
+                </i>
+                {" "}{(auth.user.balance)}
+            </h2>
+            <div>{balancesSum}</div>
             {orders.length > 0
                 ? (orders.map(order => (
                     <UserOrdersData
@@ -31,7 +49,12 @@ const UserOrders = ({
                         order={order}
                         profile={profile}
                     />
-                ))) : <h3>No orders </h3>
+                ))) : <Fragment>
+                    <h3>No orders </h3>
+                    <Link to="/searchPage">
+                        <Button content='find new activity' size='big' />
+                    </Link>
+                </Fragment>
             }
 
 

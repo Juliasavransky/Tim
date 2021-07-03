@@ -20,17 +20,17 @@ const OrderItem = ({
     getProfileById,
     profile,
     order: {
-        _id,
         title,
         text,
         dateOfServes,
         firstName,
         lastName,
+        _id,
         avatar,
-        user,
         balance,
         confirmation,
-        date
+        date,
+        user,
     },
     // profile: { city, dob, categories, subCategories, avatar, bio,
     //     user: { firstName, lastName, gender, email }}
@@ -87,7 +87,7 @@ const OrderItem = ({
 
                     <Card.Description>Order Title: {title && title}</Card.Description>
                     <Card.Description>  Order text: {text && text}  </Card.Description>
-                    <Card.Meta> Balance: {(balance.length) + 2} </Card.Meta>
+                    <Card.Meta> Balance: {(balance.length) } </Card.Meta>
 
                     <Card.Meta> Order created in:
                         <Moment format='DD/MM/YYYY'>{date && date}</Moment>

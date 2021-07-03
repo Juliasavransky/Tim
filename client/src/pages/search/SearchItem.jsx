@@ -54,6 +54,7 @@ const SearchItem = ({ getProfiles, profile: { profiles }, categoriesToRender }) 
                                 }}
                             >
                                 <Icon
+                                className="searchByCategories--icon"
 
                                     // onClick={() => handleSelectedCategory(cat.content.content)}
                                     name={cat.content.props.icon} size='huge' />

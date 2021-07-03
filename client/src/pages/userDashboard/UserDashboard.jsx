@@ -2,7 +2,12 @@ import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Rating, Container, Header, Image, Button } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
-import Moment from 'react-moment'
+import Moment from 'react-moment';
+import './userDashboard.css';
+import man from '../../components/man.jpg';
+import woman from '../../components/woman.jpg'
+
+
 
 
 //redux
@@ -28,13 +33,17 @@ const UserDashboard = ({
         getOrdersByUserId(match.params.id);
     }, [getOrdersByUserId, match.params.id]);
 
-    const avatar = user && user.gender === 'female' ? 'ade' : 'elliot';
+
+    const avatar = user && user.gender === 'female' ? woman : man;
+    const userProfileImg = profile && profile.avatar ? profile.avatar : avatar;
+    // const userProfileImg = profile && profile.avatar === undefined || profile && profile.avatar === null ? avatar : profile.avatar;
+
+  
 
     const city = profile && profile.city
     const street = profile && profile.street
     const phone = profile && profile.phone;
     const bio = profile && profile.bio;
-    const userProfileImg = profile && profile.avatar;
     const balance = user && user.balance;
 
     const dob = profile && profile.dob;
@@ -47,13 +56,29 @@ const UserDashboard = ({
     return loading && profile === null
         ? (<Spinner />)
         : (<Fragment>
-            <Container text >
-                <Header as='h1'> Welcome {user && user.firstName}{' '}{user && user.lastName}</Header>
 
-                <Image rounded size='small'
-                    src={userProfileImg
-                        ? userProfileImg
-                        : `https://react.semantic-ui.com/images/avatar/large/${avatar}.jpg`} />
+            <Container text >
+
+
+                <h1 className="userDashboard--header"> Welcome {user && user.firstName}{' '}{user && user.lastName}</h1>
+                <div className="userDashboard--avatar_container">
+                    <div className='userDashboard--border_1'>
+                        <div className='userDashboard--border_2'>
+                            <div className='userDashboard--border_3'>
+                                <img
+                                    className="UserDashboard--avatar"
+                                    src={avatar
+                                        ? avatar
+                                        : userProfileImg}
+                                    style={{
+                                        'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72% ',
+                                        border:"3px solid var(--red)"
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </Container>
 
@@ -94,7 +119,7 @@ const UserDashboard = ({
                 <Link to={`/orders/user/${user._id}`}>
                     <Button content='My activities' size='big' />
                 </Link>
-              
+
 
             </Container>
         </Fragment>);
@@ -113,4 +138,4 @@ const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile
 })
-export default connect(mapStateToProps, { getCurrentProfile,getOrdersByUserId })(UserDashboard);
+export default connect(mapStateToProps, { getCurrentProfile, getOrdersByUserId })(UserDashboard);

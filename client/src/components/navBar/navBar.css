@@ -1,0 +1,16 @@
+.navBarItem > a,
+span {
+  font-family: var(--headings-font-family);
+  color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.3rem;
+  /* text-transform: uppercase; */
+}
+
+.navBarItem > a:hover,
+.navBarItem > a:focus,
+.navBarItem > span:hover,
+.navBarItem > span:focus {
+  color: var(--blue);
+}

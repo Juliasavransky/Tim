@@ -38,9 +38,6 @@ const ConfirmationForm = ({ addConfirmation ,orderId}) => {
         <Fragment>
         <Form onSubmit={e => orderFormSubmit(e)}>
             <h1>Leave a Confirmation!!!</h1>
-            {/* <div>order from: {firstName && firstName}{' '}{lastName && lastName}</div> */}
-            {/* <div>order to: {firstName && firstName}{' '}{lastName && lastName}</div> */}
-
             <FormGroup>
                 <Label
                     for="exampleEmail">
