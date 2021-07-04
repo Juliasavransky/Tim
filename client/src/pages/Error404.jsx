@@ -1,18 +1,46 @@
 import React, { Fragment } from 'react';
+import './error404.css';
+import { Link } from 'react-router-dom';
+
 
 const Error404 = () => {
     return (
         <Fragment>
+            <div>
 
-            <span style={{
-                fontSize: '10em',
-                color: 'red',
-                textAlign: 'center'
-            }}>
-                <div>404</div>
-                <div>¯\_(ツ)_/¯</div>
+                <div className="errorComp--heder">
+                    <h1><i class="fas fa-meteor"></i></h1>
+                    <h1>404 Error </h1>
+                    <div></div>
 
-            </span>
+                </div>
+
+                <div className="errorComp">
+                    <div class="errorComp--content">
+                        This page is lost in space
+                        <div> This page is lost in space </div>
+                        <div> This page is lost in space </div>
+                        <div> This page is lost in space </div>
+                        <div> This page is lost in space </div>
+                    </div>
+                </div>
+
+                <div className="errorComp--border1">
+                    <div className="errorComp--border2">
+                        <div className="errorComp--border3">
+                            <div className="errorComp--heder_link">
+                                <Link to={`/`}>
+                                    <h1 > Go Back <i class="fas fa-user-astronaut"></i> </h1>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
 
         </Fragment>
     );

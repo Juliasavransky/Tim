@@ -7,9 +7,6 @@ import './userDashboard.css';
 import man from '../../components/man.jpg';
 import woman from '../../components/woman.jpg'
 
-
-
-
 //redux
 import { connect } from 'react-redux';
 import { getCurrentProfile } from './../../actions/profile';

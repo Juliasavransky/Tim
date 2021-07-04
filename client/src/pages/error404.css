@@ -1,0 +1,146 @@
+
+.errorComp--heder{
+    color:var(--yellow);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    font-family: var(--headings-font-family);
+
+}
+.errorComp--heder >h1{
+    font-size: 3.5vw;
+}
+.errorComp--heder_link >a{
+    font-size:4.5vw;
+    color: var(--yellow);
+    text-decoration: none;
+}
+.errorComp--border1{
+    border-radius: 82% 18% 56% 44% / 56% 76% 24% 44%;
+    width: 100%;
+    border: 3px solid var(--yellow);
+    padding: 15px;
+}
+.errorComp--border2{
+    border-radius: 85% 15% 87% 13% / 89% 65% 35% 11%  ;
+    width: 100%;
+    border: 3px solid var(--red);
+    padding: 15px;
+}
+.errorComp--border3{
+    border-radius: 5% 95% 14% 86% / 20% 72% 28% 80% ;
+    width: 100%;
+    border: 3px solid var(--blue);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+
+}
+.errorComp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+  }
+  
+  .errorComp--content {
+    position: relative;
+    margin: auto;
+    color: transparent;
+    font-family: var(--headings-font-family);
+    font-size: 4.5vw;
+    font-weight: 700;
+  }
+  
+  .errorComp--content > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: var(--yellow);
+  }
+  
+  .errorComp--content > div:nth-child(1) {
+    -webkit-mask-image: linear-gradient(var(--yellow) 25%, transparent 25%);
+    mask-image: linear-gradient(var(--yellow) 25%, transparent 25%);
+    animation: error1 5s infinite;
+  }
+  
+  .errorComp--content > div:nth-child(2) {
+    -webkit-mask-image: linear-gradient(transparent 25%, var(--yellow) 25%, var(--yellow) 50%, transparent 50%);
+    mask-image: linear-gradient(transparent 25%, var(--yellow) 25%, var(--yellow) 50%, transparent 50%);
+    animation: error2 5s infinite;
+  }
+  
+  .errorComp--content > div:nth-child(3) {
+     -webkit-mask-image: linear-gradient(transparent 50%, var(--yellow) 50%, var(--yellow)black 75%, transparent 75%);
+    mask-image: linear-gradient(transparent 50%, var(--yellow) 50%, var(--yellow) 75%, transparent 75%);
+    animation: error3 5s infinite;
+  }
+  
+  .errorComp--content > div:nth-child(4) {
+     -webkit-mask-image: linear-gradient(transparent 75%, var(--yellow) 75%);
+    mask-image: linear-gradient(transparent 75%, var(--yellow) 75%);
+    animation: error4 5s infinite;
+  }
+  
+  @keyframes error1 {
+    0% {
+      transform: translateX(100%);
+    }
+    26% {
+      transform: translateX(0%);
+    }
+    83% {
+      transform: translateX(-0.1%);
+    }
+    100% {
+      transform: translateX(-120%);
+    }
+  }
+  
+  @keyframes error2 {
+    0% {
+      transform: translateX(100%);
+    }
+    24% {
+      transform: translateX(0.5%);
+    }
+    82% {
+      transform: translateX(-0.2%);
+    }
+    100% {
+      transform: translateX(-125%);
+    }
+  }
+  
+  @keyframes error3 {
+    0% {
+      transform: translateX(100%);
+    }
+    22% {
+      transform: translateX(0%);
+    }
+    81% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-130%);
+    }
+  }
+  
+  @keyframes error4 {
+    0% {
+      transform: translateX(100%);
+    }
+    20% {
+      transform: translateX(0%);
+    }
+    80% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-135%);
+    }
+  }
