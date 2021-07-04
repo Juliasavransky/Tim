@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import {  Container } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
 import ProfileItem from './ProfileItem';
 
@@ -9,7 +9,10 @@ import PropTypes from 'prop-types';
 import { getProfiles } from '../../actions/profile';
 
 
-const UsersList = ({ getProfiles, profile: { profiles, loading } }) => {
+const UsersList = ({
+  getProfiles,
+  profile: { profiles, loading }
+}) => {
 
   useEffect(() => {
     getProfiles();
@@ -21,9 +24,9 @@ const UsersList = ({ getProfiles, profile: { profiles, loading } }) => {
       <Container  >
         {profiles.length > 0 ? (
           profiles.map(profile => (
-            <ProfileItem  key={profile._id} profile={profile}/>
+            <ProfileItem key={profile._id} profile={profile} />
           ))
-        ):<div>no profiles</div>}
+        ) : <div>no profiles</div>}
       </Container>
     </Fragment>}
 

@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Search, Grid, Container, Input } from 'semantic-ui-react';
+import { Search, Grid, Input, Image, List, Container, Label } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
+import './searchBar.css';
+import { Link } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
@@ -8,48 +10,130 @@ import PropTypes from 'prop-types';
 import { getProfiles } from '../../actions/profile';
 
 
-// const ProfileItem = ({ profile: { user: { _id, firstName, lastName, gender },
-//         avatar,
-//         subCategories,
-//         city
-//     }
-// }) => {
-
-const SearchBar = ({ getProfiles,
+const SearchBar = ({
+    getProfiles,
     profile: {
-        profiles: {
-            categories,
-            subCategories,
-            city,
-            // user: {
-            //     firstName,
-            //     lastName,
-            //     _id
-            // }
-        }, loading }
-}
+        profiles, loading } }
 ) => {
+
+    const [wordEntered, setWordEntered] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
 
     useEffect(() => {
         getProfiles();
-
     }, [getProfiles]);
 
-    const [searchTerm, setSearchTerm] = useState('')
 
-    const searchTermHandler = (e) => {
-        setSearchTerm(e.target.value);
-        console.log('searchTerm', searchTerm);
+
+    const handleFilter = (e) => {
+        const searchWord = e.target.value;
+        setWordEntered(searchWord);
+
+        if (wordEntered !== "") {
+            const newFilter = profiles && profiles.filter((profile) => {
+                return Object.values(profile)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchWord.toLowerCase())
+
+            });
+            setSearchResults(newFilter);
+        } else {
+            setSearchResults([]);
+        }
+
+        console.log(searchResults)
     }
 
-    return (
-        <Input
-            onChange={searchTermHandler}
-            icon={{ name: 'search', circular: true, link: true }}
-            placeholder='Search...'
-        />
-    );
+    const clearInput = () => {
+        setSearchResults([]);
+        setWordEntered("");
+    };
+
+
+    return <Fragment>
+        {loading
+            ? <Spinner />
+            : <Fragment >
+                <div className="searchBar--comp">
+                    <Input
+                        value={wordEntered}
+                        type="text"
+                        placeholder='Search...'
+                        className="searchBarInput"
+                        onChange={handleFilter}
+                        icon={{ name: 'search', circular: true, link: true }}
+                    />
+
+                    <div
+                        className="searchBarResults">
+                        {searchResults.length !== 0 && (
+                            <div className="searchBarResults">
+                                {searchResults.slice(0, 10).map((value, key) => {
+                                    return (
+                                        <Container>
+                                            <List relaxed='very' key={key}>
+                                                <List.Item>
+                                                    <List.Content>
+                                                        <Link to={`/userProfile/${value.user._id}`} >
+                                                            {/* <Image
+                                                                rounded
+                                                                size='small'
+                                                                src={userProfileImg
+                                                                    ? userProfileImg
+                                                                    : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} /> */}
+
+                                                            <List.Header >
+                                                                {value.user.firstName
+                                                                    .charAt(0)
+                                                                    .toUpperCase() + value.user.firstName.slice(1)}
+                                                                {" "}
+                                                                {value.user.lastName
+                                                                    .charAt(0)
+                                                                    .toUpperCase() + value.user.lastName.slice(1)}
+                                                            </List.Header>
+
+                                                            <List.Description>
+                                                                <List.Icon name='map outline' />{' '}
+                                                                {value.city
+                                                                    .charAt(0)
+                                                                    .toUpperCase() + value.city.slice(1)}
+                                                            </List.Description>
+
+                                                            <List.Description>
+                                                                {value.categories.map((cat, index) =>
+                                                                (<li key={index}>
+                                                                    {cat
+                                                                        .charAt(0)
+                                                                        .toUpperCase() + cat.slice(1)}</li>))}
+                                                            </List.Description>
+
+                                                            <List.Description>
+                                                                {value.subCategories.map(tag => (
+                                                                    <Label key={tag._id} tag>
+                                                                        {tag.label
+                                                                            .charAt(0)
+                                                                            .toUpperCase() + tag.label.slice(1)}
+                                                                    </Label>
+                                                                ))}
+                                                            </List.Description>
+                                                        </Link>
+                                                    </List.Content>
+                                                </List.Item>
+                                            </List>
+                                        </Container>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </Fragment>
+        }
+    </Fragment>
 };
+
 
 SearchBar.propTypes = {
     getProfiles: PropTypes.func.isRequired,
@@ -60,79 +144,8 @@ const mapStateToProps = state => ({
 })
 export default connect(mapStateToProps, { getProfiles })(SearchBar);
 
-
-
-//****************************************************************************************** */
-// if(searchTerm){
-//    freeSearch = profiles.filter(value =>{
-//categories.toLowerCase().includes(searchTerm.toLowerCase() ||
-// subCategories.toLowerCase().includes(searchTerm.toLowerCase() ||
-//firstName.toLowerCase().includes(searchTerm.toLowerCase())||
-//lastName.toLowerCase().includes(searchTerm.toLowerCase())||
-//city.toLowerCase().includes(searchTerm.toLowerCase())
-//)
-//})
-// }
-
-//*********************************************************************************************** */
-
-
-// const source = _.times(5, () => ({
-//     title: {subcategory, category, firstName, lastName,city}
-//     image: {avatar}
-// }))
-
-
-
-// const initialState = { isLoading: false, results: [], value: '' }
-
-
-
-// export default class SearchExampleStandard extends Component {
-//     state = initialState
-
-//     handleResultSelect = (e, { result }) => setState({ value: result.title })
-
-//     handleSearchChange = (e, { value }) => {
-//         setState({ isLoading: true, value })
-
-//         setTimeout(() => {
-//             if (state.value.length < 1) return this.setState(initialState)
-
-//             const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-//             const isMatch = (result) => re.test(result.title)
-
-//             this.setState({
-//                 isLoading: false,
-//                 results: _.filter(source, isMatch),
-//             })
-//         }, 300)
-//     }
-// const { isLoading, value, results } = state
-{/* <Grid.Column width={10}>
-                <Search
-                    fluid
-                    // onResultSelect={handleResultSelect}
-                    // results={results}
-                    
-                    
-                    // onSearchChange={_.debounce(handleSearchChange, 500, {
-                        //     leading: true,
-                        // })}
-                        // loading={isLoading}
-                // value={value}
-                />
-            </Grid.Column>
-
-            <Grid.Column width={1}>
-                <Container>
-                    <pre
-                        style={{ overflowX: 'auto' }}>
-                        {JSON.stringify(state, null, 2)}
-                    </pre>
-                    <pre
-                        style={{ overflowX: 'auto' }}>
-                        {JSON.stringify(source, null, 2)}
-                    </pre>
-                </Container>
-            </Grid.Column>/* */}
+{/* <div >{value.city}</div>
+<div>{value.user.firstName}</div>
+<div>{value.user.lastName}</div>
+<div>{value.categories.map((cat, index) => (<li key={index}>{cat}</li>))}</div>
+<div>{value.subCategories.map((sub) => (<li key={sub.value}>{sub.label}</li>))}</div> */}

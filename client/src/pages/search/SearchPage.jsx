@@ -32,12 +32,15 @@ const SearchPage = ({
             : <Fragment>
                 <Container textAlign='center' >
 
-                    <Range profile={profiles} />
+                    {/* <Range profile={profiles} /> */}
 
-                    <SearchBar profile={profiles} />
+                    <SearchBar 
+                    // profile={profiles} 
+                    />
 
                     <SearchByCategories profile={profiles}
-                        categoriesToRender={categoriesToRender} />
+                        categoriesToRender={categoriesToRender} 
+                        />
 
                     {/* {profiles.length > 0 ? (
                         <SearchItem

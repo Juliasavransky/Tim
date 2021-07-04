@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Error404 = () => {
     return (
         <Fragment>
-            <div>
+            <div className="errorComp">
 
                 <div className="errorComp--heder">
                     <h1><i class="fas fa-meteor"></i></h1>
@@ -15,7 +15,7 @@ const Error404 = () => {
 
                 </div>
 
-                <div className="errorComp">
+                <div className="errorComp--animation">
                     <div class="errorComp--content">
                         This page is lost in space
                         <div> This page is lost in space </div>
@@ -29,7 +29,7 @@ const Error404 = () => {
                     <div className="errorComp--border2">
                         <div className="errorComp--border3">
                             <div className="errorComp--heder_link">
-                                <Link to={`/`}>
+                                <Link to={`/searchPage`}>
                                     <h1 > Go Back <i class="fas fa-user-astronaut"></i> </h1>
                                 </Link>
                             </div>
