@@ -98,9 +98,9 @@ export const deleteOrder = orderId => async dispatch => {
 }
 
 // Add order 
-export const addOrder = formData => async dispatch => {
+export const addOrder = (formData) => async dispatch => {
     try {
-        const res = await axios.post('/api/orders', formData);
+        const res = await axios.post('/api/orders',( formData));
 
         dispatch({
             type: ADD_ORDER,

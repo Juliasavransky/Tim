@@ -32,8 +32,7 @@ const UserDashboard = ({
 
 
     const avatar = user && user.gender === 'female' ? woman : man;
-    const userProfileImg = profile && profile.avatar ? profile.avatar : avatar;
-    // const userProfileImg = profile && profile.avatar === undefined || profile && profile.avatar === null ? avatar : profile.avatar;
+    const userProfileImg = profile && profile.avatar && profile.avatar.length > 0 ? profile.avatar : avatar;
 
   
 
@@ -64,9 +63,9 @@ const UserDashboard = ({
                             <div className='userDashboard--border_3'>
                                 <img
                                     className="UserDashboard--avatar"
-                                    src={avatar
-                                        ? avatar
-                                        : userProfileImg}
+                                    src={userProfileImg
+                                        ? userProfileImg
+                                        : avatar}
                                     style={{
                                         'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72% ',
                                         border:"3px solid var(--red)"

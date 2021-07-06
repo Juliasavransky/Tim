@@ -2,23 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image, List, Container, Label } from 'semantic-ui-react';
 
-
 //redux
 import PropTypes from 'prop-types';
 
-const ProfileItem = (
-    { profile:
-    {
+const UsersListBySearchItem = (
+    { profile: {
         user: { _id, firstName, lastName, gender },
         avatar,
         subCategories,
         city
-    }
-}) => {
+    } }) => {
 
-    const userProfileAvatar = gender && gender === 'female' ? 'ade' : 'elliot';
-    const userProfileImg = avatar && avatar;
-    
+    // const avatar = user && user.gender === 'female' ? woman : man;
+    // const userProfileImg = profile && profile.avatar && profile.avatar.length > 0 ? profile.avatar : avatar;
+
     return (
         <Container>
             <List relaxed='very'>
@@ -29,12 +26,12 @@ const ProfileItem = (
                             to={`/userProfile/${_id}`}
                         >
 
-                            <Image 
-                            rounded 
-                            size='small'
+                            {/* <Image
+                                rounded
+                                size='small'
                                 src={userProfileImg
                                     ? userProfileImg
-                                    : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} />
+                                    : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} /> */}
 
                             <br />
                             <br />
@@ -71,8 +68,9 @@ const ProfileItem = (
     );
 };
 
-ProfileItem.propTypes = {
+UsersListBySearchItem.propTypes = {
     profile: PropTypes.object.isRequired
-}
 
-export default ProfileItem;
+};
+
+export default UsersListBySearchItem;

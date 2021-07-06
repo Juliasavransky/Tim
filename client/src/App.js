@@ -27,6 +27,7 @@ import store from './store';
 import AlertComp from './components/AlertComp';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import UsersListBySearchResults from './pages/search/UsersListBySearchResults';
 
 
 if (localStorage.token) {
@@ -93,6 +94,10 @@ const App = () => {
 
                             <  Route path="/usersList"
                                 exact component={UsersList}
+                            />
+
+                            <  Route path="/userProfile/categories/:catValue"
+                                exact component={UsersListBySearchResults}
                             />
 
                             {

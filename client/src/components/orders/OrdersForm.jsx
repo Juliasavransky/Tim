@@ -32,6 +32,16 @@ const OrdersForm = ({
         dateOfServes: ""
     });
 
+    const [serviceProvider, setServiceProvider] = useState("");
+
+    // const findServiceProvider = () => {
+    //     let url = window.location.href;
+    //     let urlArray = url.split("/");
+    //     let userId = urlArray[urlArray.length - 1];
+    //     // setServiceProvider(userId)
+    //     formData['serviceProvider'] = userId;
+    // }
+
     const {
         text,
         title,
@@ -44,6 +54,14 @@ const OrdersForm = ({
 
     const orderFormSubmit = e => {
         e.preventDefault();
+        // findServiceProvider();
+
+        console.log("serviceProvider", serviceProvider);
+
+        let url = window.location.href;
+        let urlArray = url.split("/");
+        let userId = urlArray[urlArray.length - 1];
+        formData['serviceProvider'] = userId;
 
         addOrder(formData);
         setFormData({

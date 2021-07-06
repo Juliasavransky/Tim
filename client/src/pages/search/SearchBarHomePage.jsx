@@ -1,33 +1,53 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Icon, Menu } from 'semantic-ui-react';
 import './searchBarHomePage.css';
 import Spinner from '../../components/Spinner';
 import { Link } from 'react-router-dom';
 
-
-
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getProfiles } from '../../actions/profile';
-
+import { getProfiles, getProfileByCategories } from '../../actions/profile';
 
 
 const SearchBarHomePage = ({
     getProfiles,
+    getProfileByCategories,
     profile: { profiles, loading }
 }) => {
+
+    const [categorySelected, setCategorySelected] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
     useEffect(() => {
         getProfiles();
-        console.log(profiles[4]);
     }, [getProfiles]);
 
-      // check witch category the user select 
+    useEffect(() => {
+        getProfileByCategories();
+    }, [getProfileByCategories]);
 
-    // const handleSelectedCategory = (categorySelected) => {
-    //     const filteredCategory = profiles.categories.filter(category => category === categorySelected);
-    //     console.log('filteredCategory', categorySelected)
-    // }
+    useEffect(() => {
+        handleFilter(categorySelected);
+    }, [categorySelected]);
+
+    const handleFilter = (searchCat) => {
+        setCategorySelected(searchCat);
+
+        if (categorySelected) {
+            const newFilter = profiles?.filter((profile) => {
+                return Object.values(profile.categories)
+                    .includes(searchCat)
+            });
+            setSearchResults(newFilter);
+            console.log("newFilter",categorySelected,newFilter);
+        } else {
+            setSearchResults([]);
+        }
+
+        console.log("searchResults", searchResults, categorySelected)
+    }
+
     return (
         <Fragment >
             {loading
@@ -42,35 +62,41 @@ const SearchBarHomePage = ({
                         className="searchBarHomePage"
                     >
 
-                        <Menu.Item  >
-                            <Icon
-                                className="searchBarHomePage--item"
-                                name='paw' />
-                            Pets
+                        <Menu.Item
+                            onClick={() => handleFilter("pets")} >
+                            <Link to={`/userProfile/categories/${categorySelected}`} >
+                                <Icon
+                                    className="searchBarHomePage--item"
+                                    name='paw' />
+                                Pets
+                            </Link>
                         </Menu.Item>
 
-                        <Menu.Item >
-                            <Icon
-                                className="searchBarHomePage--item"
-                                name='graduation cap' />
-                            Education and Lessons
+                        <Menu.Item onClick={() => { handleFilter("Education and Lessons") }}>
+                            <Link to={`/userProfile/categories/${categorySelected}`}>
+                                <Icon
+                                    className="searchBarHomePage--item"
+                                    name='graduation cap' />
+                                Education and Lessons
+                            </Link>
                         </Menu.Item>
 
-                        <Menu.Item >
+
+                        <Menu.Item onClick={() => handleFilter("Sport and Activities")}>
                             <Icon
                                 className="searchBarHomePage--item"
                                 name='volleyball ball' />
                             Sport and Activities
                         </Menu.Item>
 
-                        <Menu.Item >
+                        <Menu.Item onClick={() => handleFilter("Art and music")}>
                             <Icon
                                 className="searchBarHomePage--item"
                                 name='music' />
                             Art and music
                         </Menu.Item>
 
-                        <Menu.Item      >
+                        <Menu.Item onClick={() => handleFilter("Alternative Medicine")}  >
                             <Icon
                                 name='heartbeat'
                                 className="searchBarHomePage--item"
@@ -78,14 +104,17 @@ const SearchBarHomePage = ({
                             Alternative Medicine
                         </Menu.Item>
 
-                        <Menu.Item >
-                            <Icon
-                                className="searchBarHomePage--item"
-                                name='child' />
-                            Toddlers and Children
+                        <Menu.Item onClick={() => handleFilter("Toddlers and Children")}>
+                            <Link to={`/userProfile/categories/${categorySelected}`}>
+                                <Icon
+                                    className="searchBarHomePage--item"
+                                    name='child' />
+                                Toddlers and Children
+                            </Link>
                         </Menu.Item>
 
-                        <Menu.Item   >
+
+                        <Menu.Item onClick={() => handleFilter("Technical support")} >
                             <Icon
                                 name='cogs'
                                 className="searchBarHomePage--item"
@@ -93,7 +122,7 @@ const SearchBarHomePage = ({
                             Technical support
                         </Menu.Item>
 
-                        <Menu.Item >
+                        <Menu.Item onClick={() => handleFilter("Care and beauty")}>
                             <Icon
                                 name='lab'
                                 className="searchBarHomePage--item"
@@ -101,7 +130,7 @@ const SearchBarHomePage = ({
                             Care and beauty
                         </Menu.Item>
 
-                        <Menu.Item  >
+                        <Menu.Item onClick={() => handleFilter("Counseling and guidance")}>
                             <Icon
                                 name='law'
                                 className="searchBarHomePage--item"
@@ -109,7 +138,7 @@ const SearchBarHomePage = ({
                             Counseling and guidance
                         </Menu.Item>
 
-                        <Menu.Item >
+                        <Menu.Item onClick={() => handleFilter("Other")}>
                             <Icon
                                 name='beer'
                                 className="searchBarHomePage--item"
@@ -119,16 +148,17 @@ const SearchBarHomePage = ({
 
                     </Menu>
                 </Fragment>}
-        </Fragment>
+        </Fragment >
     );
 };
 
 SearchBarHomePage.propTypes = {
     getProfiles: PropTypes.func.isRequired,
+    getProfileByCategories: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     profile: state.profile
 })
-export default connect(mapStateToProps, { getProfiles })(SearchBarHomePage);
+export default connect(mapStateToProps, { getProfiles, getProfileByCategories })(SearchBarHomePage);

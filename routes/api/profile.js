@@ -165,5 +165,52 @@ router.get('/user/:user_id', async (req, res) => {
     }
 });
 
+
+
+//@route  Get api/profiles/category:" str "
+//@desc  get profiles by user id
+//@access Public
+
+router.get('/categories/:catValue', async (req, res) => {
+    try {
+        const profile = await Profile
+            .find({
+            //   $or: [
+            //             { categories: "Pets" },
+            //             { categories: "Education and Lessons" },
+            //             { categories: "Sport and Activities" },
+            //             { categories: "Art and music" },
+            //             { categories: "Alternative Medicine" },
+            //             { categories: "Toddlers and Children" },
+            //             { categories: "Technical support" },
+            //             { categories: "Care and beauty" },
+            //             { categories: "Counseling and guidance" },
+            //             { categories: "Other" }
+            //         ]
+              
+            })
+
+            .populate('user',
+                [
+                    'firstName',
+                    'lastName',
+                    'email',
+                    'gender'
+                ]);
+        if (!profile)
+            return res.status(400)
+                .json({ msg: 'Profile not found' });
+
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') {
+            return res.status(400)
+                .json({ msg: 'Profile not found' });
+        }
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;
 

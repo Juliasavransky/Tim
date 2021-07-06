@@ -88,7 +88,7 @@ const LogIn = ({ login, isAuthenticated }) => {
                 >
                     <Link to="/userRegistration">
                         <Button
-                            content='Sign up'
+                            content='Sign-up'
                             icon='signup'
                             size='big' 
                             className="login--button"

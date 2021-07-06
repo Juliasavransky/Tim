@@ -32,7 +32,6 @@ const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
         ...enteredFormData,
         [e.target.name]: e.target.value
     })
-    console.log(enteredFormData);
 
     const handleSubmitForm = async e => {
         e.preventDefault();
@@ -49,7 +48,7 @@ const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
         if (enteredFormData.password.trim().length === 0) {
             setAlert('Password name is required', 'danger')
         }
-      
+
 
         register({
             firstName,
@@ -132,7 +131,7 @@ const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
                     </Row>
 
                     <Row>
-                        <FormGroup row>
+                        <FormGroup >
                             <Label
                                 sm={12}
                             >* Password</Label>
@@ -151,20 +150,20 @@ const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
 
 
 
-                    <FormGroup tag="fieldset" row>
-                        <legend className="col-1 pt-5 mt-6">Gender</legend>
+                    <FormGroup tag="fieldset" >
+                        <legend className=" pt-3 ">Gender</legend>
                         <Col sm={10}>
 
                             <FormGroup check>
-                                <Label className="col-1 pt-5 mt-6" check sm={10}>
+                                <Label check sm={10}>
                                     <Input
                                         type="radio"
                                         name="gender"
                                         value={'female'}
                                         onChange={e => handleDataChange(e)}
                                     />
-                                      Female
-                                 </Label>
+                                    Female
+                                </Label>
                             </FormGroup>
 
                             <FormGroup check >
@@ -175,21 +174,20 @@ const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
                                         value={'male'}
                                         onChange={e => handleDataChange(e)}
                                     />
-                                       Male
-                                    </Label>
+                                    Male
+                                </Label>
                             </FormGroup>
 
+                            <Button
+                                size="lg"
+                                color="warning"
+                                type="submit"
+                            >
+                                Submit
+                            </Button>
                         </Col>
                     </FormGroup>
 
-                    {/* <Link to="/userDashboard"> */}
-                    <Button
-                        color="success"
-                        type="submit"
-                    >
-                        Submit
-                    </Button>
-                    {/* </Link> */}
 
                 </Form>
             </Container>

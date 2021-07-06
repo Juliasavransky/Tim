@@ -8,7 +8,10 @@ import {
     PROFILE_ERROR,
 
     GET_PROFILES,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
+
+    GET_PROFILES_BY_CATEGORIES,
+    
 } from './types';
 
 //Get current users profile
@@ -116,6 +119,28 @@ export const getProfileOrderById = userId => async dispatch => {
 
         dispatch({
             type: GET_PROFILE,
+            payload: res.data
+        });
+
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+
+//*******************getProfileByCategories************************** */
+
+//Get order for profile by id 
+export const getProfileByCategories = catValue => async dispatch => {
+
+    try {
+        const res = await axios.get(`/api/profile/categories/${catValue}`);
+
+
+        dispatch({
+            type: GET_PROFILES_BY_CATEGORIES,
             payload: res.data
         });
 

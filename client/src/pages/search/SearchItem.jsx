@@ -9,15 +9,22 @@ import { getProfiles } from '../../actions/profile';
 
 
 
-const SearchItem = ({ getProfiles, profile: { profiles }, categoriesToRender }) => {
+const SearchItem = ({
+    getProfiles,
+    profile: { profiles },
+    categoriesToRender
+}) => {
 
     useEffect(() => {
         getProfiles();
-
-
     }, [getProfiles]);
 
+    // const myStyle = {
+    //     display: "grid",
+    //     "grid-template-columns": "repeat(2,1fr)",
+    //     "grid-gap": "3rem",
 
+    // }
 
     // check witch category the user select 
 
@@ -27,17 +34,14 @@ const SearchItem = ({ getProfiles, profile: { profiles }, categoriesToRender }) 
     // }
 
     return (
-        <div 
-        
-        className="searchByCategories">
+        <div
+
+            className="searchByCategories">
             <h1>
                 Categories
             </h1>
 
-            <div
-       
-            className="searchByCategories--item"
-            >
+            <div className="searchByCategories--item" >
 
                 <Link
                     to='/usersList'
@@ -54,7 +58,7 @@ const SearchItem = ({ getProfiles, profile: { profiles }, categoriesToRender }) 
                                 }}
                             >
                                 <Icon
-                                className="searchByCategories--icon"
+                                    className="searchByCategories--icon"
 
                                     // onClick={() => handleSelectedCategory(cat.content.content)}
                                     name={cat.content.props.icon} size='huge' />

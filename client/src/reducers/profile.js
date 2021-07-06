@@ -2,7 +2,9 @@ import {
     GET_PROFILE,
     GET_PROFILES,
     PROFILE_ERROR,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,
+    GET_PROFILES_BY_CATEGORIES,
+
 } from '../actions/types';
 
 const initialState = {
@@ -23,6 +25,7 @@ export default function (state = initialState, action) {
                 loading: false
             };
         case GET_PROFILES:
+        case GET_PROFILES_BY_CATEGORIES:
             return {
                 ...state,
                 profiles: payload,

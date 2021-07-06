@@ -26,9 +26,8 @@ const OrdersSchema = new Schema({
         type: Date,
         required: true
     },
-    orderFrom: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
+    serviceProvider: {
+        type:String
     },
     balance: [
         {

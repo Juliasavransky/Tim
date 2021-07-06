@@ -49,7 +49,7 @@ router.post(
                 user: req.user.id,
                 title: req.body.title,
                 dateOfServes: req.body.dateOfServes,
-                orderFrom: req.user.id
+                serviceProvider: req.body.text,
             })
 
             const order = await newOrder.save();

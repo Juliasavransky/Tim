@@ -13,8 +13,8 @@ import { getProfiles } from '../../actions/profile';
 const SearchBar = ({
     getProfiles,
     profile: {
-        profiles, loading } }
-) => {
+        profiles, loading 
+    }}) => {
 
     const [wordEntered, setWordEntered] = useState("");
     const [searchResults, setSearchResults] = useState([]);

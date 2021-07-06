@@ -52,8 +52,8 @@ const Home = ({
                                 </div>
 
                                 <div className="homePage--hero_btn">
-                                    <Link to="logIn">
-                                        <button >log IN</button>
+                                    <Link to="/logIn">
+                                        <button >log-in / Sign-up</button>
                                     </Link>
                                 </div>
 

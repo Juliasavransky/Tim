@@ -84,7 +84,7 @@ img {
 .homePage--hero_btn {
   background-color: var(--yellow);
   font-size: 1.5rem;
-  width: 5em;
+  width: 40%;
   text-align: center;
   justify-content: center;
 }
@@ -92,6 +92,9 @@ img {
 .homePage--hero_btn:hover,
 .homePage--hero_btn:focus {
   opacity: 0.75;
+  transform: scale(1.1);
+  transition:all .2s ease-in-out;
+
 }
 
 .homePage--hero > p {
