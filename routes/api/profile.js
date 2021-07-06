@@ -171,23 +171,11 @@ router.get('/user/:user_id', async (req, res) => {
 //@desc  get profiles by user id
 //@access Public
 
-router.get('/categories/:catValue', async (req, res) => {
+router.get('/categories/:categories', async (req, res) => {
     try {
         const profile = await Profile
             .find({
-            //   $or: [
-            //             { categories: "Pets" },
-            //             { categories: "Education and Lessons" },
-            //             { categories: "Sport and Activities" },
-            //             { categories: "Art and music" },
-            //             { categories: "Alternative Medicine" },
-            //             { categories: "Toddlers and Children" },
-            //             { categories: "Technical support" },
-            //             { categories: "Care and beauty" },
-            //             { categories: "Counseling and guidance" },
-            //             { categories: "Other" }
-            //         ]
-              
+                categories: req.params.categories
             })
 
             .populate('user',

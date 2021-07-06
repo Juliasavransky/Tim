@@ -112,7 +112,7 @@ const UserDashboard = ({
                     </span>
                 </h2>
 
-                <Link to={`/orders/user/${user._id && user._id}`}>
+                <Link to={`/orders/user/${user._id}`}>
                     <Button content='My activities' size='big' />
                 </Link>
 

@@ -10,25 +10,30 @@ import UsersListBySearchItem from './UsersListBySearchItem';
 
 const UsersListBySearchResults = ({
     getProfileByCategories,
-    profile: { profiles, loading }
+    profile: { profiles, loading },
+    auth, match
 }) => {
     useEffect(() => {
-        getProfileByCategories();
-    }, [getProfileByCategories]);
+        getProfileByCategories(match.params.categories);
+    }, [getProfileByCategories, match.params.categories]);
 
     return <Fragment>
 
-        {loading 
-        ? <Spinner /> 
-        : <Fragment>
-            <Container  >
-                {profiles.length > 0 ? (
-                    profiles.map(profile => (
-                        <UsersListBySearchItem key={profile._id} profile={profile} />
-                    ))
-                ) : <div>no profiles =(</div>}
-            </Container>
-        </Fragment>}
+        {loading
+            ? <Spinner />
+            : <Fragment>
+                <Container  >
+                    {profiles.length > 0 
+                    ? (
+                        profiles.map(profile => (
+                            <UsersListBySearchItem 
+                            key={profile._id} 
+                            profile={profile} />
+                        ))
+                    ) 
+                    : <div>no profiles </div>}
+                </Container>
+            </Fragment>}
 
     </Fragment>;
 };

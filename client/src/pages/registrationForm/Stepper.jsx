@@ -1,42 +1,56 @@
 import React from 'react';
-import { Step, Icon,Segment } from 'semantic-ui-react'
+import { Step, Icon, Segment } from 'semantic-ui-react';
+import "./stepper.css";
 
 
 
 const Stepper = ({ step }) => {
 
     return (
-        <Segment basic widths={4}>
-        <Step.Group>
-
-            <Step
-                active={step === 1 ? true : false}
+        <Segment
+            basic
+        // widths={6}
+className="stepper"
+        >
+            <Step.Group
+                className="stepper-comp"
             >
-                <Icon name='talk' />
-                <Step.Content>
-                    <Step.Title>User personal Information</Step.Title>
-                </Step.Content>
-            </Step>
 
-            <Step
-                active={step === 2 ? true : false}
-            >
-                <Icon name='briefcase' />
-                <Step.Content>
-                    <Step.Title>User Professional Information</Step.Title>
-                </Step.Content>
-            </Step>
+                <Step
+                    className="stepper-step"
+                    active={step === 1 ? true : false}
+                >
+                    <Icon
+                        name='talk'
+                    />
+                    <Step.Content
+                        className="stepper-content"
+                    >
+                        <Step.Title>User personal Information</Step.Title>
+                    </Step.Content>
+                </Step>
 
-            <Step
-                active={step === 3 ? true: false}
-            >
-                <Icon name='thumbs up' />
-                <Step.Content>
-                    <Step.Title>Confirm Details</Step.Title>
-                </Step.Content>
-            </Step>
+                <Step
+                    active={step === 2 ? true : false}
+                >
+                    <Icon name='briefcase'
 
-        </Step.Group>
+                    />
+                    <Step.Content className="stepper-content">
+                        <Step.Title>User Professional Information</Step.Title>
+                    </Step.Content>
+                </Step>
+
+                <Step
+                    active={step === 3 ? true : false}
+                >
+                    <Icon name='thumbs up' />
+                    <Step.Content className="stepper-content">
+                        <Step.Title>Confirm Details</Step.Title>
+                    </Step.Content>
+                </Step>
+
+            </Step.Group>
         </Segment>
     );
 };

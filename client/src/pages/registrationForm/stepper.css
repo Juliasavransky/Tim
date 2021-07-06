@@ -1,0 +1,16 @@
+.stepper-comp {
+  background-color: var(--black);
+  display: flex;
+  width: 88%;
+  
+}
+.stepper-step {
+    justify-content: center;
+}
+.stepper-content {
+    font-family:var(--headings-font-family);
+}
+.stepper{
+    justify-content: space-evenly;
+    display: flex;
+}

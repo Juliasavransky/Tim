@@ -7,46 +7,29 @@ import { Link } from 'react-router-dom';
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getProfiles, getProfileByCategories } from '../../actions/profile';
+import { getProfileByCategories } from '../../actions/profile';
 
 
 const SearchBarHomePage = ({
-    getProfiles,
     getProfileByCategories,
-    profile: { profiles, loading }
+    profile: { profiles, loading },
+    auth, match
 }) => {
 
     const [categorySelected, setCategorySelected] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        getProfiles();
-    }, [getProfiles]);
-
-    useEffect(() => {
-        getProfileByCategories();
+        getProfileByCategories(categorySelected);
     }, [getProfileByCategories]);
 
-    useEffect(() => {
-        handleFilter(categorySelected);
-    }, [categorySelected]);
+    // useEffect(() => {
+    //     (async () => {
+    //         await getProfileByCategories(categorySelected)
+    //     })()
+    //     console.log(categorySelected)
+    // }, [getProfileByCategories,categorySelected]);
 
-    const handleFilter = (searchCat) => {
-        setCategorySelected(searchCat);
-
-        if (categorySelected) {
-            const newFilter = profiles?.filter((profile) => {
-                return Object.values(profile.categories)
-                    .includes(searchCat)
-            });
-            setSearchResults(newFilter);
-            console.log("newFilter",categorySelected,newFilter);
-        } else {
-            setSearchResults([]);
-        }
-
-        console.log("searchResults", searchResults, categorySelected)
-    }
 
     return (
         <Fragment >
@@ -63,7 +46,7 @@ const SearchBarHomePage = ({
                     >
 
                         <Menu.Item
-                            onClick={() => handleFilter("pets")} >
+                            onClick={() => setCategorySelected("pets")} >
                             <Link to={`/userProfile/categories/${categorySelected}`} >
                                 <Icon
                                     className="searchBarHomePage--item"
@@ -72,7 +55,7 @@ const SearchBarHomePage = ({
                             </Link>
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => { handleFilter("Education and Lessons") }}>
+                        <Menu.Item onClick={() => { setCategorySelected("Education and Lessons") }}>
                             <Link to={`/userProfile/categories/${categorySelected}`}>
                                 <Icon
                                     className="searchBarHomePage--item"
@@ -82,21 +65,21 @@ const SearchBarHomePage = ({
                         </Menu.Item>
 
 
-                        <Menu.Item onClick={() => handleFilter("Sport and Activities")}>
+                        <Menu.Item onClick={() => setCategorySelected("Sport and Activities")}>
                             <Icon
                                 className="searchBarHomePage--item"
                                 name='volleyball ball' />
                             Sport and Activities
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => handleFilter("Art and music")}>
+                        <Menu.Item onClick={() => setCategorySelected("Art and music")}>
                             <Icon
                                 className="searchBarHomePage--item"
                                 name='music' />
                             Art and music
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => handleFilter("Alternative Medicine")}  >
+                        <Menu.Item onClick={() => setCategorySelected("Alternative Medicine")}  >
                             <Icon
                                 name='heartbeat'
                                 className="searchBarHomePage--item"
@@ -104,7 +87,7 @@ const SearchBarHomePage = ({
                             Alternative Medicine
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => handleFilter("Toddlers and Children")}>
+                        <Menu.Item onClick={() => setCategorySelected("Toddlers and Children")}>
                             <Link to={`/userProfile/categories/${categorySelected}`}>
                                 <Icon
                                     className="searchBarHomePage--item"
@@ -114,7 +97,7 @@ const SearchBarHomePage = ({
                         </Menu.Item>
 
 
-                        <Menu.Item onClick={() => handleFilter("Technical support")} >
+                        <Menu.Item onClick={() => setCategorySelected("Technical support")} >
                             <Icon
                                 name='cogs'
                                 className="searchBarHomePage--item"
@@ -122,7 +105,7 @@ const SearchBarHomePage = ({
                             Technical support
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => handleFilter("Care and beauty")}>
+                        <Menu.Item onClick={() => setCategorySelected("Care and beauty")}>
                             <Icon
                                 name='lab'
                                 className="searchBarHomePage--item"
@@ -130,7 +113,7 @@ const SearchBarHomePage = ({
                             Care and beauty
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => handleFilter("Counseling and guidance")}>
+                        <Menu.Item onClick={() => setCategorySelected("Counseling and guidance")}>
                             <Icon
                                 name='law'
                                 className="searchBarHomePage--item"
@@ -138,7 +121,7 @@ const SearchBarHomePage = ({
                             Counseling and guidance
                         </Menu.Item>
 
-                        <Menu.Item onClick={() => handleFilter("Other")}>
+                        <Menu.Item onClick={() => setCategorySelected("Other")}>
                             <Icon
                                 name='beer'
                                 className="searchBarHomePage--item"
@@ -153,7 +136,6 @@ const SearchBarHomePage = ({
 };
 
 SearchBarHomePage.propTypes = {
-    getProfiles: PropTypes.func.isRequired,
     getProfileByCategories: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
 };
@@ -161,4 +143,4 @@ SearchBarHomePage.propTypes = {
 const mapStateToProps = state => ({
     profile: state.profile
 })
-export default connect(mapStateToProps, { getProfiles, getProfileByCategories })(SearchBarHomePage);
+export default connect(mapStateToProps, { getProfileByCategories })(SearchBarHomePage);

@@ -1,0 +1,20 @@
+.formProfessionalDetails-comp{
+    border: 3px solid var(--black);
+    border-radius: 40px;
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+  
+}
+.formProfessionalDetails--inputs{
+    display: flex;
+    /* border: 3px solid var(--green); */
+    justify-content:space-around;
+}
+.formProfessionalDetails-row{
+    /* border: 3px solid var(--red); */
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    width: 60%;
+}

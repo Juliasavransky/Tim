@@ -27,68 +27,48 @@ const ImageUpload = ({ onSaveFile }) => {
         }
     }
 
-    useEffect(() =>  {
+    useEffect(() => {
         onSaveFile(file);
         console.log(file);
     }, [file]);
 
-    const dragOver = (e) => {
-        e.preventDefault();
-    }
 
-    const dragEnter = (e) => {
-        e.preventDefault();
-    }
 
-    const dragLeave = (e) => {
-        e.preventDefault();
-    }
-
-    const fileDrop = (e) => {
-        e.preventDefault();
-        const files = e.dataTransfer.files[0];
-        // console.log(files);
-    }
-    //img style
-    const imgStyle = {
-        display: 'block',
-        width: '250px',
-        objectFit: 'cover',
-        borderRadius: '19% 81% 40% 60% / 73% 83% 17% 27%',
-    };
     return (
         <div className='ImageUploadComp'>
             <div
-                onDragOver={dragOver}
-                onDragEnter={dragEnter}
-                onDragLeave={dragLeave}
-                onDrop={fileDrop}
+
                 className='container'>
-                {error && <p className='errorMsg'>File not supported</p>}
+                {error && <p
+                    className='errorMsg'>File not supported</p>}
                 <div
                     className='imgPreview'
                     style={{
+                        borderRadius: '19% 81% 40% 60% / 73% 83% 17% 27%',
                         background: file
                             ? `url("${file}") no-repeat center/cover`
-                            : "#131313"
+                            : "var(--green)"
                     }}
                 >
                     {!file && (
                         <Fragment>
-                            <p>Add an Image</p>
-                            <label htmlFor='fileUpload' className='customFileUpload'>
-                                Choose file
-                        </label>
-                            <input
-                                type="file"
-                                id='fileUpload'
-                                onChange={filesSelectedHandler}
-                            />
-                            <span>(jpg,jpeg,png)</span>
+                            <div className="fileUpload--text">
+                                <p>Add an Image</p>
+                                <label htmlFor='fileUpload'
+                                    className='customFileUpload'>
+                                    Choose file
+                                </label>
+                                <input
+                                    type="file"
+                                    id='fileUpload'
+                                    onChange={filesSelectedHandler}
+                                />
+                                <span>{" "}(jpg,jpeg,png)</span>
+                            </div>
                         </Fragment>
                     )}
                 </div>
-                {file && <button onClick={() => setFile(null)}>Remove image</button>}
+                {file && <button className='imageUploadComp-button' onClick={() => setFile(null)}>Remove image</button>}
             </div>
         </div>
     );

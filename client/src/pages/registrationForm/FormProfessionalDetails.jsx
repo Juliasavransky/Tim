@@ -4,6 +4,7 @@ import MultipleSelectionCategories from './MultipleSelectionCategories';
 import Stepper from './Stepper';
 import SubCategoryInput from './subCategoryForm/SubCategoryInput';
 import { setAlert } from '../../actions/alert';
+import './formProfessionalDetails.css'
 
 
 //redux
@@ -31,7 +32,7 @@ const FormProfessionalDetails = ({
     onAddSubCategories
 
 }) => {
-    
+
     const saveAndContinue = (e) => {
         e.preventDefault()
         nextStep()
@@ -67,7 +68,7 @@ const FormProfessionalDetails = ({
         onAddFile(file);
     }
 
-    
+
     const [enteredTags, setEnteredTags] = useState([]);
     //user sub category passing to Registration component
     const saveTagsHandler = (tagValue) => {
@@ -78,55 +79,59 @@ const FormProfessionalDetails = ({
     }
 
     return (
-        <Container  >
-            <Stepper
-                step={step}
-            />
+        <Container >
+            <div className="formProfessionalDetails-comp" >
+                <Stepper step={step} />
 
-            <div>
- 
-                <Row>
-                    <MultipleSelectionCategories
-                        handleChangeCategory={handleChangeCategory}
-                    />
-                </Row>
+                <div className="formProfessionalDetails--inputs">
+                    <div className="formProfessionalDetails-row">
 
-                <Row>
-                    <FormGroup >
-                        <Col sm={10}>
-                            <SubCategoryInput
-                                onSaveTags={saveTagsHandler}
+                        <Row>
+                            <MultipleSelectionCategories
+                                handleChangeCategory={handleChangeCategory}
                             />
+                        </Row>
 
-                        </Col>
-                    </FormGroup>
-                </Row>
+                        <Row>
+                            <FormGroup >
+                                <Col sm={10}>
+                                    <SubCategoryInput
+                                        onSaveTags={saveTagsHandler}
+                                    />
 
-                <Row>
-                    <FormGroup >
-                        <Label
-                            for="exampleText"
-                            sm={12}
-                        >Text Area</Label>
-                        <Col sm={10}>
-                            <Input
-                                type="textarea"
-                                placeholder='Tell us more about you...'
-                                name="enteredBio"
-                                value={bio.bio}
-                                onChange={handleChangeBio}
+                                </Col>
+                            </FormGroup>
+                        </Row>
+
+                        <Row>
+                            <FormGroup >
+                                <Label
+                                    for="exampleText"
+                                    sm={12}
+                                >Text Area</Label>
+                                <Col sm={10}>
+                                    <Input
+                                        type="textarea"
+                                        placeholder='Tell us more about you...'
+                                        name="enteredBio"
+                                        value={bio.bio}
+                                        onChange={handleChangeBio}
+                                    />
+                                </Col>
+                            </FormGroup>
+                        </Row>
+                    </div>
+
+                    <div className="formProfessionalDetails-row">
+                        <Row>
+                            <ImageUpload
+                                onSaveFile={seveFileHandler}
                             />
-                        </Col>
-                    </FormGroup>
-                </Row>
+                        </Row>
+                    </div>
+                </div>
 
-                <Row>
-                    <>
-                        <ImageUpload
-                            onSaveFile={seveFileHandler}
-                        />
-                    </>
-                </Row>
+
 
                 <FormGroup >
                     <Button
@@ -134,15 +139,14 @@ const FormProfessionalDetails = ({
                         color="success"
                         type="submit">
                         Previous Step
-                </Button>
+                    </Button>
                     <Button
                         onClick={saveAndContinue}
                         color="success"
                         type="submit">
                         Next Step
-                </Button>
+                    </Button>
                 </FormGroup>
-
             </div>
 
         </Container >

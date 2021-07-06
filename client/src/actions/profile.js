@@ -133,10 +133,10 @@ export const getProfileOrderById = userId => async dispatch => {
 //*******************getProfileByCategories************************** */
 
 //Get order for profile by id 
-export const getProfileByCategories = catValue => async dispatch => {
+export const getProfileByCategories = categories => async dispatch => {
 
     try {
-        const res = await axios.get(`/api/profile/categories/${catValue}`);
+        const res = await axios.get(`/api/profile/categories/${categories}`);
 
 
         dispatch({

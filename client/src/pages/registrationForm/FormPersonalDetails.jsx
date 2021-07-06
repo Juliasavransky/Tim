@@ -3,6 +3,7 @@ import { Col, Row, Button, FormGroup, Label, Input, Container, Form } from 'reac
 import Stepper from './Stepper';
 import { withRouter } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import './formPersonalDetails.css';
 
 
 
@@ -54,10 +55,10 @@ const FormPersonalDetails = ({
     }
 
     const saveAndContinue = (e) => {
-        
+
         e.preventDefault()
         onSavePersonalData(formDataPersonal)
-        let isValid =true;
+        let isValid = true;
 
         if (formDataPersonal.city.trim().length === 0) {
             isValid = false;
@@ -65,10 +66,10 @@ const FormPersonalDetails = ({
         if (formDataPersonal.street.trim().length === 0) {
             isValid = false;
         }
-        if(isValid ){
-             nextStep()
+        if (isValid) {
+            nextStep()
         }
-       
+
 
     }
 
@@ -76,22 +77,30 @@ const FormPersonalDetails = ({
         getCurrentProfile();
 
         setFormDataPersonal({
-            city: loading ||  !profile || !profile.city ? "" : profile.city.charAt(0).toUpperCase() + profile.city.slice(1),
+            city: loading || !profile || !profile.city ? "" : profile.city.charAt(0).toUpperCase() + profile.city.slice(1),
             street: loading || !profile || !profile.street ? "" : profile.street.charAt(0).toUpperCase() + profile.street.slice(1),
             phone: loading || !profile || !profile.phone ? "" : profile.phone,
             dob: loading || !profile || !profile.dob ? "" : profile.dob
         });
 
-    }, [loading, getCurrentProfile, ]);
+    }, [loading, getCurrentProfile,]);
+
 
     return (
-        <Container  >
-            <Form>
+        <Container
+            className="formPersonalDetails_container"
+        >
+            <Form
+                className="formPersonalDetails_form"
+            >
+                    <Stepper
+                        step={step}
+                    />
                 <Row>
-                    <FormGroup >
-                        <Stepper
-                            step={step}
-                        />
+                    <FormGroup
+                        className="formPersonalDetails_formGroup"
+
+                    >
 
                         <Label
                             for="exampleCity"
@@ -110,7 +119,8 @@ const FormPersonalDetails = ({
                 </Row>
 
                 <Row>
-                    <FormGroup >
+                    <FormGroup className="formPersonalDetails_formGroup"
+                    >
                         <Label
                             for="exampleAddress"
                         >* Address</Label>
@@ -128,7 +138,8 @@ const FormPersonalDetails = ({
                 </Row>
 
                 <Row>
-                    <FormGroup >
+                    <FormGroup className="formPersonalDetails_formGroup"
+                    >
                         <Label
                             for="phoneNumber"
                         >Phone Number</Label>
@@ -145,7 +156,8 @@ const FormPersonalDetails = ({
                 </Row>
 
                 <Row>
-                    <FormGroup >
+                    <FormGroup className="formPersonalDetails_formGroup"
+                    >
                         <Label
                             for="exampleDate"
                         >Date of Birth</Label>
@@ -157,18 +169,19 @@ const FormPersonalDetails = ({
                                 value={dob}
                                 onChange={e => handleChangeFormDataPersonal(e)}
                             />
+                            <FormGroup>
+                                <Button
+                                className="formPersonalDetails_button"
+                                color="warning"
+                                    onClick={saveAndContinue}
+                                    type="submit">
+                                    Next Step
+                                </Button>
+                            </FormGroup>
                         </Col>
                     </FormGroup>
                 </Row>
 
-                <FormGroup>
-                    <Button
-                        onClick={saveAndContinue}
-                        color="success"
-                        type="submit">
-                        Next Step
-                </Button>
-                </FormGroup>
             </Form>
         </Container>
     );
