@@ -5,6 +5,8 @@
   flex-direction: column;
   align-items: flex-start;
   padding-top: 3rem;
+  align-items: center;
+  
 }
 .formProfessionalDetails--inputs {
   display: flex;
@@ -18,19 +20,15 @@
   flex-direction: column;
   align-items: flex-start;
   width: 60%;
-  
 }
 .formProfessionalDetails-ImageUpload {
-  /* border: 3px solid var(--red); */
   display: flex;
   flex-direction: column;
-  margin-top:2rem;
-
+  margin-top: 2rem;
 }
 .formProfessionalDetails-item {
   width: 100%;
   margin: 1.2rem 3rem 1.2rem;
-
 }
 .textArea {
   height: 13rem;
@@ -47,12 +45,13 @@
   font-weight: 500;
   font-family: var(--headings-font-family);
 }
-.formProfessionalDetails--buttons{
-    margin-left: 6rem;
-    margin-bottom: 4rem;
-    display: flex;
-  }
-  .formProfessionalDetails--buttons > button {
-    margin-top: 2rem ;
-    margin-left: 2rem;
-  }
+.formProfessionalDetails--buttons {
+  margin-bottom: 2rem;
+  display: flex;
+  margin-left: 1.5rem;
+
+}
+.formProfessionalDetails--buttons > button {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}

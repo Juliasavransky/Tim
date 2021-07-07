@@ -1,7 +1,11 @@
 .stepper-comp {
   background-color: var(--black);
   display: flex;
-  width: 88%;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content:center;
+
+  width: 100%;
   
 }
 .stepper-step {
@@ -11,6 +15,8 @@
     font-family:var(--headings-font-family);
 }
 .stepper{
-    justify-content: space-evenly;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content:center;
 }

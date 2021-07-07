@@ -9,7 +9,6 @@ const Stepper = ({ step }) => {
     return (
         <Segment
             basic
-        // widths={6}
 className="stepper"
         >
             <Step.Group

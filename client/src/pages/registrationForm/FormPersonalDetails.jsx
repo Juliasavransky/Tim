@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row, Button, FormGroup, Label, Input, Container, Form } from 'reactstrap';
 import Stepper from './Stepper';
-import { withRouter } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import './formPersonalDetails.css';
 
@@ -90,12 +89,14 @@ const FormPersonalDetails = ({
         <Container
             className="formPersonalDetails_container"
         >
-            <Form
-                className="formPersonalDetails_form"
-            >
+                <div className="formPersonalDetails_stepper">
                     <Stepper
                         step={step}
                     />
+                </div>
+            <Form
+                className="formPersonalDetails_form"
+            >
                 <Row>
                     <FormGroup
                         className="formPersonalDetails_formGroup"

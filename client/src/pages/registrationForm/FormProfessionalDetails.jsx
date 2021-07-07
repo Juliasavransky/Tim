@@ -101,13 +101,31 @@ const FormProfessionalDetails = ({
 
                         <div className="formProfessionalDetails-item ">
                             <Input
-                            className="textArea"
+                                className="textArea"
                                 type="textarea"
                                 placeholder='Tell us more about you...'
                                 name="enteredBio"
                                 value={bio.bio}
                                 onChange={handleChangeBio}
                             />
+                        </div>
+
+                        <div className="formProfessionalDetails--buttons">
+
+                            <Button
+                                onClick={back}
+                                color="warning"
+                                type="submit">
+                                Previous Step
+                            </Button>
+
+                            <Button
+                                onClick={saveAndContinue}
+                                color="warning"
+                                type="submit">
+                                Next Step
+                            </Button>
+
                         </div>
                     </div>
 
@@ -120,23 +138,7 @@ const FormProfessionalDetails = ({
                     </div>
 
                 </div>
-                <div className="formProfessionalDetails--buttons">
 
-                    <Button
-                        onClick={back}
-                        color="warning"
-                        type="submit">
-                        Previous Step
-                    </Button>
-
-                    <Button
-                        onClick={saveAndContinue}
-                        color="warning"
-                        type="submit">
-                        Next Step
-                    </Button>
-
-                </div>
 
 
 

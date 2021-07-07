@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button, FormGroup, Container } from 'reactstrap';
-import { Accordion, Icon, List, Image } from 'semantic-ui-react'
+import { Button, FormGroup } from 'reactstrap';
+import { Accordion, Icon, List, Image } from 'semantic-ui-react';
+import Stepper from './Stepper';
+import Moment from 'react-moment';
+import man from '../../components/man.jpg';
+import woman from '../../components/woman.jpg'
 
+
+import './confirm.css';
 //redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,6 +26,7 @@ const Confirm = ({
     prevStep,
     nextStep,
     handleSubmit,
+    step,
 
     enteredPersonalForm,
     enteredCategories,
@@ -31,7 +38,6 @@ const Confirm = ({
     useEffect(() => {
         getCurrentProfile()
     }, [getCurrentProfile]);
-
 
 
     console.log('enteredFile---from confirm', enteredFile && enteredFile);
@@ -59,72 +65,80 @@ const Confirm = ({
         setActiveIndex(newIndex)
     }
 
-//    // user img preview
-//     useEffect(() => {
-//         if (enteredFile[0]) {
-//             const reader = new FileReader();
-//             reader.onload = () => {
-//                 if (reader.readyState === 2) {
-//                     setImage(reader.result)
-//                 }
-//             }
-//             reader.readAsDataURL(enteredFile[0])
-            
-//         } else {
-//             <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
-//         }
-
-
-//     }, [enteredFile]);
+    const avatar = user && user.gender === 'female' ? woman : man;
 
     //img style
     const imgStyle = {
-        display: 'block',
         width: '250px',
         objectFit: 'cover',
         borderRadius: '19% 81% 40% 60% / 73% 83% 17% 27%',
+        zIndex: "1",
+        padding: "1em"
     };
 
     return (
-        <div>
-            <Container >
-                <h2>Confirm your Details</h2>
-                <Accordion styled>
+        <div className="confirm--comp">
+            <Stepper step={step} />
+            <div className="confirm--content">
+                <Accordion
+                    className="confirm--container"
+                    styled>
 
                     <Accordion.Title
                         active={activeIndex === 0}
                         index={0}
                         onClick={handleClick}
+                        style={{ fontSize: "1.3rem", color: "var(--blue)" }}
                     >
                         <Icon name='dropdown' />
-                        Details Part 1
+                        User Professional Information
                     </Accordion.Title>
+
                     <Accordion.Content active={activeIndex === 0} >
-                        <List>
+                        <List >
                             <List.Item key='0'>
-                                <List.Icon name='user' />
-                                <List.Content>First Name:
-                                    <span>{user && user.firstName}</span> 
-                                    </List.Content>
+                                <List.Icon
+                                    size='big'
+                                    color='yellow'
+                                    name='user'
+                                />
+                                <List.Content className="confirm--content_title">First Name:
+                                    <span>{" "}{user && user.firstName}</span>
+                                </List.Content>
                             </List.Item>
                             <List.Item key='1'>
-                                <List.Icon name='users' />
-                                <List.Content>Last Name: 
-                                    <span>{user && user.lastName}</span>
-                                    </List.Content>
+                                <List.Icon
+                                    name='users'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">Last Name:
+                                    <span>{" "}{user && user.lastName}</span>
+                                </List.Content>
                             </List.Item>
                             <List.Item key='2'>
-                                <List.Icon name='mail' />
-                                <List.Content>Email: 
-                                    <span>{user && user.email} </span>
+                                <List.Icon
+                                    name='mail'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">Email:
+                                    <span>{" "}{user && user.email} </span>
                                 </List.Content>
                             </List.Item>
                             <List.Item key="3">
-                                <List.Icon name='eye slash' />
-                                <List.Content>
+                                <List.Icon
+                                    name='eye slash'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">
                                     Password:
-                                    <span>{user && user.gender}</span> 
-                                     I will never tell
+                                    <span>{" "}
+                                        {/* {user && user.gender} */}
+                                        ********
+                                    </span>
+                                    I will never tell
                                 </List.Content>
                             </List.Item>
                         </List>
@@ -136,30 +150,56 @@ const Confirm = ({
                         active={activeIndex === 1}
                         index={1}
                         onClick={handleClick}
+                        style={{ fontSize: "1.3rem", color: "var(--blue)" }}
                     >
                         <Icon name='dropdown' />
-                        Details Part 2
+                        User Professional Information
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 1}>
                         <List>
                             <List.Item key="4">
-                                <List.Icon name='marker' />
-                                <List.Content>Your City: <span>{enteredPersonalForm.city}</span> </List.Content>
+                                <List.Icon
+                                    name='marker'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">Your City: <span>{" "}{enteredPersonalForm.city}</span> </List.Content>
                             </List.Item>
                             <List.Item key="5">
-                                <List.Icon name='map outline' />
-                                <List.Content>Your Street:<span>{enteredPersonalForm.street}</span>  </List.Content>
+                                <List.Icon
+                                    name='map outline'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content
+                                    className="confirm--content_title"
+                                >Your Street:
+                                    <span>{" "}{enteredPersonalForm.street}</span>
+                                </List.Content>
                             </List.Item>
                             <List.Item key="6">
-                                <List.Icon name='phone' />
-                                <List.Content>
-                                    Phone number:<span>{enteredPersonalForm.phone}</span>
+                                <List.Icon
+                                    name='phone'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">
+                                    Phone number:
+                                    <span>
+                                        {" "}{enteredPersonalForm.phone}
+                                    </span>
                                 </List.Content>
                             </List.Item>
                             <List.Item key="7">
-                                <List.Icon name='birthday cake' />
-                                <List.Content>
-                                    Day of Birth:<span>{enteredPersonalForm.dob}</span>
+                                <List.Icon
+                                    size='big'
+                                    color='yellow'
+                                    name='birthday cake' />
+                                <List.Content className="confirm--content_title">
+                                    <span>Day of Birth:
+                                        <Moment format='DD/MM/YYYY'>
+                                            {enteredPersonalForm.dob}
+                                        </Moment></span>
                                 </List.Content>
                             </List.Item>
                         </List>
@@ -171,76 +211,100 @@ const Confirm = ({
                         active={activeIndex === 2}
                         index={2}
                         onClick={handleClick}
+                        style={{ fontSize: "1.3rem", color: "var(--blue)" }}
                     >
                         <Icon name='dropdown' />
-                        Details Part 3
-                     </Accordion.Title>
+                        Confirm Details
+                    </Accordion.Title>
                     <Accordion.Content active={activeIndex === 2} >
                         <List>
                             <List.Item key="8">
-                                <List.Icon name='edit' />
-                                <List.Content>Categories: {enteredCategories && enteredCategories.map(cat => (
-                                    <li key={cat.id}>{<span>&#10024;</span>} {cat}</li>))}
+                                <List.Icon
+                                    name='edit'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">Categories:{" "} {enteredCategories && enteredCategories.map(cat => (
+                                    <li key={cat.id}><i class="fas fa-star-of-life"></i>{" "} {cat}</li>))}
                                 </List.Content>
                             </List.Item>
                             <List.Item key="9">
-                                <List.Icon name='tags' />
-                                <List.Content>Sub Categories:
-                                    <h3>{tags ?
+                                <List.Icon
+                                    name='tags'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">Sub Categories:
+                                    <span>{tags ?
                                         tags.map(item => (
-                                            <li key={item.value}>{item.label}</li>
-                                        )) : <span>&#10024;</span>
+                                            <li key={item.value}><i class="fas fa-star-of-life"></i>{item.label}</li>
+                                        )) : " "
                                     }
 
-                                    </h3>
+                                    </span>
 
                                 </List.Content>
                             </List.Item>
                             <List.Item key="10">
-                                <List.Icon name='rocket' />
-                                <List.Content>
-                                    Something about yourself:<p>{bioData.bio}</p>
+                                <List.Icon
+                                    name='rocket'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">
+                                    Something about yourself:<span>{" "}{bioData}</span>
                                 </List.Content>
                             </List.Item>
                             <List.Item key="11">
-                                <List.Icon name='camera retro' />
-                                <List.Content>
+                                <List.Icon
+                                    name='camera retro'
+                                    size='big'
+                                    color='yellow'
+                                />
+                                <List.Content className="confirm--content_title">
                                     your photo:
-                                  {image
-                                        ? <img
-                                            alt="profile"
-                                            src={image}
-                                            style={imgStyle} />
-                                        : <Image
-                                            alt="avatar"
-                                            rounded
-                                            style={imgStyle}
-                                            src='https://react.semantic-ui.com/images/avatar/large/jenny.jpg'
-                                        />}
+                                    <div className='confirm--border_1'>
+                                        <div className='confirm--border_2'>
+                                            <div className='confirm--border_3'>
+                                                {image
+                                                    ? <img
+                                                        alt="profile"
+                                                        src={image}
+                                                        style={imgStyle} />
+                                                    : <img
+                                                        alt="avatar"
+                                                        style={imgStyle}
+                                                        src={avatar}
+                                                    />}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </List.Content>
                             </List.Item>
                         </List>
 
                     </Accordion.Content>
                 </Accordion>
+            </div>
 
 
-                <FormGroup >
-                    <Button
-                        onClick={back}
-                        color="success"
-                        type="submit">
-                        Previous Step
+            <FormGroup  >
+                <Button
+                    className="confirm--buttons"
+                    onClick={back}
+                    color="warning"
+                    type="submit">
+                    Previous Step
                 </Button>
-                    <Button
-                        onClick={saveAndContinue}
-                        color="success"
-                        type="submit">
-                        Submit the form
-                </Button>
+                <Button
+                    className="confirm--buttons"
 
-                </FormGroup>
-            </Container>
+                    onClick={saveAndContinue}
+                    color="warning"
+                    type="submit">
+                    Submit the form
+                </Button>
+            </FormGroup>
 
         </div>
     );

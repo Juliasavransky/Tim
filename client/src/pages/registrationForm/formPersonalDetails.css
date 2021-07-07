@@ -1,10 +1,16 @@
 .formPersonalDetails_container {
   border: 3px solid var(--black);
   border-radius: 40px;
+  padding:2rem;
+
 }
 .formPersonalDetails_form {
   display: flex;
   flex-direction: column;
+}
+.formPersonalDetails_stepper{
+  width: 80%;
+  margin-left: 8em;
 }
 .formPersonalDetails_formGroup {
     padding: 10px ;
