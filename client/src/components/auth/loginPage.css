@@ -1,44 +1,39 @@
-.container {
-    padding: 40px;
-  }
-  
-  .ui.stackable.two.column.grid.login-container {
-    border: 3px solid var(--black);
-    padding: 30px;
-  }
-  
-  .ui.vertical.divider {
-    height: 30%;
-  }
-  
-  .ui.fluid.primary.button {
-    color: var(--notWhite);
-    background: var(--yellow);
-    width: 100px;
-    border-radius: 20px;
-    margin-top: 20px;
-  }
-  
-  .login--input {
-    width: 80%;
-    border-radius: 20px;
-    margin-top: 10px;
-  }
-  
-  .login-container {
-    border-radius: 40px;
-    border: 1px solid var(--black);
-    margin: 150px;
-  }
-  
-  .ui.basic.segment {
-    padding: 40px;
-  }
-  
-  .ui.yellow.button {
-    margin-left: 150px;
-    width: 50%;
-    border-radius: 40px;
-    align-items: center;
-  }
- 
+.ui.stackable.two.column.grid.login-container {
+  border: 3px solid var(--black);
+  padding: 30px;
+}
+
+.ui.vertical.divider {
+  height: 30%;
+}
+
+.ui.fluid.primary.button {
+  color: var(--notWhite);
+  background: var(--yellow);
+  width: 100px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.login--input {
+  width: 80%;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.login-container {
+  border-radius: 40px;
+  border: 1px solid var(--black);
+  margin: 150px;
+}
+
+.ui.basic.segment {
+  padding: 40px;
+}
+
+.ui.yellow.button {
+  margin-left: 150px;
+  width: 50%;
+  border-radius: 40px;
+  align-items: center;
+}

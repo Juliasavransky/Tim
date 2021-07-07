@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Divider, Form, Grid, Segment, Message } from 'semantic-ui-react';
 import { Redirect, Link } from 'react-router-dom';
-import loginPage from './loginPage.css';
+import   './loginPage.css';
 
 //redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../actions/auth'
+import { login } from '../../actions/auth';
+
 
 
 const LogIn = ({ login, isAuthenticated }) => {
@@ -40,7 +41,7 @@ const LogIn = ({ login, isAuthenticated }) => {
         return <Redirect to="/userDashboard" />
     }
     return (
-        <Segment basic>
+        <Segment basic className="login-comp">
             <Grid
                 className="login-container"
                 columns={2}

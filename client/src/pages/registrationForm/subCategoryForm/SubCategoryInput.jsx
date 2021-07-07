@@ -5,14 +5,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-// const customStyles = {
-//     options: (provided, state) => ({
-//         ...provided,
-//         borderBottom: '1px dotted pink',
-//         color: state.isSelected ? 'red' : 'blue',
-//         padding: 20,
-//     })
-// }
+const customStyles = {
+    options: (provided, state) => ({
+        ...provided,
+        border: '1px solid var(--black)',
+
+        padding: 60,
+    })
+}
 
 const SubCategoryInput = ({ onSaveTags }) => {
 
@@ -56,9 +56,9 @@ const SubCategoryInput = ({ onSaveTags }) => {
 
     return (
         <React.Fragment>
-            <Label for="subCategories">Sub-Categories</Label>
 
             <CreatableSelect
+                styles={customStyles}
                 components={{ DropdownIndicator: null }}
                 inputValue={taginputValue}
                 isClearable

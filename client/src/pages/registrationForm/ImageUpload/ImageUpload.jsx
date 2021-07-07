@@ -38,7 +38,7 @@ const ImageUpload = ({ onSaveFile }) => {
         <div className='ImageUploadComp'>
             <div
 
-                className='container'>
+                className='ImageUploadComp--container'>
                 {error && <p
                     className='errorMsg'>File not supported</p>}
                 <div
@@ -63,7 +63,13 @@ const ImageUpload = ({ onSaveFile }) => {
                                     id='fileUpload'
                                     onChange={filesSelectedHandler}
                                 />
-                                <span>{" "}(jpg,jpeg,png)</span>
+                                <span
+                                    style={{
+                                        color: "var(--notWhite)",
+                                        paddingTop: "1em"
+                                    }}>
+                                    {" "}(jpg,jpeg,png)
+                                </span>
                             </div>
                         </Fragment>
                     )}

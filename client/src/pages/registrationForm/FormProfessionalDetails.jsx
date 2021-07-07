@@ -84,69 +84,62 @@ const FormProfessionalDetails = ({
                 <Stepper step={step} />
 
                 <div className="formProfessionalDetails--inputs">
+
                     <div className="formProfessionalDetails-row">
 
-                        <Row>
+                        <div className="formProfessionalDetails-item">
                             <MultipleSelectionCategories
                                 handleChangeCategory={handleChangeCategory}
                             />
-                        </Row>
+                        </div>
 
-                        <Row>
-                            <FormGroup >
-                                <Col sm={10}>
-                                    <SubCategoryInput
-                                        onSaveTags={saveTagsHandler}
-                                    />
+                        <div className="formProfessionalDetails-item subInput">
+                            <SubCategoryInput
+                                onSaveTags={saveTagsHandler}
+                            />
+                        </div>
 
-                                </Col>
-                            </FormGroup>
-                        </Row>
-
-                        <Row>
-                            <FormGroup >
-                                <Label
-                                    for="exampleText"
-                                    sm={12}
-                                >Text Area</Label>
-                                <Col sm={10}>
-                                    <Input
-                                        type="textarea"
-                                        placeholder='Tell us more about you...'
-                                        name="enteredBio"
-                                        value={bio.bio}
-                                        onChange={handleChangeBio}
-                                    />
-                                </Col>
-                            </FormGroup>
-                        </Row>
+                        <div className="formProfessionalDetails-item ">
+                            <Input
+                            className="textArea"
+                                type="textarea"
+                                placeholder='Tell us more about you...'
+                                name="enteredBio"
+                                value={bio.bio}
+                                onChange={handleChangeBio}
+                            />
+                        </div>
                     </div>
 
-                    <div className="formProfessionalDetails-row">
-                        <Row>
+                    <div className="formProfessionalDetails-ImageUpload">
+                        <div>
                             <ImageUpload
                                 onSaveFile={seveFileHandler}
                             />
-                        </Row>
+                        </div>
                     </div>
+
+                </div>
+                <div className="formProfessionalDetails--buttons">
+
+                    <Button
+                        onClick={back}
+                        color="warning"
+                        type="submit">
+                        Previous Step
+                    </Button>
+
+                    <Button
+                        onClick={saveAndContinue}
+                        color="warning"
+                        type="submit">
+                        Next Step
+                    </Button>
+
                 </div>
 
 
 
-                <FormGroup >
-                    <Button
-                        onClick={back}
-                        color="success"
-                        type="submit">
-                        Previous Step
-                    </Button>
-                    <Button
-                        onClick={saveAndContinue}
-                        color="success"
-                        type="submit">
-                        Next Step
-                    </Button>
-                </FormGroup>
             </div>
 
         </Container >

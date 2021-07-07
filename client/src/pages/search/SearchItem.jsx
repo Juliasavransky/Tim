@@ -18,6 +18,7 @@ const SearchItem = ({
     useEffect(() => {
         getProfiles();
     }, [getProfiles]);
+     console.log(categoriesToRender)
 
     // const myStyle = {
     //     display: "grid",
@@ -43,7 +44,7 @@ const SearchItem = ({
 
             <div className="searchByCategories--item" >
 
-                <Link
+                {/* <Link
                     to='/usersList'
                 // to={`/usersList/${profiles.categories}`}
                 >
@@ -61,9 +62,36 @@ const SearchItem = ({
                                     className="searchByCategories--icon"
 
                                     // onClick={() => handleSelectedCategory(cat.content.content)}
-                                    name={cat.content.props.icon} size='huge' />
+                                    name={cat.content.props.icon}
+                                     size='huge' />
                                 <h3 >{cat.content.props.content}</h3>
                                 <h5 >{cat.content.props.subheader}</h5>
+
+                            </div>
+                        ))}
+                </Link> */}
+
+                <Link
+                    to='/usersList'
+                // to={`/usersList/${profiles.categories}`}
+                >
+                    {categoriesToRender !== null &&
+                        categoriesToRender.length > 0 &&
+                        categoriesToRender.map((cat, index) => (
+                            <div key={index}
+                                style={{
+                                    display: 'flex',
+                                    width: '3rem',
+                                    flexGrow:"2",
+                                    // flexDirection: 'row',
+                                }}
+                            >
+                                <Icon
+                                    className="searchByCategories--icon"
+
+                                    name={cat.name} size='huge' />
+                                <h4 >{cat.content}</h4>
+                                <h5 >{cat.subheader}</h5>
 
                             </div>
                         ))}

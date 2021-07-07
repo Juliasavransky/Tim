@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from 'react';
-import { Container } from 'semantic-ui-react';
 import SearchItem from './SearchItem'
 import Spinner from '../../components/Spinner';
 import { getCategories } from '../../utils/categoriesOptions';
@@ -18,7 +17,6 @@ const SearchByCategories = ({ getProfiles, profile: { profiles, loading } }) => 
     }, [getProfiles]);
 
     const categoriesToRender = getCategories();
-
     return <Fragment>
         {loading
             ? <Spinner />
@@ -32,6 +30,7 @@ const SearchByCategories = ({ getProfiles, profile: { profiles, loading } }) => 
                             className="searchByCategories"
                             profile={profiles}
                             categoriesToRender={categoriesToRender}
+
                         />
                     ) : <div>No profiles found</div>}
 

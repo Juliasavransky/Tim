@@ -1,20 +1,58 @@
-.formProfessionalDetails-comp{
-    border: 3px solid var(--black);
-    border-radius: 40px;
-    display: flex;
-    flex-direction:column;
-    align-items: flex-start;
+.formProfessionalDetails-comp {
+  border: 3px solid var(--black);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 3rem;
+}
+.formProfessionalDetails--inputs {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.formProfessionalDetails-row {
+  /* border: 3px solid var(--red); */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
   
 }
-.formProfessionalDetails--inputs{
-    display: flex;
-    /* border: 3px solid var(--green); */
-    justify-content:space-around;
+.formProfessionalDetails-ImageUpload {
+  /* border: 3px solid var(--red); */
+  display: flex;
+  flex-direction: column;
+  margin-top:2rem;
+
 }
-.formProfessionalDetails-row{
-    /* border: 3px solid var(--red); */
-    display: flex;
-    flex-direction:column;
-    align-items: flex-start;
-    width: 60%;
+.formProfessionalDetails-item {
+  width: 100%;
+  margin: 1.2rem 3rem 1.2rem;
+
 }
+.textArea {
+  height: 13rem;
+  border: 2px solid var(--black) !important;
+  border-radius: 10px !important;
+  font-size: 1.2rem !important;
+  font-weight: 500 !important;
+  font-family: var(--headings-font-family) !important;
+}
+.subInput {
+  border: 2px solid var(--black) !important;
+  border-radius: 10px !important;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: var(--headings-font-family);
+}
+.formProfessionalDetails--buttons{
+    margin-left: 6rem;
+    margin-bottom: 4rem;
+    display: flex;
+  }
+  .formProfessionalDetails--buttons > button {
+    margin-top: 2rem ;
+    margin-left: 2rem;
+  }
