@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import './App.css';
 import Home from './pages/home page/Home';
 import LogIn from './components/auth/LogIn';
@@ -9,7 +10,6 @@ import NavBar from './components/navBar/NavBar';
 import SearchPage from './pages/search/SearchPage';
 import UsersList from './pages/usersList/UsersList.jsx';
 import Registration from './pages/registrationForm/Registration';
-import { Container } from 'reactstrap';
 import UserRegistration from './components/auth/UserRegistration';
 import UserDashboard from './pages/userDashboard/UserDashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -18,6 +18,7 @@ import Order from './components/order/Order';
 import OrdersForm from './components/orders/OrdersForm';
 import UserOrders from './pages/userDashboard/UserOrders';
 import UsersListBySearchResults from './pages/search/UsersListBySearchResults';
+
 
 //redux
 import { Provider } from 'react-redux';
@@ -97,10 +98,10 @@ const App = () => {
                                 exact component={UsersListBySearchResults}
                             />
 
-                                <Route
-                                    component={Error404}
-                                />
-                                
+                            <Route
+                                component={Error404}
+                            />
+
                         </Switch>
                     </Container >
                 </Fragment>

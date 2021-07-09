@@ -70,7 +70,7 @@ img {
   padding: 5.5rem 0;
   padding-left: 0;
   font-size: 3rem;
-  font-weight:500;
+  font-weight: 500;
 }
 .homePage--hero_heder {
   font-family: var(--headings-font-family);
@@ -84,17 +84,27 @@ img {
 .homePage--hero_btn {
   background-color: var(--yellow);
   font-size: 1.5rem;
-  width: 40%;
+  width: 60%;
   text-align: center;
   justify-content: center;
+  padding: 0.75em 2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  /* border-radius: 15% 85% 11% 89% / 14% 86% 14% 86%; */
+  margin-top: 1rem;
+  border-radius: 10px;
 }
+.homePage--hero_btn>a{
+  text-decoration: none;
+  color:var(--notWhite);
 
+}
 .homePage--hero_btn:hover,
 .homePage--hero_btn:focus {
-  opacity: 0.75;
   transform: scale(1.1);
-  transition:all .2s ease-in-out;
-
+  transition: all 0.3s ease-in-out;
+  border-radius: 91% 9% 87% 13% / 87% 10% 90% 13%;
+  color:var(--red);
 }
 
 .homePage--hero > p {
@@ -104,6 +114,6 @@ img {
   text-align: center;
   align-items: center;
 }
-.homePage--hero_aboutText{
+.homePage--hero_aboutText {
   font-size: 1.35rem;
 }

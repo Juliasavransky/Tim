@@ -22,8 +22,7 @@ const SearchByCategories = ({ getProfiles, profile: { profiles, loading } }) => 
             ? <Spinner />
             : <Fragment>
                 <div
-                    className="searchByCategories--comp"
-                >
+                    className="searchByCategories--comp" >
 
                     {profiles.length > 0 ? (
                         <SearchItem

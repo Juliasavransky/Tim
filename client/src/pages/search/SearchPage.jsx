@@ -38,16 +38,16 @@ const SearchPage = ({
                     // profile={profiles} 
                     />
 
-                    {/* <SearchByCategories profile={profiles}
+                    <SearchByCategories profile={profiles}
                         categoriesToRender={categoriesToRender} 
-                        /> */}
+                        />
 
-                    {profiles.length > 0 ? (
+                    {/* {profiles.length > 0 ? (
                         <SearchItem
                             profile={profiles}
                             categoriesToRender={categoriesToRender}
                         />
-                    ) : <div>No profiles found</div>}
+                    ) : <div>No profiles found</div>} */}
 
                 </Container>
             </Fragment>}

@@ -17,18 +17,19 @@ const SearchBarHomePage = ({
 }) => {
 
     const [categorySelected, setCategorySelected] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-
-    useEffect(() => {
-        getProfileByCategories(categorySelected);
-    }, [getProfileByCategories]);
 
     // useEffect(() => {
-    //     (async () => {
-    //         await getProfileByCategories(categorySelected)
-    //     })()
-    //     console.log(categorySelected)
-    // }, [getProfileByCategories,categorySelected]);
+    //     getProfileByCategories(categorySelected);
+        
+    // }, [getProfileByCategories]);
+    
+    // console.log("categorySelected",categorySelected)
+    useEffect(() => {
+        (async () => {
+            await getProfileByCategories(categorySelected)
+        })()
+        console.log('categorySelected',categorySelected)
+    }, [getProfileByCategories,categorySelected]);
 
 
     return (

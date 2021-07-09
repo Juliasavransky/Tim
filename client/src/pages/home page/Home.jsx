@@ -1,8 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
-// import { Container, Button } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
-import Artboard from './art.svg';
-import homePage from './homePage.css'
+import  './homePage.css'
 import SearchBarHomePage from '../search/SearchBarHomePage';
 
 
@@ -10,14 +8,14 @@ import SearchBarHomePage from '../search/SearchBarHomePage';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getProfiles } from '../../actions/profile';
-import SearchByCategories from '../search/SearchByCategories';
+import SearchByCategories from './../search/SearchByCategories';
 
 
 const Home = ({
     isAuthenticated,
     getProfiles,
     profile: { profiles, loading },
-    categoriesToRender
+    
 }) => {
 
     useEffect(() => {
@@ -53,7 +51,7 @@ const Home = ({
 
                                 <div className="homePage--hero_btn">
                                     <Link to="/logIn">
-                                        <button >log-in / Sign-up</button>
+                                        log-in / Sign-up
                                     </Link>
                                 </div>
 
@@ -62,10 +60,6 @@ const Home = ({
                         </div>
 
                         <div className="homePage--hero_img">
-                            {/* <img src={Artboard}
-                            style={{ border: '1px solid red' }}
-
-                        /> */}
                             <div className="homePage--borderRadius-1">
                                 <div className="homePage--borderRadius-2">
                                     <div className="homePage--borderRadius-3">
@@ -98,13 +92,13 @@ const Home = ({
 
                         </p>
                     </div>
-                    {/* <SearchByCategories /> */}
-
                 </div>
 
 
             </div>
-            <SearchBarHomePage />
+            {/* <SearchBarHomePage /> */}
+            
+          <SearchByCategories />
         </Fragment>
     );
 };

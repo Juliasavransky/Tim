@@ -1,0 +1,38 @@
+.userOrdersData--comp {
+  display: flex;
+  font-family: var(--headings-font-family);
+  font-size:1.2em;
+  
+}
+.userOrdersData--content {
+  margin: 2rem;
+  padding: 2rem;
+}
+.userOrdersData--border_1 {
+  border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%;
+  width: 80%;
+  border: 3px solid var(--pink);
+  padding: 0 10px;
+  justify-content: center;
+  display: flex;
+  margin:.75rem 1.2rem 2rem;
+}
+.userOrdersData--border_2 {
+  border-radius: 82% 18% 40% 60% / 55% 53% 47% 45%;
+  width: 100%;
+  border: 3px solid var(--blue);
+  padding: 0 10px;
+}
+.userOrdersData--border_3 {
+  border-radius: 24% 76% 40% 60% / 84% 12% 88% 16%;
+  width: 100%;
+  border: 3px solid var(--yellow);
+  padding: 0 10px;
+}
+.userOrdersData--img {
+  border-radius: 53% 47% 47% 53% / 28% 27% 73% 72%;
+  width: 100%;
+}
+.userOrdersData--uiTwoButtons{
+    margin-left:1rem;
+}

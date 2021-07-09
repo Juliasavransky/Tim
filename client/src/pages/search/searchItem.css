@@ -1,0 +1,19 @@
+.searchItem--comp {
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: row;
+  
+  }
+  .searchItem--comp > * {
+    flex: 1 1 30%;
+    color: var(--pink);
+    text-decoration: none;
+    margin:1.3rem;
+  }
+  
+  .searchItem--item > *:hover,
+  .searchItem--item > *:focus {
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+    color:var(--red);
+  }

@@ -1,13 +1,18 @@
-import React ,{Fragment} from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import man from '../../components/man.jpg';
+import woman from '../../components/woman.jpg';
+import './userOrdersData.css';
 
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePayment, makePayment, deleteOrder } from '../../actions/orders';
 import { getOrdersByUserId } from '../../actions/orders';
+import { getCurrentProfile } from '../../actions/profile';
+
 
 
 const UserOrdersData = ({
@@ -21,18 +26,25 @@ const UserOrdersData = ({
         balance,
         confirmation,
         date,
-        avatar,
         user,
     },
-    // profile: {  city, street, },
+    profile: { profile: { city, street, avatar } },
     deletePayment,
     makePayment,
     deleteOrder,
+    getCurrentProfile,
     auth,
     match,
 }) => {
-    const userProfileAvatar = user.gender && user.gender === 'female' ? 'ade' : 'elliot';
-    const userProfileImg = avatar && avatar;
+
+
+    useEffect(() => {
+        getCurrentProfile()
+        console.log()
+    }, [getCurrentProfile]);
+
+    const userProfileAvatar = user?.gender === 'female' ? woman : man;
+    const userProfileImg = avatar?.length > 0 ? avatar : userProfileAvatar;
 
     const paymentHandler = e => {
         makePayment(_id)
@@ -48,16 +60,21 @@ const UserOrdersData = ({
     }
 
     return (
-        <Card>
-            <Card.Content>
-                <Image
-                    floated='right'
-                    size='mini'
-                    src={userProfileImg
-                        ? userProfileImg
-                        : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`
-                    }
-                />
+        <Card className="userOrdersData--comp">
+            <Card.Content className="userOrdersData--content">
+                <div className='userOrdersData--border_1'>
+                    <div className='userOrdersData--border_2'>
+                        <div className='userOrdersData--border_3'>
+                            <img 
+                            className='userOrdersData--img'
+                                src={userProfileImg
+                                    ? userProfileImg
+                                    : userProfileAvatar
+                                }
+                            />
+                        </div>
+                    </div>
+                </div>
                 <Card.Header>{firstName}{" "}{lastName}</Card.Header>
                 <Card.Description>Order Title: {title && title}</Card.Description>
 
@@ -67,7 +84,7 @@ const UserOrdersData = ({
                 </Card.Meta>
             </Card.Content>
 
-            <Card.Meta> Balance: {(balance.length)+(auth.user.balance)}  </Card.Meta>
+            <Card.Meta> Balance: {(balance.length) + (auth.user.balance)}  </Card.Meta>
             <Card.Meta> Order created in:
                 <Moment format='DD/MM/YYYY'>{date && date}</Moment>
             </Card.Meta>
@@ -77,25 +94,22 @@ const UserOrdersData = ({
                     <span className="comment-count">{confirmation.length}</span>
                 )}
             </div>
-            <Link to={`/userDashboard`}>Go back to profile
-                <div>{avatar && avatar}</div>
+            <Link to={`/userDashboard`}>Go back to profile!!
 
             </Link>
 
-            <Card.Content >
-                <div className='ui two buttons'>
+            <Card.Content className="userOrdersData--content">
+                <div className='userOrdersData--uiTwoButtons'>
 
-                <Link to={`/orders/${_id}`}>
-                                <Button color="blue">
-                                     Add a note
-                                </Button>
-                            </Link>
+                    <Link to={`/orders/${_id}`}>
+                        <Button color="blue">
+                            Add a note
+                        </Button>
+                    </Link>
 
                     <Button color="red"
                         onClick={deleteOrderHandler}>delete Order
                     </Button>
-
-
 
                 </div>
             </Card.Content>
@@ -105,6 +119,7 @@ const UserOrdersData = ({
 
 UserOrdersData.propTypes = {
     profile: PropTypes.object.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
     getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
@@ -121,8 +136,9 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps,
     {
+        getCurrentProfile,
         deletePayment,
         makePayment,
         deleteOrder,
-        getOrdersByUserId
+        getOrdersByUserId,
     })(UserOrdersData);

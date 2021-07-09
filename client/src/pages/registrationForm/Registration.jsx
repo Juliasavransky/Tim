@@ -84,7 +84,7 @@ const Registration = ({
         console.log('enteredFile', enteredFile);
 
 
-        sleep(7000).then(() => { createProfile(formData, history); });
+        sleep(3000).then(() => { createProfile(formData, history); });
 
     }
 

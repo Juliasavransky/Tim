@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Confetti from 'react-confetti'
-// import './App.css';
+import './success.css';
 
 export default function Success() {
     const [height, setHeight] = useState(window.innerHeight);
@@ -9,11 +9,10 @@ export default function Success() {
 
     return (
         <>
-            <h1 className="confetti-wrap"
-                ref={confettiRef}
-            >
-                Success !!!!!!!!!!!!!!!!!!!!!!!!!!
-                <span>welcome to TIM </span>
+            <h1 className="confetti-wrap" ref={confettiRef} >
+
+               <div id="success" className="shadows">Congratulations!</div> 
+                <div className="shadows">welcome to TIM-Time Bank</div>
             </h1>
 
 

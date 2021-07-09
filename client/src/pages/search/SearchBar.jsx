@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Search, Grid, Input, Image, List, Container, Label } from 'semantic-ui-react';
+import {  Input, Image, List, Container } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
 import './searchBar.css';
 import { Link } from 'react-router-dom';
@@ -13,8 +13,8 @@ import { getProfiles } from '../../actions/profile';
 const SearchBar = ({
     getProfiles,
     profile: {
-        profiles, loading 
-    }}) => {
+        profiles, loading
+    } }) => {
 
     const [wordEntered, setWordEntered] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -30,20 +30,16 @@ const SearchBar = ({
         const searchWord = e.target.value;
         setWordEntered(searchWord);
 
-        if (wordEntered !== "") {
-            const newFilter = profiles && profiles.filter((profile) => {
-                return Object.values(profile)
-                    .join(" ")
-                    .toLowerCase()
-                    .includes(searchWord.toLowerCase())
+        const newFilter = profiles?.filter((profile) => {
+            return Object.values(profile)
+                .join(" ")
+                .toLowerCase()
+                .includes(searchWord.toLowerCase())
+        })
+        setSearchResults(newFilter);
 
-            });
-            setSearchResults(newFilter);
-        } else {
-            setSearchResults([]);
-        }
 
-        console.log(searchResults)
+        console.log("searchResults", searchResults);
     }
 
     const clearInput = () => {
@@ -67,10 +63,12 @@ const SearchBar = ({
                     />
 
                     <div
-                        className="searchBarResults">
-                        {searchResults.length !== 0 && (
+                        onClick={clearInput}
+                    // className="searchBarResults"
+                    >
+                        {searchResults.length > 0 && (
                             <div className="searchBarResults">
-                                {searchResults.slice(0, 10).map((value, key) => {
+                                {searchResults?.slice(0, 10).map((value, key) => {
                                     return (
                                         <Container>
                                             <List relaxed='very' key={key}>
@@ -101,30 +99,29 @@ const SearchBar = ({
                                                                     .toUpperCase() + value.city.slice(1)}
                                                             </List.Description>
 
-                                                            <List.Description>
-                                                                {value.categories.map((cat, index) =>
+                                                            <List.Description className="searchBarResults_li">
+                                                                {/* {value.categories.map((cat, index) =>
                                                                 (<li key={index}>
                                                                     {cat
                                                                         .charAt(0)
-                                                                        .toUpperCase() + cat.slice(1)}</li>))}
+                                                                        .toUpperCase() + cat.slice(1)}</li>))} */}
                                                             </List.Description>
 
-                                                            <List.Description>
-                                                                {value.subCategories.map(tag => (
-                                                                    <Label key={tag._id} tag>
+                                                            <List.Description className="searchBarResults_li">
+                                                                {/* {value.subCategories.map(tag => (
+                                                                    <li key={tag._id} tag>
                                                                         {tag.label
                                                                             .charAt(0)
                                                                             .toUpperCase() + tag.label.slice(1)}
-                                                                    </Label>
-                                                                ))}
+                                                                    </li>
+                                                                ))} */}
                                                             </List.Description>
                                                         </Link>
                                                     </List.Content>
                                                 </List.Item>
                                             </List>
-                                        </Container>
-                                    );
-                                })}
+                                        </Container> 
+                                    )})}
                             </div>
                         )}
                     </div>
@@ -143,9 +140,3 @@ const mapStateToProps = state => ({
     profile: state.profile
 })
 export default connect(mapStateToProps, { getProfiles })(SearchBar);
-
-{/* <div >{value.city}</div>
-<div>{value.user.firstName}</div>
-<div>{value.user.lastName}</div>
-<div>{value.categories.map((cat, index) => (<li key={index}>{cat}</li>))}</div>
-<div>{value.subCategories.map((sub) => (<li key={sub.value}>{sub.label}</li>))}</div> */}

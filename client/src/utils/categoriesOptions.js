@@ -4,7 +4,7 @@ import { Header } from 'semantic-ui-react'
 export const categories = [
     {
         key: 'Pets',
-        text: 'Pets',
+        text: 'Training, Pets care, Custody ',
         value: 'Pets',
         id: 1,
         content: (
@@ -16,7 +16,7 @@ export const categories = [
     },
     {
         key: 'Education and Lessons',
-        text: 'Education and Lessons',
+        text: 'Private lessons and Study groups',
         value: 'Education and Lessons',
         id: 2,
         content: (
@@ -28,7 +28,7 @@ export const categories = [
     },
     {
         key: 'Sport and Activities',
-        text: 'Sport and Activities ',
+        text: 'Individual and group activities ',
         value: 'Sport and Activities',
         id: 3,
         content: (
@@ -40,7 +40,7 @@ export const categories = [
     },
     {
         key: 'Art and music',
-        text: 'Art and music',
+        text: 'Classic, modern and the between',
         value: 'Art and music',
         id: 4,
         content: (
@@ -52,7 +52,7 @@ export const categories = [
     },
     {
         key: 'Alternative Medicine',
-        text: 'Alternative Medicine ',
+        text: 'Reiki, Acupuncture and more ',
         value: 'Alternative Medicine',
         id: 5,
         content: (
@@ -64,7 +64,7 @@ export const categories = [
     },
     {
         key: 'Toddlers and Children',
-        text: 'Toddlers and Children',
+        text: 'Parents and children activities',
         value: 'Toddlers and Children',
         id: 6,
         content: (
@@ -76,7 +76,7 @@ export const categories = [
     },
     {
         key: 'Technical support',
-        text: 'Technical support ',
+        text: 'Installations, internet, troubleshooting ',
         value: 'Technical support',
         id: 7,
         content: (
@@ -88,7 +88,7 @@ export const categories = [
     },
     {
         key: 'Care and beauty',
-        text: 'Care and beauty',
+        text: 'Not only for women',
         value: 'Care and beauty',
         id: 8,
         content: (
@@ -100,7 +100,7 @@ export const categories = [
     },
     {
         key: 'Counseling and guidance',
-        text: 'Counseling and guidance',
+        text: 'In different areas',
         value: 'Counseling and guidance',
         id: 9,
         content: (
@@ -112,7 +112,7 @@ export const categories = [
     },
     {
         key: 'Other',
-        text: 'Other',
+        text: 'Other topics that we have not thought about them yet',
         value: 'Other',
         id: 10,
         content: (

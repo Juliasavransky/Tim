@@ -24,10 +24,7 @@ const UserOrders = ({
 
 
     const balancesSum = orders.map(order => (<li key={order._id} >{(order.balance.length)}</li>))
-    // const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    // const array = orders.map(order =>(Array.from(order.balance.length).reduce(reducer)));
-
-    // console.log(array);
+ 
 
     return orders === null || loading
         ? <Spinner />
