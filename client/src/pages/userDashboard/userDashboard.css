@@ -1,26 +1,44 @@
 .UserDashboard--avatar {
-  width: 14rem;
+  width: 100%;
 }
 img {
   max-width: 100%;
 }
 .userDashboard--avatar_container {
-  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.userDashboard--categories {
+  width: 100%;
 }
 .userDashboard--border_1 {
   border-radius: 44% 56% 81% 19% / 14% 24% 76% 86%;
-  width: 100%;
+  width: 50%;
   border: 3px solid var(--yellow);
 }
 .userDashboard--border_2 {
-  border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%  ;
+  border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%;
   width: 100%;
   border: 3px solid var(--pink);
-  padding:0 10px;
+  padding: 0 10px;
 }
 .userDashboard--border_3 {
   border-radius: 26% 74% 13% 87% / 14% 85% 15% 86%;
   width: 100%;
   border: 3px solid var(--blue);
   padding: 0 10px;
+}
+.userDashboard--contentUp_name {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem;
+}
+.userDashboard--contentDown_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem;
 }

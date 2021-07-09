@@ -1,7 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import  './homePage.css'
-import SearchBarHomePage from '../search/SearchBarHomePage';
 
 
 //redux
@@ -96,7 +95,6 @@ const Home = ({
 
 
             </div>
-            {/* <SearchBarHomePage /> */}
             
           <SearchByCategories />
         </Fragment>

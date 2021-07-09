@@ -23,11 +23,14 @@ const UsersList = ({
     {loading ? <Spinner /> : <Fragment>
       <Container  >
         <div className="profileItem--comp">
-        {profiles.length > 0 ? (
-          profiles.map(profile => (
-            <ProfileItem key={profile._id} profile={profile} />
-          ))
-        ) : <div>no profiles</div>}
+          {profiles.length > 0 ? (
+            profiles.map(profile => (
+              <ProfileItem
+                key={profile._id}
+                profile={profile}
+              />
+            ))
+          ) : <div>no profiles</div>}
         </div>
       </Container>
     </Fragment>}

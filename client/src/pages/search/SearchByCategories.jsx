@@ -3,35 +3,38 @@ import SearchItem from './SearchItem'
 import Spinner from '../../components/Spinner';
 import { getCategories } from '../../utils/categoriesOptions';
 
-
 //redux
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getProfiles } from '../../actions/profile';
+import { getProfileByCategories } from '../../actions/profile';
 
-const SearchByCategories = ({ getProfiles, profile: { profiles, loading } }) => {
+
+const SearchByCategories = ({
+    getProfileByCategories,
+    profile: { profiles, loading }
+}) => {
 
     useEffect(() => {
-        getProfiles();
+        getProfileByCategories();
+    }, [getProfileByCategories,]);
 
-    }, [getProfiles]);
+
 
     const categoriesToRender = getCategories();
     return <Fragment>
         {loading
             ? <Spinner />
             : <Fragment>
-                <div
-                    className="searchByCategories--comp" >
+                <div className="searchByCategories">
 
-                    {profiles.length > 0 ? (
-                        <SearchItem
-                            className="searchByCategories"
-                            profile={profiles}
-                            categoriesToRender={categoriesToRender}
-
-                        />
-                    ) : <div>No profiles found</div>}
+                    {categoriesToRender.length > 0 ? (
+                        categoriesToRender.map((category => (
+                            <SearchItem
+                                key={category.id}
+                                category={category}
+                            />
+                        )))
+                    ) : <div>no categories</div>}
 
                 </div>
             </Fragment>}
@@ -40,10 +43,10 @@ const SearchByCategories = ({ getProfiles, profile: { profiles, loading } }) => 
 };
 
 SearchByCategories.propTypes = {
-    getProfiles: PropTypes.func.isRequired,
+    getProfileByCategories: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
     profile: state.profile
 })
-export default connect(mapStateToProps, { getProfiles })(SearchByCategories);
+export default connect(mapStateToProps, { getProfileByCategories })(SearchByCategories);
