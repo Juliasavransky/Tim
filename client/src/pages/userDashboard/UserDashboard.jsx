@@ -45,8 +45,26 @@ const UserDashboard = ({
     const dob = profile && profile.dob;
 
 
-    const categories = profile && profile.categories.map((cat, index) => (<li key={index}>{cat}</li>));
-    const subCategories = profile && profile.subCategories.map((sub) => (<li key={sub.value}>{sub.label.charAt(0).toUpperCase() + sub.label.slice(1)}</li>));
+    const categories = profile?.categories
+        .map((cat, index) => (
+            <li key={index}
+                className="category--li">
+                <i className="fas fa-splotch">{" "}{cat}
+                </i>
+            </li>
+        ));
+    const subCategories = profile?.subCategories
+        .map((sub) => (
+            <li
+                className="category--li"
+                key={sub.value}>
+                <i className="fas fa-splotch">
+                    {" "}{sub.label
+                        .charAt(0)
+                        .toUpperCase()
+                        + sub.label.slice(1)}
+                </i> </li>
+        ));
 
 
     return loading && profile === null
@@ -66,63 +84,68 @@ const UserDashboard = ({
                         {profile !== null
                             ? (<div>
                                 <Link to="userProfileRegistration">
-                                    <Button content='updating the profile' size='big' />
+                                    <div className="handshake" ><i class="far fa-edit"></i>{" "}Updating the profile</div>
                                 </Link>
                             </div>)
 
                             : (<div>
                                 <Link to="userProfileRegistration">
-                                    <Button content='Tell us more info about yourself' size='big' />
+                                    <div className="handshake" >
+                                        <i class="far fa-edit">
+                                        </i>{" "}Tell us more info about yourself
+                                    </div>
                                 </Link>
                             </div>)
                         }
                     </div>
 
-                    <div className="userDashboard--avatar_container">
-                        <div className='userDashboard--border_1'>
-                            <div className='userDashboard--border_2'>
-                                <div className='userDashboard--border_3'>
-                                    <img
-                                        className="UserDashboard--avatar"
-                                        src={userProfileImg
-                                            ? userProfileImg
-                                            : avatar}
-                                        style={{
-                                            'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72% ',
-                                            border: "3px solid var(--red)"
-                                        }}
-                                    />
+                    <div className="userDashboard--contentUp_avatar" >
+                        <div>
+                            <div className='userDashboard--border_1'>
+                                <div className='userDashboard--border_2'>
+                                    <div className='userDashboard--border_3'>
+                                        <img
+                                            className="UserDashboard--avatar"
+                                            src={userProfileImg
+                                                ? userProfileImg
+                                                : avatar}
+                                            style={{
+                                                'borderRadius': '53% 47% 47% 53% / 28% 27% 73% 72% ',
+                                                border: "3px solid var(--red)"
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className='userDashboard--categories'>
-                            <h3>City -{city && city.charAt(0).toUpperCase() + city.slice(1)}</h3>
-                            <h3>Categories- {categories}</h3>
-                            <h3>SubCategories- {subCategories}</h3>
+                            <h3>City - {city && city.charAt(0).toUpperCase() + city.slice(1)}</h3>
+                            <h3>Main Categories  {categories}</h3>
+                            <h3>More ditels about the categories  {subCategories}</h3>
                         </div>
                     </div>
-
-
-
                 </div>
 
                 <div className="userDashboard--contentDown">
-                    {/* <h3>street -{street && street.charAt(0).toUpperCase() + street.slice(1)}</h3><br /> */}
-                    {/* <h3>phone- {phone && phone}</h3><br /> */}
-                    {/* <h3>Birthday at:<Moment format='DD/MM/YYYY'>{dob}</Moment></h3> */}
-
-                    <h3>bio -{bio && bio}</h3><br />
+                    <h3 className="userDashboard--about">
+                        <h1>About me</h1>
+                        {bio && bio}
+                    </h3>
 
                     <div className='userDashboard--contentDown_buttons'>
-                        <h2>
-                            My Balances:
-                            <span style={{ fontSize: '2em', color: 'orange' }}>
-                                <i className="fas fa-piggy-bank"> = {balance}</i>
+
+                        <h2 style={{ fontSize: '2.5em', color: 'var(--blue)' }}>
+                            <i className="fas fa-piggy-bank"></i> My Balances:
+                            <span style={{ fontSize: '1em', color: 'var(--yellow)' }}>
+                                {" "} {balance} Coins
                             </span>
                         </h2>
 
                         <Link to={`/orders/user/${user?._id}`}>
-                            <Button content='My activities' size='big' />
+                            <div className='handshake'>
+                                <i class="far fa-handshake"></i>
+                                {" "} My activities
+                            </div>
                         </Link>
                     </div>
 

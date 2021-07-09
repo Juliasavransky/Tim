@@ -1,8 +1,33 @@
-.UserDashboard--avatar {
-  width: 100%;
+.userDashboard--categories {
+  width: 35%;
 }
-img {
-  max-width: 100%;
+.userDashboard--categories > * {
+  margin: 2.5rem 0;
+  font-weight: 600;
+  color: var(--red);
+}
+.userDashboard--contentUp_name {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem;
+}
+.userDashboard--contentUp_avatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.userDashboard--contentDown_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+}
+.userDashboard--about {
+  font-family: var(--headings-font-family);
+}
+.userDashboard--about > h1 {
+  padding-bottom: 2rem;
 }
 .userDashboard--avatar_container {
   display: flex;
@@ -10,13 +35,12 @@ img {
   align-items: center;
   width: 100%;
 }
-
-.userDashboard--categories {
+.UserDashboard--avatar {
   width: 100%;
 }
 .userDashboard--border_1 {
   border-radius: 44% 56% 81% 19% / 14% 24% 76% 86%;
-  width: 50%;
+  width: 100%;
   border: 3px solid var(--yellow);
 }
 .userDashboard--border_2 {
@@ -31,14 +55,30 @@ img {
   border: 3px solid var(--blue);
   padding: 0 10px;
 }
-.userDashboard--contentUp_name {
-  display: flex;
-  justify-content: space-between;
-  margin: 3rem;
+.category--li {
+  list-style-type: none;
+  color: var(--yellow);
+  margin: 0.5rem 0;
 }
-.userDashboard--contentDown_buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 3rem;
+.handshake {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 900;
+  padding: 0.3em 1.3em;
+  border-radius: 20px;
+  /* background: var(--yellow); */
+  border: 3px solid var(--yellow);
+  font-size: 2rem;
+  font-family: var(--headings-font-family);
+  color: var(--blue);
+}
+
+.handshake:hover,
+.handshake:focus {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 17% 83% 11% 89% / 16% 74% 26% 84%  ;
+  color:var(--red);
+  border: 8px solid var(--yellow);
+
 }
