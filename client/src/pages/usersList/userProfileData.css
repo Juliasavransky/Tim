@@ -1,0 +1,55 @@
+/* .userProfileData--comp {
+  font-family: var(--headings-font-family);
+} */
+.userProfileData--contentUp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3rem 0;
+}
+.userProfileData--contentUp h5 {
+  font-size: 2.3rem;
+  font-weight: 500;
+  font-family: var(--headings-font-family);
+  margin: 3rem 0;
+}
+.userProfileData--borderRadius1 {
+  border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%;
+  width: 100%;
+  border: 3px solid var(--yellow);
+  padding: 0 10px;
+}
+.userProfileData--borderRadius2 {
+  border-radius: 24% 76% 77% 23% / 56% 23% 77% 44%;
+  width: 100%;
+  border: 3px solid var(--green);
+  padding: 0 10px;
+}
+.userProfileData--borderRadius3 {
+  border-radius: 82% 18% 45% 55% / 16% 74% 26% 84%;
+  width: 100%;
+  border: 3px solid var(--blue);
+  padding: 0 10px;
+}
+.userProfile-img{
+    border-radius: 53% 47% 47% 53% / 28% 27% 73% 72%;
+    border: 3px solid var(--red);
+ width: 300px;
+}
+.userProfileData--categories {
+  font-weight: 500;
+  color: var(--red);
+}
+.userProfileData--categories li {
+  list-style-type: none;
+  color: var(--yellow);
+  margin: 0.5rem 0;
+}
+.userProfileData--categories h2 {
+  /* border: 3px solid var(--red); */
+  margin-bottom: 2.5rem;
+}
+.userProfileData--about {
+    font-size: 1.5rem;
+    margin:2rem 0;
+}

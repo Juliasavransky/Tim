@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Button } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
-import Moment from 'react-moment';
 import './userDashboard.css';
 import man from '../../components/man.jpg';
-import woman from '../../components/woman.jpg'
+import woman from '../../components/woman.jpg';
 
 //redux
 import { connect } from 'react-redux';
@@ -119,11 +117,13 @@ const UserDashboard = ({
                             </div>
                         </div>
                         <div className='userDashboard--categories'>
-                            <h3>City - {city && city.charAt(0).toUpperCase() + city.slice(1)}</h3>
                             <h3>Main Categories  {categories}</h3>
                             <h3>More ditels about the categories  {subCategories}</h3>
                         </div>
                     </div>
+
+                    <h1>City - {city && city.charAt(0).toUpperCase() + city.slice(1)}</h1>
+
                 </div>
 
                 <div className="userDashboard--contentDown">
