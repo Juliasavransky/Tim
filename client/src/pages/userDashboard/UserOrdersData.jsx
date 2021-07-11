@@ -11,7 +11,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePayment, makePayment, deleteOrder } from '../../actions/orders';
 import { getOrdersByUserId } from '../../actions/orders';
-import { getCurrentProfile } from '../../actions/profile';
+import { getProfileById } from '../../actions/profile';
+
 
 
 
@@ -23,28 +24,30 @@ const UserOrdersData = ({
         firstName,
         lastName,
         _id,
-        balance,
-        confirmation,
         date,
         user,
+        userProvider,
+        status,
     },
-    profile: { profile: { city, street, avatar } },
+    profile,
     deletePayment,
     makePayment,
     deleteOrder,
-    getCurrentProfile,
+    getProfileById,
     auth,
     match,
 }) => {
 
-
+    userProvider = _id;
     useEffect(() => {
-        getCurrentProfile()
-        console.log()
-    }, [getCurrentProfile]);
+        getProfileById(match?.params._id);
+    }, [getProfileById, match?.params._id]);
+
 
     const userProfileAvatar = user?.gender === 'female' ? woman : man;
-    const userProfileImg = avatar?.length > 0 ? avatar : userProfileAvatar;
+    const userProfileImg = profile.avatar?.length > 0 ? profile.avatar : userProfileAvatar;
+
+
 
     const paymentHandler = e => {
         makePayment(_id)
@@ -65,8 +68,8 @@ const UserOrdersData = ({
                 <div className='userOrdersData--border_1'>
                     <div className='userOrdersData--border_2'>
                         <div className='userOrdersData--border_3'>
-                            <img 
-                            className='userOrdersData--img'
+                            <img
+                                className='userOrdersData--img'
                                 src={userProfileImg
                                     ? userProfileImg
                                     : userProfileAvatar
@@ -77,23 +80,20 @@ const UserOrdersData = ({
                 </div>
                 <Card.Header>{firstName}{" "}{lastName}</Card.Header>
                 <Card.Description>Order Title: {title && title}</Card.Description>
-
                 <Card.Description>  Order text: {text && text}  </Card.Description>
                 <Card.Meta>Order the service for:
                     <Moment format='YYYY/MM/DD'>{dateOfServes && dateOfServes}</Moment>
                 </Card.Meta>
             </Card.Content>
 
-            <Card.Meta> Balance: {(balance.length) + (auth.user.balance)}  </Card.Meta>
+            <h1>{status}</h1>
+            <h3>user Provider: {userProvider}</h3>
+
             <Card.Meta> Order created in:
                 <Moment format='DD/MM/YYYY'>{date && date}</Moment>
             </Card.Meta>
 
-            <div> confirmation =
-                {" "}   {confirmation.length >= 0 && (
-                    <span className="comment-count">{confirmation.length}</span>
-                )}
-            </div>
+
             <Link to={`/userDashboard`}>Go back to profile!!
 
             </Link>
@@ -119,13 +119,14 @@ const UserOrdersData = ({
 
 UserOrdersData.propTypes = {
     profile: PropTypes.object.isRequired,
-    getCurrentProfile: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
     getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     makePayment: PropTypes.func.isRequired,
     deletePayment: PropTypes.func.isRequired,
     deleteOrder: PropTypes.func.isRequired,
+    getProfileById: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = state => ({
@@ -136,9 +137,9 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps,
     {
-        getCurrentProfile,
         deletePayment,
         makePayment,
         deleteOrder,
         getOrdersByUserId,
+        getProfileById
     })(UserOrdersData);

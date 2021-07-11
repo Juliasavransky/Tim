@@ -87,7 +87,7 @@ const OrderItem = ({
 
                     <Card.Description>Order Title: {title && title}</Card.Description>
                     <Card.Description>  Order text: {text && text}  </Card.Description>
-                    <Card.Meta> Balance: {(balance.length) } </Card.Meta>
+                    <Card.Meta> Balance:  </Card.Meta>
 
                     <Card.Meta> Order created in:
                         <Moment format='DD/MM/YYYY'>{date && date}</Moment>
@@ -99,11 +99,7 @@ const OrderItem = ({
 
                     {showActions && <Fragment>
 
-                        <div> confirmation =
-                            {" "}   {confirmation.length >= 0 && (
-                                <span className="comment-count">{confirmation.length}</span>
-                            )}
-                        </div>
+                   
 
                         {!auth.loading && user === auth.user._id && (
                             <Button color="red"

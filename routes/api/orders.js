@@ -6,9 +6,6 @@ const checkObjectId = require('../../middleware/checkObjectId');
 
 const User = require('../../models/User');
 const Orders = require('../../models/Orders');
-
-
-// const Balance = require('../../models/Balance');
 const Profile = require('../../models/Profile');
 
 
@@ -49,7 +46,8 @@ router.post(
                 user: req.user.id,
                 title: req.body.title,
                 dateOfServes: req.body.dateOfServes,
-                serviceProvider: req.body.text,
+                userProvider: req.body.userProvider,
+                status: "New"
             })
 
             const order = await newOrder.save();
@@ -282,7 +280,7 @@ router.delete('/confirmation/:id/:confirmation_id', auth, async (req, res) => {
 
 
 
-//*****************test******** */
+//************************* */
 // @route    Get api/orders/user_id
 // @desc     Get orders by user id
 // @access   Private
@@ -297,7 +295,8 @@ router.get('/user/:user_id', auth, async (req, res) => {
                     'firstName',
                     'lastName',
                     'email',
-                    'gender'
+                    'gender',
+                    ' _id'
                 ]);
         if (!orders)
             return res.status(400)
@@ -310,6 +309,37 @@ router.get('/user/:user_id', auth, async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-//*****************test******** */
+//************************* */
+
+
+// @route    update api/orders/:id
+// @desc     update a order status by id
+// @access   Private
+
+router.patch('/:orderId', auth, async (req, res) => {
+    try {
+        //todo
+        // userProvider.balance:+1
+        const id = req.params.orderId;
+        Order.update({ _id: id },
+            {
+                $set:
+                {
+                    status: req.body.newStatus,
+                    balance: balance - 1
+                }
+            });
+        console.log('order', order)
+        await order.save();
+        res.json(order);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+
+});
+
+
 
 module.exports = router;

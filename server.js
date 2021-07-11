@@ -11,7 +11,6 @@ app.use(express.json({ extended: false }));
 
 //middleware for connect
 app.use(cors());
-// app.options('*', cors());
 
 
 app.get('/', (req, res) => res.send('API testing'));
@@ -20,9 +19,7 @@ app.get('/', (req, res) => res.send('API testing'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/review', require('./routes/api/review'));
 app.use('/api/orders', require('./routes/api/orders'));
-app.use('/api/balance', require('./routes/api/balance'));
 
 
 

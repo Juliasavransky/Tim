@@ -19,6 +19,7 @@ const UserProfile = ({
         getProfileById(match.params.id);
     }, [getProfileById, match.params.id]);
 
+    console.log(match.params.id);
     return (<Fragment>
         {profile === null || loading
             ? <Spinner />
@@ -27,7 +28,7 @@ const UserProfile = ({
                     key={profile._id}
                     profile={profile}
                 />
-             
+
             </Fragment>
         }
     </Fragment>

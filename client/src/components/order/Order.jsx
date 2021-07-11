@@ -47,13 +47,13 @@ const Order = ({
                     showActions={false}
                 />
 
-                {order && order.confirmation.map(confirmation => (
+                {/* {order && order.confirmation.map(confirmation => (
                     <ConfirmationItem
                         key={confirmation._id}
                         confirmation={confirmation}
                         orderId={order && order._id}
                     />
-                ))}
+                ))} */}
 
             </Fragment>
         );

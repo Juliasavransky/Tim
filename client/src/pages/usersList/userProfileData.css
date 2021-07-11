@@ -31,10 +31,10 @@
   border: 3px solid var(--blue);
   padding: 0 10px;
 }
-.userProfile-img{
-    border-radius: 53% 47% 47% 53% / 28% 27% 73% 72%;
-    border: 3px solid var(--red);
- width: 300px;
+.userProfile-img {
+  border-radius: 53% 47% 47% 53% / 28% 27% 73% 72%;
+  border: 3px solid var(--red);
+  width: 300px;
 }
 .userProfileData--categories {
   font-weight: 500;
@@ -50,6 +50,57 @@
   margin-bottom: 2.5rem;
 }
 .userProfileData--about {
-    font-size: 1.5rem;
-    margin:2rem 0;
+  font-size: 1.5rem;
+  margin: 2rem 0;
 }
+.userProfile--links {
+  display: flex;
+  font-size: 2.1rem;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+.userProfile--links a {
+  text-decoration: none;
+  color: var(--green);
+}
+.fa-birthday-cake,
+.fa-paper-plane {
+  color: var(--red);
+  font-size: 3rem;
+}
+.userProfile--btn {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3rem;
+}
+.userProfileData--buttons {
+  padding-bottom: 2rem;
+  font-weight: 600;
+  padding: 0.3em 1.3em;
+  font-family: var(--headings-font-family);
+  font-size: 1.5rem;
+  color: var(--blue);
+  display: inline-block;
+  border-radius: 20px;
+  border: 3px solid var(--yellow);
+  text-decoration: none;
+}
+
+.userProfileData--buttons:hover,
+.userProfileData--buttons:focus {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 17% 83% 11% 89% / 16% 74% 26% 84%  ;
+  color:var(--red);
+  border: 8px solid var(--yellow);
+
+} 
+.fa-paper-plane:hover,
+.fa-paper-plane:focus{
+  transform: scale(1.4);
+  transition: all 0.3s ease-in-out;
+  color: var(--yellow);
+
+
+}
+

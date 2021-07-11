@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import Spinner from '../../components/Spinner';
 import UserOrdersData from './UserOrdersData';
 import { Link } from 'react-router-dom';
-import {  Button } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 
 //redux
@@ -10,10 +10,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getOrdersByUserId } from '../../actions/orders';
 
+
+
+
 const UserOrders = ({
     getOrdersByUserId,
     orders: { orders, loading },
-
     profile: { profile },
     auth, match
 }) => {
@@ -22,9 +24,6 @@ const UserOrders = ({
         getOrdersByUserId(match.params.id);
     }, [getOrdersByUserId, match.params.id]);
 
-
-    const balancesSum = orders.map(order => (<li key={order._id} >{(order.balance.length)}</li>))
- 
 
     return orders === null || loading
         ? <Spinner />
@@ -36,17 +35,20 @@ const UserOrders = ({
                 My Balance {" "}
                 <i className="fas fa-piggy-bank">
                 </i>
-                {" "}{(auth.user.balance)}
+
             </h2>
-            <div>{balancesSum}</div>
+
             {orders.length > 0
                 ? (orders.map(order => (
                     <UserOrdersData
                         key={order._id}
                         order={order}
                         profile={profile}
+
                     />
                 ))) : <Fragment>
+
+
                     <h3>No orders </h3>
                     <Link to="/searchPage">
                         <Button content='find new activity' size='big' />
@@ -64,10 +66,8 @@ const UserOrders = ({
 UserOrders.propTypes = {
     getOrdersByUserId: PropTypes.func.isRequired,
     order: PropTypes.object.isRequired,
-
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
-
 
 };
 const mapStateToProps = state => ({

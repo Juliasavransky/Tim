@@ -15,32 +15,25 @@ const OrdersForm = ({
     getProfileById,
     auth,
     match,
-    profile: { city, dob, categories, subCategories, avatar, bio, _id,
+    profile: {
+        city,
+        dob,
+        categories,
+        subCategories,
+        avatar,
+        bio,
+        _id,
         user
     }
 
 
 }) => {
 
-    // useEffect(() => {
-    //     getProfileById(match.params.id);
-    // }, [getProfileById, match.params.id]);
-
     const [formData, setFormData] = useState({
         text: "",
         title: "",
         dateOfServes: ""
     });
-
-    const [serviceProvider, setServiceProvider] = useState("");
-
-    // const findServiceProvider = () => {
-    //     let url = window.location.href;
-    //     let urlArray = url.split("/");
-    //     let userId = urlArray[urlArray.length - 1];
-    //     // setServiceProvider(userId)
-    //     formData['serviceProvider'] = userId;
-    // }
 
     const {
         text,
@@ -54,14 +47,12 @@ const OrdersForm = ({
 
     const orderFormSubmit = e => {
         e.preventDefault();
-        // findServiceProvider();
 
-        console.log("serviceProvider", serviceProvider);
 
         let url = window.location.href;
         let urlArray = url.split("/");
         let userId = urlArray[urlArray.length - 1];
-        formData['serviceProvider'] = userId;
+        formData['userProvider'] = userId;
 
         addOrder(formData);
         setFormData({

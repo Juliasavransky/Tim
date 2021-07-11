@@ -26,66 +26,16 @@ const OrdersSchema = new Schema({
         type: Date,
         required: true
     },
-    serviceProvider: {
-        type:String
+    userProvider: {
+        type: String
     },
-    balance: [
-        {
-            user: {
-                type: Schema.Types.ObjectId,
-                ref: 'user'
-            },
-            firstName: {
-                type: String
-            },
-            lastName: {
-                type: String
-            },
-            balance: {
-                type: Number
-            },
-            date: {
-                type: Date,
-                default: Date.now
-            }
-         
-        }
-    ],
-    confirmation: [
-        {
-            user: {
-                type: Schema.Types.ObjectId,
-                ref: 'user'
-            },
-            title: {
-                type: String
-            },
-            text: {
-                type: String,
-                require: true,
-            },
-            firstName: {
-                type: String
-            },
-            lastName: {
-                type: String
-            },
-            avatar: {
-                type: String
-            },
-            date: {
-                type: Date,
-                default: Date.now
-            }
-
-        }
-    ],
+    status: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
     }
-
-
 });
 
 module.exports = mongoose.model('orders', OrdersSchema);

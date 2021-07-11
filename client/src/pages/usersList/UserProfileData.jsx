@@ -35,7 +35,7 @@ const UserProfileData = ({
                             </div>
                         </div>
                     </div>
-                    <h5>living in - {city && city}</h5>
+                    <h5>lives in - {city && city}</h5>
                 </div>
 
                 <div className="userProfileData--categories">
@@ -70,34 +70,34 @@ const UserProfileData = ({
 
             <div className="userProfile--links">
                 <div>
-                    <i class="fas fa-birthday-cake">
-                    </i> Send me Congrats at :
+                    <i className="fas fa-birthday-cake">
+                    </i> Send congrats at :
                     <Moment format='DD/MM'>{dob}
                     </Moment>
                 </div>
 
-                <div>
-                    <a href={`mailto:${email && email}`}>
-
-                    <i class="far fa-paper-plane"></i>
-                    For any Question contact my
+                <div >
+                    <a href={
+                        `mailto:${email && email}?subject=Hello,%20this%20is%20${fName}%20${lName}%20from%20the%20Time%20bank`}>
+                    <i className="far fa-paper-plane"></i>
+                  {" "} Contact me
                     </a>
                 </div>
             </div>
 
 
-            <div className="userProfileData--buttons">
-                <Link to="/usersList">
-                    <Button>
-                        Back to profiles List
-                    </Button>
+            <div className="userProfile--btn">
+                <Link className="userProfileData--buttons" to="/usersList">
+                    <div><i class="fas fa-arrow-left"></i>
+                       {" "} Back to profiles List
+                    </div>
                 </Link>
 
 
-                <Link to={`/ordersForm/userProfile/${_id}`}>
-                    <Button>
+                <Link className="userProfileData--buttons" to={`/ordersForm/userProfile/${_id}`}>
+                    <div>
                         Order one of the Services
-                    </Button>
+                    </div>
 
                 </Link>
          
