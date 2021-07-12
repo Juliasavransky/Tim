@@ -74,22 +74,22 @@ const UserDashboard = ({
 
                     <div className="userDashboard--contentUp_name">
                         <h1 className="userDashboard--header"> Welcome
-                            {" "} {user?.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}
+                            {" "} {user?.firstName.charAt(0).toUpperCase() + user?.firstName.slice(1)}
                             {' '}
-                            {user?.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
+                            {user?.lastName.charAt(0).toUpperCase() + user?.lastName.slice(1)}
                         </h1>
 
                         {profile !== null
                             ? (<div>
                                 <Link to="userProfileRegistration">
-                                    <div className="handshake" ><i class="far fa-edit"></i>{" "}Updating the profile</div>
+                                    <div className="handshake" ><i className="far fa-edit"></i>{" "}Updating the profile</div>
                                 </Link>
                             </div>)
 
                             : (<div>
                                 <Link to="userProfileRegistration">
                                     <div className="handshake" >
-                                        <i class="far fa-edit">
+                                        <i className="far fa-edit">
                                         </i>{" "}Tell us more info about yourself
                                     </div>
                                 </Link>
@@ -143,7 +143,7 @@ const UserDashboard = ({
 
                         <Link to={`/orders/user/${user?._id}`}>
                             <div className='handshake'>
-                                <i class="far fa-handshake"></i>
+                                <i className="far fa-handshake"></i>
                                 {" "} My activities
                             </div>
                         </Link>

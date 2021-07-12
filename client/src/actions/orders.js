@@ -7,16 +7,14 @@ import {
     GET_ORDERS,
     ORDERS_ERROR,
 
-    UPDATE_PAYMENT,
     DELETE_ORDER,
-
+    
     ADD_ORDER,
     GET_ORDER,
 
-    ADD_CONFIRMATION,
-    DELETE_CONFIRMATION,
+    GET_ORDERS_BYUSER_ID,
+    UPDATE_ORDER_STATUS
 
-    GET_ORDERS_BYUSER_ID
 } from './types.js';
 
 // Get orders
@@ -38,43 +36,7 @@ export const getOrders = () => async dispatch => {
     }
 }
 
-// Make payment = balance
-export const makePayment = balanceId => async dispatch => {
-    try {
-        const res = await axios.put(`/api/orders/balance/${balanceId}`);
 
-        dispatch({
-            type: UPDATE_PAYMENT,
-            payload: { balanceId, balance: res.data }
-        });
-
-    } catch (err) {
-        dispatch({
-            type: ORDERS_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-
-    }
-}
-
-// Delete payment = (balancedp = balance delete payment)
-export const deletePayment = balanceId => async dispatch => {
-    try {
-        const res = await axios.put(`/api/orders/balancedp/${balanceId}`);
-
-        dispatch({
-            type: UPDATE_PAYMENT,
-            payload: { balanceId, balance: res.data }
-        });
-
-    } catch (err) {
-        dispatch({
-            type: ORDERS_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-
-    }
-}
 
 // Delete order 
 export const deleteOrder = orderId => async dispatch => {
@@ -100,7 +62,7 @@ export const deleteOrder = orderId => async dispatch => {
 // Add order 
 export const addOrder = (formData) => async dispatch => {
     try {
-        const res = await axios.post('/api/orders',( formData));
+        const res = await axios.post('/api/orders', (formData));
 
         dispatch({
             type: ADD_ORDER,
@@ -137,50 +99,6 @@ export const getOrder = orderId => async dispatch => {
     }
 }
 
-// Add confirmation 
-export const addConfirmation = (orderId, formData) => async dispatch => {
-    try {
-        const res = await axios.post(`/api/orders/confirmation/${orderId}`, formData);
-
-        dispatch({
-            type: ADD_CONFIRMATION,
-            payload: res.data
-        });
-
-        dispatch(setAlert('confirmation Created', 'success'));
-
-    } catch (err) {
-        dispatch({
-            type: ORDERS_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-
-    }
-}
-
-// Delete confirmation 
-export const deleteConfirmation = (orderId, confirmationId) => async dispatch => {
-    try {
-        const res = await axios.delete(`/api/orders/confirmation/${orderId}/${confirmationId}`);
-
-        dispatch({
-            type: DELETE_CONFIRMATION,
-            payload: confirmationId
-        });
-
-        dispatch(setAlert('confirmation Deleted', 'success'));
-
-    } catch (err) {
-        dispatch({
-            type: ORDERS_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        });
-
-    }
-}
-
-//*********test************************************* */
-
 // Get orders by user id
 export const getOrdersByUserId = userId => async dispatch => {
     try {
@@ -199,3 +117,23 @@ export const getOrdersByUserId = userId => async dispatch => {
 
     }
 }
+
+// Updete order status (from new to approved or denied )
+export const updateStatus = (orderId, newStatus) => async dispatch => {
+    try {
+        const res = await axios.patch(`/api/orders/${orderId}`, newStatus);
+
+        dispatch({
+            type: UPDATE_ORDER_STATUS,
+            payload: { orderId, status: newStatus }
+        });
+
+    } catch (err) {
+        dispatch({
+            type: ORDERS_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+}
+

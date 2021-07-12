@@ -7,9 +7,7 @@ import { Button } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getOrder } from '../../actions/orders';
-import OrdersItem from '../../components/orders/OrdersItem';
-import ConfirmationForm from './ConfirmationForm';
-import ConfirmationItem from './ConfirmationItem';
+import OrdersItem from './OrdersItem';
 
 
 
@@ -33,27 +31,16 @@ const Order = ({
         : (
             <Fragment>
 
-                <h1>
-                    <ConfirmationForm
-                        orderId={order._id}
-                    />
-                </h1>
+             
                 <Link to='/usersList'>
                     <Button>go  back to users list</Button>
                 </Link>
 
                 <OrdersItem
                     order={order && order}
-                    showActions={false}
                 />
 
-                {/* {order && order.confirmation.map(confirmation => (
-                    <ConfirmationItem
-                        key={confirmation._id}
-                        confirmation={confirmation}
-                        orderId={order && order._id}
-                    />
-                ))} */}
+            
 
             </Fragment>
         );

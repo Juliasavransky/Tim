@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
-//if not require = optional part of the data
+
 const UserSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -26,7 +27,16 @@ const UserSchema = new mongoose.Schema({
     balance:{
         type: Number,
         require: true,
+    },
+    profile:{
+        type: Schema.Types.ObjectId,
+        ref:"profile"
+    },
+    orders:{
+        type: Schema.Types.ObjectId,
+        ref: 'orders'
     }
+  
   
 })
 

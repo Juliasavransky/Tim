@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,7 @@ import './userOrdersData.css';
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deletePayment, makePayment, deleteOrder } from '../../actions/orders';
 import { getOrdersByUserId } from '../../actions/orders';
-import { getProfileById } from '../../actions/profile';
 
 
 
@@ -30,37 +28,14 @@ const UserOrdersData = ({
         status,
     },
     profile,
-    deletePayment,
-    makePayment,
     deleteOrder,
     getProfileById,
     auth,
     match,
 }) => {
 
-    userProvider = _id;
-    useEffect(() => {
-        getProfileById(match?.params._id);
-    }, [getProfileById, match?.params._id]);
-
-
     const userProfileAvatar = user?.gender === 'female' ? woman : man;
     const userProfileImg = profile.avatar?.length > 0 ? profile.avatar : userProfileAvatar;
-
-
-
-    const paymentHandler = e => {
-        makePayment(_id)
-    }
-
-    const deletePaymentHandler = e => {
-        deletePayment(_id)
-    }
-
-    const deleteOrderHandler = e => {
-        deleteOrder(_id)
-        deletePayment(_id)
-    }
 
     return (
         <Card className="userOrdersData--comp">
@@ -103,16 +78,14 @@ const UserOrdersData = ({
 
                     <Link to={`/orders/${_id}`}>
                         <Button color="blue">
-                            Add a note
+                            More detels
                         </Button>
                     </Link>
 
-                    <Button color="red"
-                        onClick={deleteOrderHandler}>delete Order
-                    </Button>
-
                 </div>
             </Card.Content>
+
+
         </Card>
     );
 };
@@ -122,11 +95,7 @@ UserOrdersData.propTypes = {
     orders: PropTypes.object.isRequired,
     getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    makePayment: PropTypes.func.isRequired,
-    deletePayment: PropTypes.func.isRequired,
-    deleteOrder: PropTypes.func.isRequired,
     getProfileById: PropTypes.func.isRequired,
-
 };
 
 const mapStateToProps = state => ({
@@ -135,11 +104,4 @@ const mapStateToProps = state => ({
     profile: state.profile,
 })
 
-export default connect(mapStateToProps,
-    {
-        deletePayment,
-        makePayment,
-        deleteOrder,
-        getOrdersByUserId,
-        getProfileById
-    })(UserOrdersData);
+export default connect(mapStateToProps, { getOrdersByUserId, })(UserOrdersData);

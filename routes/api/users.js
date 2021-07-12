@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const config = require('config')
 const User = require('../../models/User');
+const auth = require('../../middleware/auth');
+
 
 
 //@route  post api/users
@@ -42,7 +44,7 @@ router.post('/',
             gender,
         } = req.body;
 
-        const balance= 2;
+        const balance = 2;
 
         //See if user already exists
         try {
@@ -93,5 +95,59 @@ router.post('/',
     });
 
 
-    
+
+// @route    update api/user/:id
+// @desc     update a user balance by user id (payment for service)
+// @access   Private
+
+router.patch('/:id', auth, async (req, res) => {
+
+    try {
+       
+        const user = await User.findByIdAndUpdate(req.params.id,
+            {"$inc":{ "balance": -1} },
+            { new: true }
+            );
+
+        if (!user) {
+            return res.status(404).json({ msg: 'The user does not exist' })
+        }
+
+        await user.save();
+        res.json(user);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+
+});
+
+// @route    update api/user/:id (id from orders userProvider)
+// @desc     update a user balance by user id (get payment for service)
+// @access   Private
+
+// router.patch('/:id', auth, async (req, res) => {
+
+//     try {
+       
+//         const user = await User.findByIdAndUpdate(req.params.id,
+//             {"$inc":{ "balance": 1} },
+//             { new: true }
+//             );
+
+//         if (!user) {
+//             return res.status(404).json({ msg: 'The user does not exist' })
+//         }
+
+//         await user.save();
+//         res.json(user);
+
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send('Server error');
+//     }
+
+// });
+
 module.exports = router;

@@ -225,7 +225,7 @@ const Confirm = ({
                                     color='yellow'
                                 />
                                 <List.Content className="confirm--content_title">Categories:{" "} {enteredCategories && enteredCategories.map(cat => (
-                                    <li key={cat.id}><i class="fas fa-star-of-life"></i>{" "} {cat}</li>))}
+                                    <li key={cat.id}><i className="fas fa-star-of-life"></i>{" "} {cat}</li>))}
                                 </List.Content>
                             </List.Item>
                             <List.Item key="9">
@@ -237,7 +237,7 @@ const Confirm = ({
                                 <List.Content className="confirm--content_title">Sub Categories:
                                     <span>{tags ?
                                         tags.map(item => (
-                                            <li key={item.value}><i class="fas fa-star-of-life"></i>{item.label}</li>
+                                            <li key={item.value}><i className="fas fa-star-of-life"></i>{item.label}</li>
                                         )) : " "
                                     }
 

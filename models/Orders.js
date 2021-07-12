@@ -35,7 +35,11 @@ const OrdersSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    profile: {
+        type: Schema.Types.ObjectId,
+        ref: 'profile'
+    },
 });
 
 module.exports = mongoose.model('orders', OrdersSchema);

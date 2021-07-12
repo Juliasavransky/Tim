@@ -9,7 +9,8 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     CLEAR_PROFILE,
-    GET_USER_BY_ID
+    MAKE_PAYMENT,
+    GET_PAYMENT,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -92,3 +93,39 @@ export const logout = () => dispatch => {
     dispatch({ type: LOGOUT });
 }
 
+// Make payment =( balance -1 login user)
+export const makePayment = userId => async dispatch => {
+    try {
+        const res = await axios.patch(`/api/user/${userId}`);
+
+        // dispatch({
+        //     type: MAKE_PAYMENT,
+        //     payload: res.data
+        // });
+
+    } catch (err) {
+        dispatch({
+            type: AUTH_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+}
+
+// Make get paymenr =( balance +1 login user)
+export const getPayment = userProvider => async dispatch => {
+    try {
+
+        // dispatch({
+        //     type: GET_PAYMENT,
+        //     payload: res.data
+        // });
+
+    } catch (err) {
+        dispatch({
+            type: AUTH_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+
+    }
+}

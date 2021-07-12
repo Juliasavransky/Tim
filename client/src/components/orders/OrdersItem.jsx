@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { Button, Card, Image } from 'semantic-ui-react'
@@ -6,18 +6,18 @@ import { Button, Card, Image } from 'semantic-ui-react'
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getProfileById } from '../../actions/profile';
-import { deletePayment, makePayment, deleteOrder } from '../../actions/orders';
+import { updateStatus, deleteOrder } from '../../actions/orders';
+import { getPayment, makePayment } from '../../actions/auth';
+
 
 
 const OrderItem = ({
     auth,
     match,
-    deletePayment,
+    getPayment,
     makePayment,
+    updateStatus,
     deleteOrder,
-    showActions,
-    getProfileById,
     profile,
     order: {
         title,
@@ -27,43 +27,36 @@ const OrderItem = ({
         lastName,
         _id,
         avatar,
-        balance,
-        confirmation,
         date,
         user,
-    },
-    // profile: { city, dob, categories, subCategories, avatar, bio,
-    //     user: { firstName, lastName, gender, email }}
+        userProvider,
+        status
+    }
 
 }) => {
+    const [newStatus, setNewstatus] = useState('');
 
-    // useEffect(() => {
-    //     getProfileById(match.params.id);
-    // }, [getProfileById, match.params.id]);
+    useEffect(() => {
+        updateStatus(_id, newStatus)
+    }, [updateStatus, newStatus]);
 
-    const paymentHandler = e => {
-        // if (!auth.loading && user !== auth.user._id) {
-        //     makePayment(_id)
-        // } else {
+    const chengeStatusHandler = (newStatus, userProvider, user) => {
+        setNewstatus(newStatus);
 
-        //     makePayment(_id)
-        // }
+        if (newStatus === 'Approved') {
+            // getPayment(userProvider)
+            makePayment(user)
+        }
 
-        makePayment(_id)
+        if (newStatus === 'Denied') {
+            console.log('todo')
+        }
     }
 
-    const deletePaymentHandler = e => {
-        // if (!auth.loading && user !== auth.user._id) {
-        //     deletePayment(_id)
-        // } else {
 
-        //     deletePayment(_id)
-        // }
-        deletePayment(_id)
-    }
+
     const deleteOrderHandler = e => {
         deleteOrder(_id)
-        deletePayment(_id)
     }
 
     const userProfileAvatar = user && user.gender === 'female' ? 'ade' : 'elliot';
@@ -96,77 +89,59 @@ const OrderItem = ({
                     <Card.Meta>Order the service for:
                         <Moment format='YYYY/MM/DD'>{dateOfServes && dateOfServes}</Moment>
                     </Card.Meta>
+                    <div>userProvider: {userProvider}</div>
+                    <div>status: {status}</div>
 
-                    {showActions && <Fragment>
 
-                   
 
-                        {!auth.loading && user === auth.user._id && (
-                            <Button color="red"
-                                onClick={deleteOrderHandler}>delete Order
+
+                    {!auth.loading && user === auth.user._id && (
+                        <Button color="red"
+                            onClick={deleteOrderHandler}>delete Order
+                        </Button>
+                    )}
+
+
+
+                    <Card.Description>
+                        <Link to={`/userProfile/${user}`}>Go back to
+                            <span>{" "}{firstName}{" "} {lastName}{" "} profile</span>
+                            <div>{avatar && avatar}</div>
+
+                        </Link>
+                    </Card.Description>
+
+                    <Card.Content className="userOrdersData--content">
+                        <div className='userOrdersData--uiTwoButtons'>
+
+
+                            <Button color="green"
+                                onClick={() => chengeStatusHandler('Approved')}
+                            >
+                                Approved
                             </Button>
-                        )}
-
-                        {!auth.loading && user === auth.user._id && (
-                            <Link to={`/orders/${_id}`}>
-                                <Button color="blue">
-                                    Confirm Or add a note
-                                </Button>
-                            </Link>
-
-                        )}
-
-                        {!auth.loading && user !== auth.user._id
-                            ? (
-                                <Button color="green"
-                                    onClick={paymentHandler}>make payment
-                                    <div>  <span style={{ fontSize: '2em', color: 'orange' }}>
-                                        <i className="fas fa-piggy-bank"></i>
-                                    </span></div>
-                                </Button>
-                            )
-                            : (" ")
-                        }
-
-                        {!auth.loading && user !== auth.user._id
-                            ? (
-                                <Button color="red"
-                                    onClick={deletePaymentHandler}>delete payment
-                                </Button>
-                            )
-                            : (" ")
-                        }
 
 
+                            <Button color="green"
+                                onClick={() => chengeStatusHandler('Denied')}>
+                                Denied
+                            </Button>
 
-                        <Card.Description>
-                            <Link to={`/userProfile/${user}`}>Go back to
-                                <span>{" "}{firstName}{" "} {lastName}{" "} profile</span>
-                                <div>{avatar && avatar}</div>
-
-                            </Link>
-                        </Card.Description>
-
-                    </Fragment>}
-
+                        </div>
+                    </Card.Content>
                 </Card.Content>
             </Card>
         </Fragment>
     );
 };
 
-OrderItem.defaultProps = {
-    showActions: true
-}
-
 OrderItem.propTypes = {
-    getProfileById: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
-
+    updateStatus: PropTypes.func.isRequired,
+    getPayment: PropTypes.func.isRequired,
+    makePayment: PropTypes.func.isRequired,
     order: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    makePayment: PropTypes.func.isRequired,
-    deletePayment: PropTypes.func.isRequired,
     deleteOrder: PropTypes.func.isRequired,
 };
 
@@ -176,4 +151,18 @@ const mapStateToProps = state => ({
     profile: state.profile,
 })
 
-export default connect(mapStateToProps, { deletePayment, makePayment, deleteOrder, getProfileById })(OrderItem);
+export default connect(mapStateToProps, {
+    deleteOrder,
+    updateStatus,
+    getPayment,
+    makePayment
+})(OrderItem);
+
+    //  {!auth.loading && user === auth.user._id && (
+    //                     <Link to={`/orders/${_id}`}>
+    //                         <Button color="blue">
+    //                             Confirm Or add a note
+    //                         </Button>
+    //                     </Link>
+
+    //                 )}

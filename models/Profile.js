@@ -43,6 +43,10 @@ const ProfileSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    orders:{
+        type: Schema.Types.ObjectId,
+        ref: 'orders'
     }
 
 })

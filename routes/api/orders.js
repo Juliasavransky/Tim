@@ -297,7 +297,19 @@ router.get('/user/:user_id', auth, async (req, res) => {
                     'email',
                     'gender',
                     ' _id'
-                ]);
+                ],
+                'profile',
+                [
+                    'dob',
+                    'city',
+                    'categories',
+                    'subCategories',
+                    'bio',
+                    'avatar',
+                    'bio',
+                    'date'
+                ]
+            );
         if (!orders)
             return res.status(400)
                 .json({ msg: 'Order not found' });
@@ -316,22 +328,23 @@ router.get('/user/:user_id', auth, async (req, res) => {
 // @desc     update a order status by id
 // @access   Private
 
-router.patch('/:orderId', auth, async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
+
     try {
         //todo
         // userProvider.balance:+1
-        const id = req.params.orderId;
-        Order.update({ _id: id },
-            {
-                $set:
-                {
-                    status: req.body.newStatus,
-                    balance: balance - 1
-                }
-            });
-        console.log('order', order)
-        await order.save();
-        res.json(order);
+        //login user  balance - 1
+        const orders = await Orders.findByIdAndUpdate(
+            req.params.id,
+            { "status": req.body.newStatus, },
+            { new: true });
+
+        if (!orders) {
+            return res.status(404).json({ msg: 'The order does not exist' })
+        }
+
+        await orders.save();
+        res.json(orders);
 
     } catch (err) {
         console.error(err.message);

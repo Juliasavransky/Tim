@@ -2,15 +2,15 @@ import {
     GET_ORDERS,
     ORDERS_ERROR,
 
-    UPDATE_PAYMENT,
     DELETE_ORDER,
 
     ADD_ORDER,
     GET_ORDER,
     GET_ORDERS_BYUSER_ID,
-    
+
     ADD_CONFIRMATION,
-    DELETE_CONFIRMATION
+    DELETE_CONFIRMATION,
+    UPDATE_ORDER_STATUS
 } from '../actions/types';
 
 
@@ -33,6 +33,7 @@ export default function (state = initialState, action) {
                 loading: false
             };
         case GET_ORDER:
+        case UPDATE_ORDER_STATUS:
             return {
                 ...state,
                 order: payload,
@@ -57,16 +58,8 @@ export default function (state = initialState, action) {
                 error: payload,
                 loading: false
             };
-        case UPDATE_PAYMENT:
-            return {
-                ...state,
-                orders: state.orders.map(order => order._id === payload.id
-                    ? { ...order, balance: payload.balance }
-                    : order
-                ),
-                loading: false
 
-            }
+
         case ADD_CONFIRMATION:
             return {
                 ...state,
@@ -80,7 +73,7 @@ export default function (state = initialState, action) {
                 order: {
                     ...state.order,
                     confirmation: state.order.confirmation
-                    .filter(confirmation => confirmation._id !== payload)
+                        .filter(confirmation => confirmation._id !== payload)
                 },
                 loading: false
 
@@ -90,3 +83,14 @@ export default function (state = initialState, action) {
             return state;
     }
 }
+
+//        case UPDATE_PAYMENT:
+    // return {
+        //     ...state,
+        //     orders: state.orders.map(order => order._id === payload.id
+        //         ? { ...order, status: payload.status }
+        //         : order
+        //     ),
+        //     loading: false
+
+        // }

@@ -9,14 +9,14 @@ const Error404 = () => {
             <div className="errorComp">
 
                 <div className="errorComp--heder">
-                    <h1><i class="fas fa-meteor"></i></h1>
+                    <h1><i className="fas fa-meteor"></i></h1>
                     <h1>404 Error </h1>
                     <div></div>
 
                 </div>
 
                 <div className="errorComp--animation">
-                    <div class="errorComp--content">
+                    <div className="errorComp--content">
                         This page is lost in space
                         <div> This page is lost in space </div>
                         <div> This page is lost in space </div>
@@ -30,7 +30,7 @@ const Error404 = () => {
                         <div className="errorComp--border3">
                             <div className="errorComp--heder_link">
                                 <Link to={`/searchPage`}>
-                                    <h1 > Go Back <i class="fas fa-user-astronaut"></i> </h1>
+                                    <h1 > Go Back <i className="fas fa-user-astronaut"></i> </h1>
                                 </Link>
                             </div>
                         </div>
