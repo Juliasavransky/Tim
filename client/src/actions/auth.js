@@ -96,34 +96,42 @@ export const logout = () => dispatch => {
 // Make payment =( balance -1 login user)
 export const makePayment = userId => async dispatch => {
     try {
-        const res = await axios.patch(`/api/user/${userId}`);
+        console.log(userId);
+        const res = await axios.patch(`/api/users/${userId}`);
 
-        // dispatch({
-        //     type: MAKE_PAYMENT,
-        //     payload: res.data
-        // });
+        dispatch({
+            type: MAKE_PAYMENT,
+            payload: res.data
+        });
+
 
     } catch (err) {
         dispatch({
-            type: AUTH_ERROR,
+
             payload: { msg: err.response.statusText, status: err.response.status }
         });
 
     }
 }
 
-// Make get paymenr =( balance +1 login user)
-export const getPayment = userProvider => async dispatch => {
-    try {
 
-        // dispatch({
-        //     type: GET_PAYMENT,
-        //     payload: res.data
-        // });
+// Make payment =( balance +1 user Provader user)
+export const getPayment = userId => async dispatch => {
+    try {
+        console.log(userId);
+        const res = await axios.patch(`/api/users/${userId}`);
+
+        dispatch({
+            type: GET_PAYMENT,
+            payload: res.data
+        });
+        console.log("resdata", res);
+        console.log("user id", userId);
+
 
     } catch (err) {
         dispatch({
-            type: AUTH_ERROR,
+
             payload: { msg: err.response.statusText, status: err.response.status }
         });
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Image, List, Container, Label } from 'semantic-ui-react';
+import { Image, Label } from 'semantic-ui-react';
+import man from '../../components/man.jpg';
+import woman from '../../components/woman.jpg';
+import './usersListBySearchItem.css';
 
 //redux
 import PropTypes from 'prop-types';
@@ -13,58 +16,58 @@ const UsersListBySearchItem = (
         city
     } }) => {
 
-    // const avatar = user && user.gender === 'female' ? woman : man;
-    // const userProfileImg = profile && profile.avatar && profile.avatar.length > 0 ? profile.avatar : avatar;
+    const userProfileAvatar = gender && gender === 'female' ? woman : man;
+    const userProfileImg = avatar && avatar.length > 0 ? avatar : userProfileAvatar;
 
     return (
-        <Container>
-            <List relaxed='very'>
-                <List.Item>
 
-                    <List.Content>
-                        <Link
-                            to={`/userProfile/${_id}`}
-                        >
 
-                            {/* <Image
-                                rounded
-                                size='small'
-                                src={userProfileImg
-                                    ? userProfileImg
-                                    : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} /> */}
+        <div className="usersListBySearchItem--comp">
+            <div className="usersListBySearchItem--content">
+            <Link
+                to={`/userProfile/${_id}`}
+                style={{ textDecoration: 'none' }}
+            >
+                <div className="usersListBySearchItem--borders">
+                    <div className="usersListBySearchItem--imgborder1">
+                        <div className="usersListBySearchItem--imgborder2">
+                            <div className="usersListBySearchItem--imgborder3">
+                                <Image
+                                    size="medium"
+                                    className="usersListBySearchItem--img"
+                                    src={userProfileImg
+                                        ? userProfileImg
+                                        : userProfileAvatar} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <br />
-                            <br />
 
-                            <List.Header >
-                                {firstName.charAt(0).toUpperCase() + firstName.slice(1)}
-                                {" "}
-                                {lastName.charAt(0).toUpperCase() + lastName.slice(1)}
-                                <br />
-                                <br />
+                <div className="usersListBySearchItem--text">
+                    <h3 >
+                        {firstName.charAt(0).toUpperCase() + firstName.slice(1)}
+                        {" "}
+                        {lastName.charAt(0).toUpperCase() + lastName.slice(1)}
+                    </h3>
 
-                            </List.Header>
+                    <h4>
+                        <i className="far fa-map"></i>
+                        {city && city.charAt(0).toUpperCase() + city.slice(1)}
+                    </h4>
 
-                            <List.Description>
-                                <List.Icon name='map outline' />{' '}
-                                {city && city.charAt(0).toUpperCase() + city.slice(1)}
-                                <br />
-                                <br />
+                    <div>
+                        {subCategories.map(tag => (
+                            <Label key={tag._id} tag>
+                                {tag.label.charAt(0).toUpperCase() + tag.label.slice(1)}
+                            </Label>
+                        ))}
+                    </div>
+                </div>
+            </Link>
+            </div>
+        </div>
 
-                            </List.Description>
-
-                            <List.Description>
-                                {subCategories.map(tag => (
-                                    <Label key={tag._id} tag>
-                                        {tag.label.charAt(0).toUpperCase() + tag.label.slice(1)}
-                                    </Label>
-                                ))}
-                            </List.Description>
-                        </Link>
-                    </List.Content>
-                </List.Item>
-            </List>
-        </Container>
     );
 };
 

@@ -22,7 +22,6 @@ const Order = ({
 
     useEffect(() => {
         getOrder(match.params.id);
-
     }, [getOrder, match.params.id]);
 
 

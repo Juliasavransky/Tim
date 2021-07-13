@@ -6,8 +6,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    GET_PAYMENT,
-    MAKE_PAYMENT
+    // GET_PAYMENT,
+    // MAKE_PAYMENT
 } from '../actions/types';
 
 const initialState = {
@@ -31,8 +31,6 @@ export default function (state = initialState, action) {
 
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-        // case GET_PAYMENT:
-        // case MAKE_PAYMENT:
             localStorage.setItem('token', payload.token);
             return {
                 ...state,
@@ -40,6 +38,13 @@ export default function (state = initialState, action) {
                 isAuthenticated: true,
                 loading: false
             }
+        // case GET_PAYMENT:
+        // case MAKE_PAYMENT:
+        //     return {
+        //         ...state,
+        //         user: payload,
+        //         loading: false
+        //     }
 
         case REGISTER_FAIL:
         case AUTH_ERROR:

@@ -101,13 +101,13 @@ router.post('/',
 // @access   Private
 
 router.patch('/:id', auth, async (req, res) => {
-
     try {
-       
-        const user = await User.findByIdAndUpdate(req.params.id,
-            {"$inc":{ "balance": -1} },
+
+        const user = await User.findByIdAndUpdate(
+            { "_id": req.params.id },
+            { $inc: {balance: -1} },
             { new: true }
-            );
+        );
 
         if (!user) {
             return res.status(404).json({ msg: 'The user does not exist' })
@@ -123,18 +123,18 @@ router.patch('/:id', auth, async (req, res) => {
 
 });
 
-// @route    update api/user/:id (id from orders userProvider)
-// @desc     update a user balance by user id (get payment for service)
-// @access   Private
+// // @route    update api/user/:id
+// // @desc     update a user balance by user id ( get payment for service)
+// // @access   Private
 
 // router.patch('/:id', auth, async (req, res) => {
-
 //     try {
-       
-//         const user = await User.findByIdAndUpdate(req.params.id,
-//             {"$inc":{ "balance": 1} },
+
+//         const user = await User.findByIdAndUpdate(
+//             { "_id": req.params.id },
+//             { $inc: {balance: +1} },
 //             { new: true }
-//             );
+//         );
 
 //         if (!user) {
 //             return res.status(404).json({ msg: 'The user does not exist' })

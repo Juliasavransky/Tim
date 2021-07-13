@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Image, Icon, Input } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import tim from './tim.svg';
 import SearchBar from '../../pages/search/SearchBar';
-import navBar from './navBar.css';
+import  './navBar.css';
 
 //redux
 import { connect } from 'react-redux';
@@ -46,19 +46,7 @@ const NavBar = ({
                 </Menu.Item>
 
                 <Menu.Item className="navBarItem">
-                    <Link to="/orders">Orders</Link>
-                </Menu.Item>
-
-                <Menu.Item className="navBarItem">
-                    {/* <Image
-                        avatar
-                        src={userProfileImg
-                            ? userProfileImg
-                            : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} /> */}
-
                     <Link to="/userDashboard"> My profile </Link>
-                    {/* {profile && profile.user.firstName}{" "}{profile && profile.user.lastName} */}
-
                 </Menu.Item>
 
                 <Menu.Item className="navBarItem"

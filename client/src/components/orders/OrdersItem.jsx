@@ -1,7 +1,10 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
+import man from '../../components/man.jpg';
+import woman from '../../components/woman.jpg';
+import './orderItem.css';
 
 //redux
 import PropTypes from 'prop-types';
@@ -36,20 +39,17 @@ const OrderItem = ({
 }) => {
     const [newStatus, setNewstatus] = useState('');
 
-    useEffect(() => {
-        updateStatus(_id, newStatus)
-    }, [updateStatus, newStatus]);
-
-    const chengeStatusHandler = (newStatus, userProvider, user) => {
+    const chengeStatusHandler = (newStatus) => {
         setNewstatus(newStatus);
 
-        if (newStatus === 'Approved') {
-            // getPayment(userProvider)
-            makePayment(user)
+        if (newStatus === "Denied") {
+            updateStatus(_id, newStatus);
+            return
         }
-
-        if (newStatus === 'Denied') {
-            console.log('todo')
+        if (newStatus === "Approved") {
+            updateStatus(_id, newStatus);
+            makePayment(user);
+            getPayment(userProvider);
         }
     }
 
@@ -59,81 +59,87 @@ const OrderItem = ({
         deleteOrder(_id)
     }
 
-    const userProfileAvatar = user && user.gender === 'female' ? 'ade' : 'elliot';
+    const userProfileAvatar = user && user.gender === 'female' ? woman : man;
     const userProfileImg = avatar && avatar;
 
+    // className={`blabla ${newStatus=== "Denied"? "allgray":"allgreen"}`}
+
     return (
-        <Fragment>
-            <Card >
-                <Card.Content>
-                    <Image
-                        floated='right'
-                        size='mini'
-                        src={userProfileImg
-                            ? userProfileImg
-                            : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`
 
-                        }
-                    />
-
-                    <Card.Header>Order from: {firstName && firstName}{' '}{lastName && lastName}</Card.Header>
-
-                    <Card.Description>Order Title: {title && title}</Card.Description>
-                    <Card.Description>  Order text: {text && text}  </Card.Description>
-                    <Card.Meta> Balance:  </Card.Meta>
-
-                    <Card.Meta> Order created in:
-                        <Moment format='DD/MM/YYYY'>{date && date}</Moment>
-                    </Card.Meta>
-
-                    <Card.Meta>Order the service for:
-                        <Moment format='YYYY/MM/DD'>{dateOfServes && dateOfServes}</Moment>
-                    </Card.Meta>
-                    <div>userProvider: {userProvider}</div>
-                    <div>status: {status}</div>
-
-
-
-
-                    {!auth.loading && user === auth.user._id && (
-                        <Button color="red"
-                            onClick={deleteOrderHandler}>delete Order
-                        </Button>
-                    )}
-
-
-
-                    <Card.Description>
-                        <Link to={`/userProfile/${user}`}>Go back to
-                            <span>{" "}{firstName}{" "} {lastName}{" "} profile</span>
-                            <div>{avatar && avatar}</div>
-
-                        </Link>
-                    </Card.Description>
-
-                    <Card.Content className="userOrdersData--content">
-                        <div className='userOrdersData--uiTwoButtons'>
-
-
-                            <Button color="green"
-                                onClick={() => chengeStatusHandler('Approved')}
-                            >
-                                Approved
-                            </Button>
-
-
-                            <Button color="green"
-                                onClick={() => chengeStatusHandler('Denied')}>
-                                Denied
-                            </Button>
-
+        <div className="orderItem--comp" >
+            <h2>The order status : {status}</h2>
+            <div className="orderItem--borders">
+                <div className="orderItem--border1">
+                    <div className="orderItem--border2">
+                        <div className="orderItem--border3">
+                            <img className="orderItem--img"
+                                src={userProfileImg
+                                    ? userProfileImg
+                                    : userProfileAvatar
+                                }
+                            />
                         </div>
-                    </Card.Content>
-                </Card.Content>
-            </Card>
-        </Fragment>
+                    </div>
+                </div>
+            </div>
+
+            <h1>
+                Order from:
+                {firstName && firstName}{' '}{lastName && lastName}
+            </h1>
+
+            <h3>Order Title: {title && title}</h3>
+            <p>  Order text: {text && text}  </p>
+
+
+            <div> Order created in:
+                <Moment format='DD/MM/YYYY'>
+                    {date && date}
+                </Moment>
+            </div>
+
+            <div>Order the service for:
+                <Moment format='YYYY/MM/DD'>
+                    {dateOfServes && dateOfServes}
+                </Moment>
+            </div>
+
+
+
+
+            <div className="userOrdersData--content">
+                <div className='userOrdersData--uiTwoButtons'>
+
+
+                    <Button color="green"
+                        onClick={() => chengeStatusHandler('Approved')}
+                    >
+                        Approved
+                    </Button>
+
+
+                    <Button color="green"
+                        onClick={() => chengeStatusHandler('Denied')}>
+                        Denied
+                    </Button>
+
+
+                    <Button color="red"
+                        onClick={deleteOrderHandler}>delete Order
+                    </Button>
+
+                    <h4>
+                        <Link to={`/userProfile/${userProvider}`}>Go back to user Provider profile
+                        </Link>
+                    </h4>
+
+                </div>
+            </div>
+        </div>
     );
 };
+
+
 
 OrderItem.propTypes = {
     profile: PropTypes.object.isRequired,

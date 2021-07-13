@@ -80,11 +80,12 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+
 // @route    get api/orders/:id
 // @desc     get  order by id (order id)
 // @access   Private
 
-router.get('/:id', auth, checkObjectId('id'), async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
     try {
         const orders = await Orders.findById(req.params.id);
 
@@ -137,150 +138,8 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
 
 });
 
-// @route    put api/orders/balance/:id
-// @desc     balance order +1 (order id)
-// @access   Private
+// 
 
-router.put('/balance/:id', auth, checkObjectId('id'), async (req, res) => {
-    try {
-        const orders = await Orders.findById(req.params.id);
-
-        //Check if user has already balance/ payed
-        if (orders.balance.filter(balance => balance.user.toString() === req.user.id).length > 0) {
-            return res.status(400).json({ msg: 'User already payed' })
-        }
-
-        orders.balance.unshift({ user: req.user.id });
-        await orders.save();
-        res.json(orders.balance);
-
-
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
-})
-
-//****************************************************************************************** */
-// @route    put api/orders/balance(delete payment)/:id
-// @desc     balance order -1 (order id)
-// @access   Private
-
-router.put('/balancedp/:id', auth, checkObjectId('id'), async (req, res) => {
-    try {
-        const orders = await Orders.findById(req.params.id);
-
-        //Check if user has already balance/ payed
-        if (!orders.balance.filter(balance => balance.user.toString() === req.user.id).length === 0) {
-            return res.status(400).json({ msg: 'User did not pay yet' })
-        }
-
-        //get remove index
-        const removeIndex = orders.balance.map(balance => balance.user.toString()).indexOf(req.user.id);
-
-        orders.balance.splice(removeIndex, 1);
-
-        await orders.save();
-
-        res.json(orders.balance);
-
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
-})
-//****************************************************************************************** */
-
-
-// @route    POST api/orders/confirmation/:id
-// @desc     confirmation of order (confirmation id)
-// @access   Private
-
-router.post(
-    '/confirmation/:id',
-    auth,
-    checkObjectId('id'),
-    [
-        body('text', "Text is required")
-            .not()
-            .isEmpty(),
-    ],
-
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
-        try {
-            const user = await User.findById(req.user.id).select('-password');
-            const orders = await Orders.findById(req.params.id);
-
-            const newConfirmation = {
-                text: req.body.text,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                avatar: user.avatar,
-                user: req.user.id,
-                title: req.body.title,
-                dateOfServes: req.body.dateOfServes,
-            };
-
-            orders.confirmation.unshift(newConfirmation);
-            await orders.save();
-
-            res.json(orders.confirmation);
-
-        } catch (err) {
-            console.error(err.message);
-            res.status(500).send('Server error');
-        }
-
-
-    });
-
-// @route    delete api/orders/confirmation/:id/:confirmation_id
-// @desc     delete confirmation (confirmation id)
-// @access   Private
-
-router.delete('/confirmation/:id/:confirmation_id', auth, async (req, res) => {
-    try {
-        const orders = await Orders.findById(req.params.id);
-
-        //Pull out confirmation
-        const confirmation = orders.confirmation
-            .find(confirmation => confirmation.id === req.params.confirmation_id);
-
-        //Make sure confirmation is exists
-        if (!confirmation) {
-            return res.status(404).json({ msg: 'Confirmation does not exist' })
-        }
-
-        //Check if User is the owner of confirmation
-        if (confirmation.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: 'User not authorized' })
-        }
-
-        //Get remove index
-        const removeIndex = orders.confirmation.map(confirmation => confirmation.user.toString())
-            .indexOf(req.user.id);
-
-        orders.confirmation.splice(removeIndex, 1);
-
-        await orders.save();
-        res.json(orders.confirmation);
-
-    } catch (error) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
-
-})
-
-
-
-
-//************************* */
 // @route    Get api/orders/user_id
 // @desc     Get orders by user id
 // @access   Private
@@ -321,7 +180,7 @@ router.get('/user/:user_id', auth, async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-//************************* */
+
 
 
 // @route    update api/orders/:id
@@ -330,15 +189,16 @@ router.get('/user/:user_id', auth, async (req, res) => {
 
 router.patch('/:id', auth, async (req, res) => {
 
-    try {
-        //todo
-        // userProvider.balance:+1
-        //login user  balance - 1
-        const orders = await Orders.findByIdAndUpdate(
-            req.params.id,
-            { "status": req.body.newStatus, },
-            { new: true });
+    const { status } = req.body;
+    const statusField = {};
+    statusField.status = status;
 
+    try {
+        let orders = await Orders.findByIdAndUpdate(
+            { "_id": req.params.id },
+            { $set: statusField },
+            { new: true }
+        );
         if (!orders) {
             return res.status(404).json({ msg: 'The order does not exist' })
         }
@@ -348,11 +208,10 @@ router.patch('/:id', auth, async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).send('Server error =(');
     }
 
 });
-
 
 
 module.exports = router;

@@ -1,0 +1,10 @@
+.orderItem--comp {
+  border: 3px solid var(--black);
+  border-radius: 40px;
+  margin: 3rem;
+  padding: 3rem;
+}
+.orderItem--comp  h2 {
+  font-size: 3rem;
+  color: var(--green);
+}

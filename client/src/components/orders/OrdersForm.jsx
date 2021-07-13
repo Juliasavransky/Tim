@@ -1,5 +1,6 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import './ordersForm.css';
 
 
 //redux
@@ -63,24 +64,21 @@ const OrdersForm = ({
     }
 
     return (
-        <Fragment>
-            <Form onSubmit={e => orderFormSubmit(e)}>
-                <h1>Form for Orders!!!</h1>
-
-                <div>{user && user.firstName}</div>
-                <div>{user && user._id || _id}</div>
-
-
+        <div>
+            <Form
+                className="ordersForm--comp"
+                onSubmit={e => orderFormSubmit(e)}
+            >
+                <h1 className="ordersForm--header" >Make an order</h1>
                 <FormGroup>
                     <Label
                         for="exampleEmail">
-                        title
+                        Which service you want to receive
                     </Label>
                     <Input
                         onChange={e => handleOrderChange(e)}
                         type="text"
                         name="title"
-                        placeholder="what service you want to ask for"
                         value={title}
                     />
                 </FormGroup>
@@ -88,21 +86,19 @@ const OrdersForm = ({
                 <FormGroup>
                     <Label
                         for="exampleText">
-                        Text Area
+                        Tell us more about
                     </Label>
                     <Input
                         onChange={e => handleOrderChange(e)}
                         type="textarea"
                         name="text"
                         value={text}
-                        placeholder="Tell us more about the service"
                     />
                 </FormGroup>
 
                 <FormGroup>
-                    <Label
-                        for="exampleEmail">
-                        date
+                    <Label>
+                        On what day would you like to receive the service
                     </Label>
                     <Input
                         type="date"
@@ -113,16 +109,12 @@ const OrdersForm = ({
                     />
                 </FormGroup>
 
-                <Button>Submit</Button>
-
-                {/* <Link to={`/orders/${_id}`}>
-                    <Button>to order1</Button>
-
-                </Link> */}
-
-
+                <a
+                    className="ordersForm--btn">
+                    Submit
+                </a>
             </Form>
-        </Fragment>
+        </div>
     );
 };
 
