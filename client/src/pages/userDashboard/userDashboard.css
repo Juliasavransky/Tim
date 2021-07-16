@@ -11,6 +11,9 @@
   justify-content: space-between;
   margin: 3rem;
 }
+.userDashboard--city{
+padding:4rem 0;
+}
 .userDashboard--contentUp_avatar {
   display: flex;
   justify-content: space-between;
@@ -40,7 +43,7 @@
 }
 .userDashboard--border_1 {
   border-radius: 44% 56% 81% 19% / 14% 24% 76% 86%;
-  width: 50%;
+  width: 400px;
   border: 3px solid var(--yellow);
 }
 .userDashboard--border_2 {

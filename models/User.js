@@ -28,15 +28,6 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         require: true,
     },
-    profile:{
-        type: Schema.Types.ObjectId,
-        ref:"profile"
-    },
-    orders:{
-        type: Schema.Types.ObjectId,
-        ref: 'orders'
-    }
-  
   
 })
 

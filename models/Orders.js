@@ -13,15 +13,6 @@ const OrdersSchema = new Schema({
         type: String,
         required: true
     },
-    firstName: {
-        type: String
-    },
-    lastName: {
-        type: String
-    },
-    avatar: {
-        type: String
-    },
     dateOfServes: {
         type: Date,
         required: true
@@ -36,10 +27,22 @@ const OrdersSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    profile: {
-        type: Schema.Types.ObjectId,
-        ref: 'profile'
+    balance: {
+        type: Number,
     },
+    providerFirstName: {
+        type: String
+    },
+    providerLastName: {
+        type: String
+    },
+    providerEmail: {
+        type: String
+    },
+    providerGender:{
+        type: String,
+    },
+
 });
 
 module.exports = mongoose.model('orders', OrdersSchema);

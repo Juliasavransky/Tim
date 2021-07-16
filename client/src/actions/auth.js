@@ -97,7 +97,7 @@ export const logout = () => dispatch => {
 export const makePayment = userId => async dispatch => {
     try {
         console.log(userId);
-        const res = await axios.patch(`/api/users/${userId}`);
+        const res = await axios.patch(`/api/users/make-payment/${userId}`);
 
         dispatch({
             type: MAKE_PAYMENT,
@@ -107,7 +107,6 @@ export const makePayment = userId => async dispatch => {
 
     } catch (err) {
         dispatch({
-
             payload: { msg: err.response.statusText, status: err.response.status }
         });
 
@@ -119,14 +118,13 @@ export const makePayment = userId => async dispatch => {
 export const getPayment = userId => async dispatch => {
     try {
         console.log(userId);
-        const res = await axios.patch(`/api/users/${userId}`);
+        const res = await axios.patch(`/api/users/get-payment/${userId}`);
 
         dispatch({
             type: GET_PAYMENT,
             payload: res.data
         });
-        console.log("resdata", res);
-        console.log("user id", userId);
+
 
 
     } catch (err) {

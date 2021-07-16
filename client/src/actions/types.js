@@ -38,8 +38,7 @@ export const GET_PAYMENT = 'GET_PAYMENT';
 
 
 
-export const ADD_CONFIRMATION = 'ADD_CONFIRMATION';
-export const DELETE_CONFIRMATION = 'ADD_CONFIRMATION';
+
 
 
 

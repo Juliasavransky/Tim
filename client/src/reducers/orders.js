@@ -1,17 +1,12 @@
 import {
     GET_ORDERS,
     ORDERS_ERROR,
-
     DELETE_ORDER,
-
     ADD_ORDER,
     GET_ORDER,
     GET_ORDERS_BYUSER_ID,
-
-    ADD_CONFIRMATION,
-    DELETE_CONFIRMATION,
     UPDATE_ORDER_STATUS,
-  
+
 } from '../actions/types';
 
 
@@ -60,38 +55,8 @@ export default function (state = initialState, action) {
                 loading: false
             };
 
-
-        case ADD_CONFIRMATION:
-            return {
-                ...state,
-                order: { ...state.order, confirmation: action.payload },
-                loading: false
-            }
-
-        case DELETE_CONFIRMATION:
-            return {
-                ...state,
-                order: {
-                    ...state.order,
-                    confirmation: state.order.confirmation
-                        .filter(confirmation => confirmation._id !== payload)
-                },
-                loading: false
-
-            }
-
         default:
             return state;
     }
 }
 
-//        case UPDATE_PAYMENT:
-    // return {
-        //     ...state,
-        //     orders: state.orders.map(order => order._id === payload.id
-        //         ? { ...order, status: payload.status }
-        //         : order
-        //     ),
-        //     loading: false
-
-        // }

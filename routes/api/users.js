@@ -100,7 +100,7 @@ router.post('/',
 // @desc     update a user balance by user id (payment for service)
 // @access   Private
 
-router.patch('/:id', auth, async (req, res) => {
+router.patch('/make-payment/:id', auth, async (req, res) => {
     try {
 
         const user = await User.findByIdAndUpdate(
@@ -123,31 +123,31 @@ router.patch('/:id', auth, async (req, res) => {
 
 });
 
-// // @route    update api/user/:id
-// // @desc     update a user balance by user id ( get payment for service)
-// // @access   Private
+// @route    update api/user/:id
+// @desc     update a user balance by user id ( get payment for service)
+// @access   Private
 
-// router.patch('/:id', auth, async (req, res) => {
-//     try {
+router.patch('/get-payment/:id', auth, async (req, res) => {
+    try {
 
-//         const user = await User.findByIdAndUpdate(
-//             { "_id": req.params.id },
-//             { $inc: {balance: +1} },
-//             { new: true }
-//         );
+        const user = await User.findByIdAndUpdate(
+            { "_id": req.params.id },
+            { $inc: {balance: +1} },
+            { new: true }
+        );
 
-//         if (!user) {
-//             return res.status(404).json({ msg: 'The user does not exist' })
-//         }
+        if (!user) {
+            return res.status(404).json({ msg: 'The user does not exist' })
+        }
 
-//         await user.save();
-//         res.json(user);
+        await user.save();
+        res.json(user);
 
-//     } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send('Server error');
-//     }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
 
-// });
+});
 
 module.exports = router;

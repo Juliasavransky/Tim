@@ -6,6 +6,9 @@
 
 .searchByCategories > * {
   flex: 1 1 30%;
+  display: flex;
+  justify-content:space-around;
+  margin:0 1rem;
 }
 .searchItem--comp{
   color: var(--pink);

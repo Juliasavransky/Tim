@@ -8,13 +8,11 @@ import woman from '../../components/woman.jpg';
 //redux
 import { connect } from 'react-redux';
 import { getCurrentProfile } from './../../actions/profile';
-import { getOrdersByUserId } from './../../actions/orders';
 
 import PropTypes from 'prop-types';
 
 const UserDashboard = ({
     getCurrentProfile,
-    getOrdersByUserId,
     match,
     auth: { user },
     profile: { profile, loading },
@@ -22,12 +20,11 @@ const UserDashboard = ({
 
     useEffect(() => {
         getCurrentProfile()
-    }, [getCurrentProfile]);
+    }, []);
 
     useEffect(() => {
-        getOrdersByUserId(match.params.id);
-    }, [getOrdersByUserId, match.params.id]);
-
+        getCurrentProfile()
+    }, [getCurrentProfile]);
 
     const avatar = user && user.gender === 'female' ? woman : man;
     const userProfileImg = profile && profile.avatar && profile.avatar.length > 0 ? profile.avatar : avatar;
@@ -35,13 +32,8 @@ const UserDashboard = ({
 
 
     const city = profile && profile.city
-    const street = profile && profile.street
-    const phone = profile && profile.phone;
     const bio = profile && profile.bio;
     const balance = user && user.balance;
-
-    const dob = profile && profile.dob;
-
 
     const categories = profile?.categories
         .map((cat, index) => (
@@ -51,6 +43,7 @@ const UserDashboard = ({
                 </i>
             </li>
         ));
+
     const subCategories = profile?.subCategories
         .map((sub) => (
             <li
@@ -69,7 +62,6 @@ const UserDashboard = ({
         ? <Spinner />
         : <Fragment>
             <div className="userDashboard--comp">
-
                 <div className="userDashboard--contentUp" >
 
                     <div className="userDashboard--contentUp_name">
@@ -122,7 +114,9 @@ const UserDashboard = ({
                         </div>
                     </div>
 
-                    <h1>City - {city && city.charAt(0).toUpperCase() + city.slice(1)}</h1>
+                    <h1 className="userDashboard--city">City -
+                        {city && city.charAt(0).toUpperCase() + city.slice(1)}
+                    </h1>
 
                 </div>
 
@@ -133,13 +127,6 @@ const UserDashboard = ({
                     </h3>
 
                     <div className='userDashboard--contentDown_buttons'>
-
-                        <h2 style={{ fontSize: '2.5em', color: 'var(--blue)' }}>
-                            <i className="fas fa-piggy-bank"></i> My Balances:
-                            <span style={{ fontSize: '1em', color: 'var(--yellow)' }}>
-                                {" "} {balance} Coins
-                            </span>
-                        </h2>
 
                         <Link to={`/orders/user/${user?._id}`}>
                             <div className='handshake'>
@@ -160,7 +147,6 @@ const UserDashboard = ({
 
 UserDashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
-    getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired
 }
@@ -169,4 +155,4 @@ const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile
 })
-export default connect(mapStateToProps, { getCurrentProfile, getOrdersByUserId })(UserDashboard);
+export default connect(mapStateToProps, { getCurrentProfile })(UserDashboard);

@@ -3,8 +3,111 @@
   border-radius: 40px;
   margin: 3rem;
   padding: 3rem;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: stretch;
+  font-family: var(--headings-font-family);
+  flex-direction: column;
 }
-.orderItem--comp  h2 {
-  font-size: 3rem;
+.orderItem--heders {
+  display: flex;
+  justify-content: space-between
+}
+.test {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.orderItem--comp h2 {
+  font-size: 2.5rem;
   color: var(--green);
+}
+.orderItem--borders {
+  width: 70%;
+  margin: 4rem;
+}
+.orderItem--border1 {
+  border-radius: 82% 18% 40% 60% / 55% 53% 47% 45%;
+  width: 100%;
+  border: 3px solid var(--red);
+  padding: 0 10px;
+}
+.orderItem--border2 {
+  border-radius: 11% 89% 79% 21% / 84% 53% 47% 16%;
+  width: 100%;
+  border: 3px solid var(--yellow);
+  padding: 0 10px;
+}
+.orderItem--border3 {
+  border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%;
+  width: 100%;
+  border: 3px solid var(--blue);
+  padding: 0 10px;
+}
+.orderItem--img {
+  border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%;
+}
+
+.orderItem--btn {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 900;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.orderItem--btn > * {
+  background-color: var(--yellow);
+  text-align: center;
+  padding: 0.75em 2em;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+.orderItem--btn > *:last-child {
+  background-color: var(--pink);
+}
+
+.orderItem--btn > *:first-child {
+  background-color: var(--green);
+}
+.orderItem--btn > *:hover,
+.orderItem--btn > *:focus {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 91% 9% 87% 13% / 87% 10% 90% 13%;
+  color: var(--red);
+}
+
+.orderItem--content-right > h1 {
+  margin: 2rem;
+  font-size: 2rem;
+  color: var(--green);
+  padding-bottom: 1.4rem;
+}
+.orderItem--content-right > h2,
+.orderItem--content-right > p {
+  margin: 1.2rem;
+  font-size: 1.8rem;
+  color: var(--green);
+}
+.orderItem--content-right > h4 {
+  margin: 1.2rem;
+  font-size: 1.5rem;
+  color: var(--green);
+}
+.orderItem--content-right > h3 {
+  font-size: 1rem;
+  color: var(--black);
+  margin: 0 1.2rem;
+}
+.orderItem--content-right > h5 {
+  font-size: 1.8rem;
+  margin: 0 1.2rem;
+  padding: 1.4rem 0;
+}
+.orderItem--content-right > h6 {
+  font-size: 1.8rem;
+  padding-bottom: 2rem;
+  margin: 0 1.2rem;
 }

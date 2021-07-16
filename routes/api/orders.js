@@ -38,20 +38,30 @@ router.post(
                 .findById(req.user.id)
                 .select('-password');
 
+            const userProviderDetails = await User
+                .findById(req.body.userProvider)
+                .select('-password');
+
             const newOrder = new Orders({
                 text: req.body.text,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                avatar: user.avatar,
-                user: req.user.id,
                 title: req.body.title,
                 dateOfServes: req.body.dateOfServes,
+                status: "New",
+
+                user: req.user.id,
+            
                 userProvider: req.body.userProvider,
-                status: "New"
+                providerFirstName: userProviderDetails.firstName,
+                providerLastName: userProviderDetails.lastName,
+                providerEmail: userProviderDetails.email,
+                providerGender: userProviderDetails.gender,
+
             })
+
 
             const order = await newOrder.save();
             res.json(order);
+
 
         } catch (err) {
             console.error(err.message);
@@ -70,8 +80,7 @@ router.get('/', auth, async (req, res) => {
     try {
         const orders = await Orders
             .find()
-            .sort({ date: -1 })
-            ;
+            .sort({ date: -1 });
         res.json(orders);
 
     } catch (err) {
@@ -147,7 +156,13 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
 router.get('/user/:user_id', auth, async (req, res) => {
     try {
         const orders = await Orders
-            .find({ user: req.params.user_id })
+            .find({
+                $or: [
+
+                    { user: req.params.user_id },
+                    { userProvider: req.params.user_id }
+                ]
+            })
             .sort({ date: -1 })
             .populate('user',
                 [
@@ -155,18 +170,8 @@ router.get('/user/:user_id', auth, async (req, res) => {
                     'lastName',
                     'email',
                     'gender',
-                    ' _id'
-                ],
-                'profile',
-                [
-                    'dob',
-                    'city',
-                    'categories',
-                    'subCategories',
-                    'bio',
-                    'avatar',
-                    'bio',
-                    'date'
+                    ' _id',
+                    'balance'
                 ]
             );
         if (!orders)
@@ -180,7 +185,6 @@ router.get('/user/:user_id', auth, async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
 
 
 // @route    update api/orders/:id

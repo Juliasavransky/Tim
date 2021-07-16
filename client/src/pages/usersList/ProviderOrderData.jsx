@@ -3,23 +3,21 @@ import { Button, Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import man from '../../components/man.jpg';
 import woman from '../../components/woman.jpg';
-import './userOrdersData.css';
 
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getOrdersByUserId } from '../../actions/orders';
 
-
-
-
-const UserOrdersData = ({
+const ProviderOrderData = ({
     order: {
+        firstName,
+        lastName,
         _id,
         user,
+        userProvider,
         status,
-        providerFirstName,
-        providerLastName,
+        balance
     },
     profile,
     getOrdersByUserId,
@@ -51,16 +49,15 @@ const UserOrdersData = ({
 
             <div className="userOrdersData--text">
                 <div className="userOrdersData--text_heder">
-                    <div> I ordered from:</div>
-                    {" "} {providerFirstName?.charAt(0).toUpperCase() + providerFirstName?.slice(1)}
+                    <div> Customers:</div>
+                    {" "} {user?.firstName.charAt(0).toUpperCase() + user?.firstName.slice(1)}
                     {" "}
-                    {providerLastName?.charAt(0).toUpperCase() + providerLastName?.slice(1)}
+                    {user?.lastName.charAt(0).toUpperCase() + user?.lastName.slice(1)}
                 </div>
 
                 <div
-                    className="userOrdersData--text_heder">
-                  status:{" "}{status}
-                </div>
+                className="userOrdersData--text_heder"
+                >status: {status}</div>
             </div>
 
             <div className="userOrdersData--text">
@@ -70,7 +67,20 @@ const UserOrdersData = ({
                         textDecoration: 'none',
                         color: " var(--red)"
                     }}
-                    to={`/userDashboard`}>Go back to my profile
+                    to={`/userProfile/${user?._id}`}
+                >Go to {" "}
+                    {user?.firstName
+                        .charAt(0)
+                        .toUpperCase()
+                        + user?.firstName
+                            .slice(1)}
+                    {" "}
+                    {user?.lastName
+                        .charAt(0)
+                        .toUpperCase()
+                        + user?.lastName
+                            .slice(1)}
+                    profile
                 </Link>
 
                 <Link
@@ -88,23 +98,19 @@ const UserOrdersData = ({
 
 
         </div>
-
-
     );
 };
 
-UserOrdersData.propTypes = {
+ProviderOrderData.propTypes = {
     profile: PropTypes.object.isRequired,
     orders: PropTypes.object.isRequired,
     getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     getProfileById: PropTypes.func.isRequired,
 };
-
 const mapStateToProps = state => ({
     auth: state.auth,
     orders: state.orders,
     profile: state.profile,
 })
-
-export default connect(mapStateToProps, { getOrdersByUserId })(UserOrdersData);
+export default connect(mapStateToProps, { getOrdersByUserId })(ProviderOrderData);

@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import Spinner from '../../components/Spinner';
 import UserOrdersData from './UserOrdersData';
-import { Link } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import ProviderOrderData from './../usersList/ProviderOrderData';
 
 
 //redux
@@ -26,37 +25,59 @@ const UserOrders = ({
     }, [getOrdersByUserId, match.params.id]);
 
 
+    const orderByUserProvider = [];
+    const orderByUserOdrer = [];
+
+    orders?.map(order => {
+        if ((order.user._id) === (auth.user._id)) {
+            orderByUserOdrer.push(order)
+        } else {
+            orderByUserProvider.push(order)
+        }
+    });
+
     return orders === null || loading
         ? <Spinner />
         : <Fragment>
-            <h1>My activities</h1>
-
             <h2
                 style={{ fontSize: '2em', color: "var(--yellow)" }}>
-                My Balance {" "}
+                My Balance {" "}{orders[0]?.user?.balance}{" "}
                 <i className="fas fa-piggy-bank">
                 </i>
-
             </h2>
 
-            {orders.length > 0
-                ? (orders.map(order => (
-                    <UserOrdersData
-                        key={order._id}
-                        order={order}
-                        profile={profile}
+            <div className="userOrders">
+                <div className="userOrdersData--comp">
+                    <h1>My Orders</h1>
 
-                    />
-                ))) : <Fragment>
+                    {orderByUserOdrer.length > 0
+                        ? (orderByUserOdrer.map(order => (
+                            <UserOrdersData
+                                key={order._id}
+                                order={order}
+                                profile={profile}
+
+                            />
+                        ))) : <div>You have not made any orders yet</div>}
+                </div>
+
+                <div className="userOrdersData--comp">
+                    <h1>My Customers</h1>
+
+                    {orderByUserProvider.length > 0
+                        ? (orderByUserProvider.map(order => (
+                            <ProviderOrderData
+                                key={order._id}
+                                order={order}
+                                profile={profile}
+
+                            />
+                        ))) : <div>No one has ordered your service yet</div>}
+                </div>
 
 
-                    <h3>No orders </h3>
-                    <Link to="/searchPage">
-                        <Button content='find new activity' size='big' />
-                    </Link>
-                </Fragment>
-            }
 
+            </div>
 
         </Fragment>;
 

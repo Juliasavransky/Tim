@@ -64,57 +64,58 @@ const OrdersForm = ({
     }
 
     return (
-        <div>
-            <Form
-                className="ordersForm--comp"
-                onSubmit={e => orderFormSubmit(e)}
-            >
-                <h1 className="ordersForm--header" >Make an order</h1>
-                <FormGroup>
-                    <Label
-                        for="exampleEmail">
-                        Which service you want to receive
-                    </Label>
-                    <Input
-                        onChange={e => handleOrderChange(e)}
-                        type="text"
-                        name="title"
-                        value={title}
-                    />
-                </FormGroup>
 
-                <FormGroup>
-                    <Label
-                        for="exampleText">
-                        Tell us more about
-                    </Label>
-                    <Input
-                        onChange={e => handleOrderChange(e)}
-                        type="textarea"
-                        name="text"
-                        value={text}
-                    />
-                </FormGroup>
+        <div
+            className="ordersForm--comp"
 
-                <FormGroup>
-                    <Label>
-                        On what day would you like to receive the service
-                    </Label>
-                    <Input
-                        type="date"
-                        name="dateOfServes"
-                        placeholder="choose a date"
-                        value={dateOfServes}
-                        onChange={e => handleOrderChange(e)}
-                    />
-                </FormGroup>
+        >
+            <h1 className="ordersForm--header" >Make an order</h1>
+            <FormGroup>
+                <Label
+                    for="exampleEmail">
+                    Which service you want to receive
+                </Label>
+                <Input
+                    onChange={e => handleOrderChange(e)}
+                    type="text"
+                    name="title"
+                    value={title}
+                />
+            </FormGroup>
 
-                <a
-                    className="ordersForm--btn">
-                    Submit
-                </a>
-            </Form>
+            <FormGroup>
+                <Label
+                    for="exampleText">
+                    Tell us more about
+                </Label>
+                <Input
+                    onChange={e => handleOrderChange(e)}
+                    type="textarea"
+                    name="text"
+                    value={text}
+                />
+            </FormGroup>
+
+            <FormGroup>
+                <Label>
+                    On what day would you like to receive the service
+                </Label>
+                <Input
+                    type="date"
+                    name="dateOfServes"
+                    placeholder="choose a date"
+                    value={dateOfServes}
+                    onChange={e => handleOrderChange(e)}
+                />
+            </FormGroup>
+
+            <a
+                onClick={e => orderFormSubmit(e)}
+                className="ordersForm--btn">
+                Submit
+            </a>
         </div>
+
     );
 };
 

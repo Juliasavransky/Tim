@@ -1,38 +1,84 @@
+.userOrders {
+  display: flex;
+  justify-content: space-between;
+}
+.userOrdersData--comp > h1 {
+  color: var(--red);
+  padding:  4rem;
+  text-align: center;
+}
+
 .userOrdersData--comp {
   display: flex;
+  flex-wrap: wrap;
+  align-content:flex-start ;
+  width: 50%;
   font-family: var(--headings-font-family);
-  font-size:1.2em;
+  font-size: 1.2em;
   
 }
+.userOrdersData--comp > * {
+  flex: 1 1 20em;
+  border-radius: 40px;
+}
+.userOrdersData--text{
+  display: flex;
+
+}
+.userOrdersData--text>*{
+  font-size: 1.7rem;
+}
+
+.userOrdersData--text_heder:last-child{
+   /* border:1px solid var(--black);  */
+  padding: 0 0 0  10rem ; 
+  text-align: center;
+}
 .userOrdersData--content {
-  margin: 2rem;
-  padding: 2rem;
+  border: 3px solid var(--green);
+  margin:  2rem;
+  padding:  2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userOrdersData--borders{
+  width: 40%;
+  margin:  2rem ;
+
+}
+.userOrdersData--btn{
+  font-weight: 900;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  background-color: var(--yellow);
+  padding: 0.75em 2em;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  margin: 1rem 2rem;
+
+}
+.userOrdersData--btn:hover,
+.userOrdersData--btn:focus {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 91% 9% 87% 13% / 87% 10% 90% 13%;
+  color: var(--red);
 }
 .userOrdersData--border_1 {
   border-radius: 17% 83% 40% 60% / 22% 34% 66% 78%;
-  width: 80%;
   border: 3px solid var(--pink);
-  padding: 0 10px;
-  justify-content: center;
-  display: flex;
-  margin:.75rem 1.2rem 2rem;
 }
 .userOrdersData--border_2 {
   border-radius: 82% 18% 40% 60% / 55% 53% 47% 45%;
-  width: 100%;
   border: 3px solid var(--blue);
-  padding: 0 10px;
 }
 .userOrdersData--border_3 {
   border-radius: 24% 76% 40% 60% / 84% 12% 88% 16%;
-  width: 100%;
   border: 3px solid var(--yellow);
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .userOrdersData--img {
   border-radius: 53% 47% 47% 53% / 28% 27% 73% 72%;
-  width: 100%;
-}
-.userOrdersData--uiTwoButtons{
-    margin-left:1rem;
 }

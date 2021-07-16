@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import { Button } from 'semantic-ui-react';
 import man from '../../components/man.jpg';
 import woman from '../../components/woman.jpg';
 import './orderItem.css';
@@ -33,7 +32,12 @@ const OrderItem = ({
         date,
         user,
         userProvider,
-        status
+        status,
+        providerEmail,
+        providerFirstName,
+        providerLastName,
+        providerGender,
+
     }
 
 }) => {
@@ -53,8 +57,6 @@ const OrderItem = ({
         }
     }
 
-
-
     const deleteOrderHandler = e => {
         deleteOrder(_id)
     }
@@ -67,74 +69,112 @@ const OrderItem = ({
     return (
 
         <div className="orderItem--comp" >
-            <h2>The order status : {status}</h2>
-            <div className="orderItem--borders">
-                <div className="orderItem--border1">
-                    <div className="orderItem--border2">
-                        <div className="orderItem--border3">
-                            <img className="orderItem--img"
-                                src={userProfileImg
-                                    ? userProfileImg
-                                    : userProfileAvatar
-                                }
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h1>
-                Order from:
-                {firstName && firstName}{' '}{lastName && lastName}
-            </h1>
-
-            <h3>Order Title: {title && title}</h3>
-            <p>  Order text: {text && text}  </p>
-
-
-            <div> Order created in:
-                <Moment format='DD/MM/YYYY'>
-                    {date && date}
-                </Moment>
-            </div>
-
-            <div>Order the service for:
-                <Moment format='YYYY/MM/DD'>
-                    {dateOfServes && dateOfServes}
-                </Moment>
+            <div className="orderItem--heders">
+                <h1>
+                    Order from:
+                    {" "}{providerFirstName && providerFirstName}{' '}{providerLastName && providerLastName}
+                </h1>
+                <h2>The order status : {status}</h2>
             </div>
 
 
+            <div className="test">
 
 
-            <div className="userOrdersData--content">
-                <div className='userOrdersData--uiTwoButtons'>
+                <div className="orderItem--content-right">
 
+                    <h2> Title: <br />{title && title}</h2>
+                    <p> Message details: <br /> {text && text}  </p>
 
-                    <Button color="green"
-                        onClick={() => chengeStatusHandler('Approved')}
-                    >
-                        Approved
-                    </Button>
-
-
-                    <Button color="green"
-                        onClick={() => chengeStatusHandler('Denied')}>
-                        Denied
-                    </Button>
-
-
-                    <Button color="red"
-                        onClick={deleteOrderHandler}>delete Order
-                    </Button>
-
-                    <h4>
-                        <Link to={`/userProfile/${userProvider}`}>Go back to user Provider profile
-                        </Link>
+                    <h4>Order the service for:{" "}
+                        <Moment format='YYYY/MM/DD'>
+                            {dateOfServes && dateOfServes}
+                        </Moment>
                     </h4>
 
+
+
+                    <h5>
+                        <Link
+                            style={{
+                                textDecoration: 'none',
+                                color: " var(--yellow)"
+                            }}
+                            to={`/userProfile/${userProvider}`}>
+                            Go back to{" "}
+                            {providerFirstName && providerFirstName}{" "}
+
+                            {providerLastName && providerLastName}{" "}
+                            profile
+                        </Link>
+                    </h5>
+
+                    <h6 >
+                        <a
+                            style={{
+                                textDecoration: 'none', color: "var(--pink)"
+                            }}
+                            href={`mailto:${providerEmail && providerEmail}?subject=Hello,%20this%20is%20${providerFirstName}%20${providerLastName}%20from%20the%20Time%20bank`}>
+                            <br /> For more information contact <br />
+                            <i className="far fa-paper-plane"></i>{" "}
+                            {providerFirstName && providerFirstName}
+                            {' '}
+                            {providerLastName && providerLastName}{" "}
+                        </a>
+                    </h6>
+                    <h3> Order send in:
+                        <Moment format='DD/MM/YYYY'>
+                            {date && date}
+                        </Moment>
+                    </h3>
+                </div>
+
+                <div className="orderItem--content-left">
+
+                    <div className="orderItem--borders">
+                        <div className="orderItem--border1">
+                            <div className="orderItem--border2">
+                                <div className="orderItem--border3">
+                                    <img
+                                        className="orderItem--img"
+                                        src={userProfileImg
+                                            ? userProfileImg
+                                            : userProfileAvatar
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {!auth.loading &&  auth.user?._id != user && (
+                        <div className="orderItem--btn" >
+                            <a
+                                style={{ color: "var(--notWhite)" }}
+                                onClick={() => chengeStatusHandler('Approved')}
+                            >
+                                Approved
+                            </a>
+
+                            <a
+                                style={{ color: "var(--notWhite)" }}
+                                onClick={() => chengeStatusHandler('Denied')}>
+                                Denied
+                            </a>
+
+                            <a
+                                style={{ color: "var(--notWhite)" }}
+                                onClick={deleteOrderHandler}>delete Order
+                            </a>
+
+                        </div>
+                    )}
                 </div>
             </div>
+
+
+
+
         </div>
     );
 };
