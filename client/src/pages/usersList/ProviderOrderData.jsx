@@ -7,20 +7,14 @@ import woman from '../../components/woman.jpg';
 //redux
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getOrdersByUserId } from '../../actions/orders';
 
 const ProviderOrderData = ({
     order: {
-        firstName,
-        lastName,
         _id,
         user,
-        userProvider,
         status,
-        balance
     },
     profile,
-    getOrdersByUserId,
     auth,
     match,
 }) => {
@@ -50,13 +44,13 @@ const ProviderOrderData = ({
             <div className="userOrdersData--text">
                 <div className="userOrdersData--text_heder">
                     <div> Customers:</div>
-                    {" "} {user?.firstName.charAt(0).toUpperCase() + user?.firstName.slice(1)}
+                    {" "} {user?.firstName?.charAt(0).toUpperCase() + user?.firstName?.slice(1)}
                     {" "}
-                    {user?.lastName.charAt(0).toUpperCase() + user?.lastName.slice(1)}
+                    {user?.lastName?.charAt(0).toUpperCase() + user?.lastName?.slice(1)}
                 </div>
 
                 <div
-                className="userOrdersData--text_heder"
+                    className="userOrdersData--text_heder"
                 >status: {status}</div>
             </div>
 
@@ -70,16 +64,16 @@ const ProviderOrderData = ({
                     to={`/userProfile/${user?._id}`}
                 >Go to {" "}
                     {user?.firstName
-                        .charAt(0)
+                        ?.charAt(0)
                         .toUpperCase()
                         + user?.firstName
-                            .slice(1)}
+                            ?.slice(1)}
                     {" "}
                     {user?.lastName
-                        .charAt(0)
+                        ?.charAt(0)
                         .toUpperCase()
                         + user?.lastName
-                            .slice(1)}
+                            ?.slice(1)}
                     profile
                 </Link>
 
@@ -113,4 +107,4 @@ const mapStateToProps = state => ({
     orders: state.orders,
     profile: state.profile,
 })
-export default connect(mapStateToProps, { getOrdersByUserId })(ProviderOrderData);
+export default connect(mapStateToProps)(ProviderOrderData);

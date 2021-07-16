@@ -11,7 +11,7 @@
 }
 .orderItem--heders {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 .test {
   display: flex;
@@ -50,10 +50,11 @@
 
 .orderItem--btn {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
   font-weight: 900;
   cursor: pointer;
   font-weight: 500;
+  flex-direction: column;
 }
 
 .orderItem--btn > * {
@@ -63,6 +64,7 @@
   border-radius: 10px;
   font-size: 1.2rem;
   margin-top: 1rem;
+  width: 70%;
 }
 .orderItem--btn > *:last-child {
   background-color: var(--pink);

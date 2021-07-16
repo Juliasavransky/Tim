@@ -88,7 +88,7 @@ const UserProfileData = ({
 
             <div className="userProfile--btn">
                 <Link className="userProfileData--buttons" to="/usersList">
-                    <div><i class="fas fa-arrow-left"></i>
+                    <div><i className="fas fa-arrow-left"></i>
                        {" "} Back to profiles List
                     </div>
                 </Link>

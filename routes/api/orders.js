@@ -128,11 +128,6 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
             return res.status(404).json({ msg: 'Order not found' })
         }
 
-        //Check user auth
-        if (orders.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: 'User not authorized' });
-        }
-
         await orders.remove();
         res.json({ msg: 'Order successfully removed' });
 

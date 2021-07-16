@@ -19,7 +19,6 @@ const UserProfile = ({
         getProfileById(match.params.id);
     }, [getProfileById, match.params.id]);
 
-    console.log(match.params.id);
     return (<Fragment>
         {profile === null || loading
             ? <Spinner />

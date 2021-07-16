@@ -96,7 +96,6 @@ export const logout = () => dispatch => {
 // Make payment =( balance -1 login user)
 export const makePayment = userId => async dispatch => {
     try {
-        console.log(userId);
         const res = await axios.patch(`/api/users/make-payment/${userId}`);
 
         dispatch({
@@ -117,7 +116,6 @@ export const makePayment = userId => async dispatch => {
 // Make payment =( balance +1 user Provader user)
 export const getPayment = userId => async dispatch => {
     try {
-        console.log(userId);
         const res = await axios.patch(`/api/users/get-payment/${userId}`);
 
         dispatch({

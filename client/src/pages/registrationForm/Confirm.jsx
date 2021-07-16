@@ -40,8 +40,6 @@ const Confirm = ({
     }, [getCurrentProfile]);
 
 
-    console.log('enteredFile---from confirm', enteredFile && enteredFile);
-
     const saveAndContinue = (e) => {
         e.preventDefault()
         nextStep()

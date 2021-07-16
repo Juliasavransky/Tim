@@ -23,13 +23,12 @@ padding:4rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3rem;
   padding-bottom: 3rem;
 }
 .userDashboard--about {
   font-family: var(--headings-font-family);
 }
-.userDashboard--about > h1 {
+.userDashboard--about > div {
   padding-bottom: 2rem;
 }
 .userDashboard--avatar_container {
@@ -83,4 +82,7 @@ padding:4rem 0;
   color:var(--red);
   border: 8px solid var(--yellow);
 
+}
+.userDashboard--update{
+margin-top: 4rem;
 }

@@ -71,22 +71,16 @@ const UserDashboard = ({
                             {user?.lastName.charAt(0).toUpperCase() + user?.lastName.slice(1)}
                         </h1>
 
-                        {profile !== null
-                            ? (<div>
-                                <Link to="userProfileRegistration">
-                                    <div className="handshake" ><i className="far fa-edit"></i>{" "}Updating the profile</div>
-                                </Link>
-                            </div>)
+                        <div className='userDashboard--contentDown_buttons'>
 
-                            : (<div>
-                                <Link to="userProfileRegistration">
-                                    <div className="handshake" >
-                                        <i className="far fa-edit">
-                                        </i>{" "}Tell us more info about yourself
-                                    </div>
-                                </Link>
-                            </div>)
-                        }
+                            <Link to={`/orders/user/${user?._id}`}>
+                                <div className='handshake'>
+                                    <i className="far fa-handshake"></i>
+                                    {" "} My activities
+                                </div>
+                            </Link>
+                        </div>
+
                     </div>
 
                     <div className="userDashboard--contentUp_avatar" >
@@ -122,20 +116,26 @@ const UserDashboard = ({
 
                 <div className="userDashboard--contentDown">
                     <h3 className="userDashboard--about">
-                        <h1>About me</h1>
+                        <div>About me</div>
                         {bio && bio}
                     </h3>
 
-                    <div className='userDashboard--contentDown_buttons'>
+                    {profile !== null
+                        ? (<div className='userDashboard--update'>
+                            <Link to="userProfileRegistration">
+                                <div className="handshake" ><i className="far fa-edit"></i>{" "}Updating the profile</div>
+                            </Link>
+                        </div>)
 
-                        <Link to={`/orders/user/${user?._id}`}>
-                            <div className='handshake'>
-                                <i className="far fa-handshake"></i>
-                                {" "} My activities
-                            </div>
-                        </Link>
-                    </div>
-
+                        : (<div className='userDashboard--update'>
+                            <Link to="userProfileRegistration">
+                                <div className="handshake" >
+                                    <i className="far fa-edit">
+                                    </i>{" "}Tell us more info about yourself
+                                </div>
+                            </Link>
+                        </div>)
+                    }
 
                 </div>
             </div>

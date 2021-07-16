@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import {  Input, Image, List, Container } from 'semantic-ui-react';
+import {  Input, List, Container } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
 import './searchBar.css';
 import { Link } from 'react-router-dom';
@@ -38,8 +38,6 @@ const SearchBar = ({
         })
         setSearchResults(newFilter);
 
-
-        console.log("searchResults", searchResults);
     }
 
     const clearInput = () => {

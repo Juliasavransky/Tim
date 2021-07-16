@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Moment from 'react-moment';
 import man from '../../components/man.jpg';
 import woman from '../../components/woman.jpg';
 import './orderItem.css';
+import { Message } from 'semantic-ui-react';
+
 
 //redux
 import PropTypes from 'prop-types';
@@ -42,12 +44,28 @@ const OrderItem = ({
 
 }) => {
     const [newStatus, setNewstatus] = useState('');
+    const [touserDashboard, setTouserDashboard] = useState(false);
+    const [error, setError] = useState();
+
+    const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     const chengeStatusHandler = (newStatus) => {
         setNewstatus(newStatus);
 
+        if (status === "Approved") {
+            sleep(3000).then(() => { setTouserDashboard(true) })
+            return setError({
+                title: 'Sory,This order has been approved',
+                message: 'Cannot approved more than onese'
+            })
+
+        }
+        
         if (newStatus === "Denied") {
             updateStatus(_id, newStatus);
+            sleep(3000).then(() => { setTouserDashboard(true) })
             return
         }
         if (newStatus === "Approved") {
@@ -55,10 +73,14 @@ const OrderItem = ({
             makePayment(user);
             getPayment(userProvider);
         }
+
+        setTouserDashboard(true);
     }
 
     const deleteOrderHandler = e => {
-        deleteOrder(_id)
+        setTouserDashboard(true);
+        deleteOrder(_id);
+
     }
 
     const userProfileAvatar = user && user.gender === 'female' ? woman : man;
@@ -66,9 +88,17 @@ const OrderItem = ({
 
     // className={`blabla ${newStatus=== "Denied"? "allgray":"allgreen"}`}
 
+    //Redirect if user shange the status 
+    if (touserDashboard) {
+        return <Redirect to="/userDashboard" />
+    }
     return (
 
         <div className="orderItem--comp" >
+            {error && <Message negative>
+                <Message.Header>{error.title}</Message.Header>
+                <p>{error.message}</p>
+            </Message>}
             <div className="orderItem--heders">
                 <h1>
                     Order from:
@@ -146,9 +176,19 @@ const OrderItem = ({
                             </div>
                         </div>
                     </div>
+                    <div className="orderItem--btn">
+                        <a
+                            style={{
+                                color: "var(--notWhite)",
+                                background: 'var(--red)',
+                            }}
+                            onClick={deleteOrderHandler}>Delete Order
+                        </a>
+                    </div>
 
-                    {!auth.loading &&  auth.user?._id != user && (
+                    {!auth.loading && auth?.user?._id != user && (
                         <div className="orderItem--btn" >
+
                             <a
                                 style={{ color: "var(--notWhite)" }}
                                 onClick={() => chengeStatusHandler('Approved')}
@@ -162,13 +202,9 @@ const OrderItem = ({
                                 Denied
                             </a>
 
-                            <a
-                                style={{ color: "var(--notWhite)" }}
-                                onClick={deleteOrderHandler}>delete Order
-                            </a>
-
                         </div>
                     )}
+
                 </div>
             </div>
 

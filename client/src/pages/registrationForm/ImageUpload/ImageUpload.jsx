@@ -17,10 +17,8 @@ const ImageUpload = ({ onSaveFile }) => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setFile(reader.result)
-                // console.log("reader.result",reader.result)
             }
             reader.readAsDataURL(selected);
-            // console.log('selected', selected);
 
         } else {
             setError(true);
@@ -29,7 +27,6 @@ const ImageUpload = ({ onSaveFile }) => {
 
     useEffect(() => {
         onSaveFile(file);
-        console.log(file);
     }, [file]);
 
 

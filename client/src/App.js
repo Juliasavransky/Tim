@@ -13,7 +13,6 @@ import Registration from './pages/registrationForm/Registration';
 import UserRegistration from './components/auth/UserRegistration';
 import UserDashboard from './pages/userDashboard/UserDashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
-import Orders from './components/order/Orders';
 import Order from './components/orders/Order';
 import OrdersForm from './components/orders/OrdersForm';
 import UserOrders from './pages/userDashboard/UserOrders';
@@ -72,10 +71,6 @@ const App = () => {
 
                             <   PrivateRoute path="/userProfileRegistration"
                                 exact component={Registration}
-                            />
-
-                            <   PrivateRoute exact path="/orders"
-                                component={Orders}
                             />
 
                             <   PrivateRoute exact path="/ordersForm/userProfile/:id"

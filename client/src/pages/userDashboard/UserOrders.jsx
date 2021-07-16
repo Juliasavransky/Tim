@@ -29,7 +29,7 @@ const UserOrders = ({
     const orderByUserOdrer = [];
 
     orders?.map(order => {
-        if ((order.user._id) === (auth.user._id)) {
+        if ((order?.user?._id) === (auth?.user?._id)) {
             orderByUserOdrer.push(order)
         } else {
             orderByUserProvider.push(order)

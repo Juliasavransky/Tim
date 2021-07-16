@@ -46,10 +46,7 @@ const Registration = ({
 
     //adding user file
     const addFileData =  (file) => {
-        // console.log('file from registration1', file);
         setEnteredFile(file);
-        console.log('enteredFile after', enteredFile);
-
     }
   
     //adding subCategories
@@ -80,10 +77,7 @@ const Registration = ({
             avatar: enteredFile,
 
         };
-        console.log('formData', formData);
-        console.log('enteredFile', enteredFile);
-
-
+      
         sleep(3000).then(() => { createProfile(formData, history); });
 
     }

@@ -1,5 +1,7 @@
-import React, { useState, Fragment, useEffect } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { useState } from 'react';
+import { FormGroup, Label, Input, Form } from 'reactstrap';
+import { Message } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
 import './ordersForm.css';
 
 
@@ -7,27 +9,14 @@ import './ordersForm.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addOrder } from '../../actions/orders';
-import { getProfileById } from '../../actions/profile';
 
 
 
 const OrdersForm = ({
     addOrder,
-    getProfileById,
     auth,
     match,
-    profile: {
-        city,
-        dob,
-        categories,
-        subCategories,
-        avatar,
-        bio,
-        _id,
-        user
-    }
-
-
+    profile,
 }) => {
 
     const [formData, setFormData] = useState({
@@ -35,6 +24,7 @@ const OrdersForm = ({
         title: "",
         dateOfServes: ""
     });
+
 
     const {
         text,
@@ -46,30 +36,57 @@ const OrdersForm = ({
         ...formData, [e.target.name]: e.target.value
     })
 
+    const [toUserDashboard, setToUserDashboard] = useState(false);
+    const [error, setError] = useState();
+
+    const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     const orderFormSubmit = e => {
         e.preventDefault();
-
 
         let url = window.location.href;
         let urlArray = url.split("/");
         let userId = urlArray[urlArray.length - 1];
         formData['userProvider'] = userId;
 
+        if (auth.user.balance <= 0) {
+            return setError({
+                title: 'Sory, you canot make order',
+                message: 'The balance is 0. Please try again after providing service to another user.'
+            });
+        }
+
+        sleep(2000).then(() => { setToUserDashboard(true) });
+
         addOrder(formData);
         setFormData({
             text: "",
             title: "",
-            dateOfServes: ""
+            dateOfServes: "",
         })
+
+
+    }
+    //Redirect if form submited 
+    if (toUserDashboard) {
+        return <Redirect to="/userDashboard" />
     }
 
     return (
 
-        <div
+        <Form
             className="ordersForm--comp"
 
         >
             <h1 className="ordersForm--header" >Make an order</h1>
+
+            {error && <Message negative>
+                <Message.Header>{error.title}</Message.Header>
+                <p>{error.message}</p>
+            </Message>}
+
             <FormGroup>
                 <Label
                     for="exampleEmail">
@@ -114,7 +131,7 @@ const OrdersForm = ({
                 className="ordersForm--btn">
                 Submit
             </a>
-        </div>
+        </Form>
 
     );
 };
@@ -124,17 +141,13 @@ OrdersForm.propTypes = {
     orders: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
-    getProfileById: PropTypes.func.isRequired,
-
 
 };
 const mapStateToProps = state => ({
     orders: state.orders,
     profile: state.profile,
     auth: state.auth
-
-
 });
 
 
-export default connect(mapStateToProps, { addOrder, getProfileById })(OrdersForm);
+export default connect(mapStateToProps, { addOrder })(OrdersForm);

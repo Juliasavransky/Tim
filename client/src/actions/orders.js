@@ -80,7 +80,6 @@ export const addOrder = (formData) => async dispatch => {
 // Get order 1
 export const getOrder = orderId => async dispatch => {
     try {
-        console.log("orderId", orderId);
         const res = await axios.get(`/api/orders/${orderId}`);
 
         dispatch({
@@ -119,9 +118,8 @@ export const getOrdersByUserId = userId => async dispatch => {
 
 
 // Updete order status (from new to approved or denied )
-export const updateStatus = (orderId, newStatus, edit = false) => async dispatch => {
+export const updateStatus = (orderId, newStatus,) => async dispatch => {
     try {
-        console.log(orderId, newStatus);
         const res = await axios.patch(`/api/orders/${orderId}`, { status: newStatus });
 
         dispatch({
@@ -129,7 +127,7 @@ export const updateStatus = (orderId, newStatus, edit = false) => async dispatch
             payload: res.data
         });
 
-        dispatch(setAlert(edit ? 'The order approved' : '', 'success'));
+        dispatch(setAlert(`The order ${newStatus}`, 'success'));
 
 
     } catch (err) {
