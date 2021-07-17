@@ -2,17 +2,14 @@
   display: flex;
   flex-direction: column;
 }
-.searchBarInput {
-  color: var(--green);
-}
+
 .searchBarResults {
   overflow: hidden;
   overflow-y: auto;
-  box-shadow: var(--yellow) 0 5px 15px;
+  box-shadow: var(--yellow) 0 5px 5px;
   max-width: 100%;
   height: 200px;
   margin-top: 10px;
-  background-color: var(--notWhite);
   align-items: center;
   flex-direction: column;
   flex: 1 0 auto;
@@ -23,15 +20,14 @@
 }
 
 .searchBarResults .dataItem {
-  width: 100%;
-  height: 50px;
   display: flex;
   align-items: center;
-  /* color: var(--black); */
 }
-.dataItem p {
-  margin-left: 10px;
+
+.searchBar--content:hover {
+  background-color: var(--notWhite);
 }
-.searchBarResults_li:hover {
-  background-color: var(--pink);
+.searchBar--content {
+  margin:1rem 0;
+  font-size: 1.3rem;
 }

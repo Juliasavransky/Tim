@@ -40,7 +40,12 @@ const UserOrders = ({
         ? <Spinner />
         : <Fragment>
             <h2
-                style={{ fontSize: '2em', color: "var(--yellow)" }}>
+                style={{
+                    fontSize: '3em',
+                    color: "var(--yellow)",
+                    width: '25rem',
+                    margin:"3rem"
+                }}>
                 My Balance {" "}{orders[0]?.user?.balance}{" "}
                 <i className="fas fa-piggy-bank">
                 </i>

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import {  Input, List, Container } from 'semantic-ui-react';
+import { Input, List, Container } from 'semantic-ui-react';
 import Spinner from '../../components/Spinner';
 import './searchBar.css';
 import { Link } from 'react-router-dom';
@@ -18,6 +18,7 @@ const SearchBar = ({
 
     const [wordEntered, setWordEntered] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [display, setDisplay] = useState(false);
 
 
     useEffect(() => {
@@ -26,23 +27,26 @@ const SearchBar = ({
 
 
 
-    const handleFilter = (e) => {
-        const searchWord = e.target.value;
+    const handleFilter = (searchWord) => {
         setWordEntered(searchWord);
 
         const newFilter = profiles?.filter((profile) => {
             return Object.values(profile)
                 .join(" ")
                 .toLowerCase()
-                .includes(searchWord.toLowerCase())
+                .includes(wordEntered.toLowerCase())
         })
-        setSearchResults(newFilter);
-
+        if (searchWord === "") {
+            setSearchResults([])
+        } else {
+            setSearchResults(newFilter);
+        }
     }
 
     const clearInput = () => {
-        setSearchResults([]);
         setWordEntered("");
+        setSearchResults([]);
+        setDisplay(false);
     };
 
 
@@ -50,80 +54,88 @@ const SearchBar = ({
         {loading
             ? <Spinner />
             : <Fragment >
+
+
                 <div className="searchBar--comp">
                     <Input
+                        onBlur={() => {
+                            setTimeout(() => {
+                                clearInput()
+                            }, 100)
+                        }}
                         value={wordEntered}
                         type="text"
                         placeholder='Search...'
                         className="searchBarInput"
-                        onChange={handleFilter}
+                        onChange={(e) => handleFilter(e.target.value)}
                         icon={{ name: 'search', circular: true, link: true }}
                     />
 
-                    <div
-                        onClick={clearInput}
-                    // className="searchBarResults"
-                    >
+                    <div >
                         {searchResults.length > 0 && (
                             <div className="searchBarResults">
                                 {searchResults?.slice(0, 10).map((value, key) => {
                                     return (
-                                        <Container>
-                                            <List relaxed='very' key={key}>
-                                                <List.Item>
-                                                    <List.Content>
-                                                        <Link to={`/userProfile/${value.user._id}`} >
-                                                            {/* <Image
-                                                                rounded
-                                                                size='small'
-                                                                src={userProfileImg
-                                                                    ? userProfileImg
-                                                                    : `https://react.semantic-ui.com/images/avatar/large/${userProfileAvatar}.jpg`} /> */}
+                                        <div key={key}>
+                                            <div className="searchBar--content">
+                                                <Link
+                                                    style={{
+                                                        textDecoration: 'none',
+                                                        color: 'var(--blue)',
+                                                        fontSize:"1.5rem"
+                                                    }}
+                                                    to={`/userProfile/${value.user._id}`}
+                                                >
 
-                                                            <List.Header >
-                                                                {value.user.firstName
-                                                                    .charAt(0)
-                                                                    .toUpperCase() + value.user.firstName.slice(1)}
-                                                                {" "}
-                                                                {value.user.lastName
-                                                                    .charAt(0)
-                                                                    .toUpperCase() + value.user.lastName.slice(1)}
-                                                            </List.Header>
+                                                    <div >
+                                                        {value.user.firstName
+                                                            .charAt(0)
+                                                            .toUpperCase() + value.user.firstName.slice(1)}
+                                                        {" "}
+                                                        {value.user.lastName
+                                                            .charAt(0)
+                                                            .toUpperCase() + value.user.lastName.slice(1)}
+                                                    </div>
 
-                                                            <List.Description>
-                                                                <List.Icon name='map outline' />{' '}
-                                                                {value.city
-                                                                    .charAt(0)
-                                                                    .toUpperCase() + value.city.slice(1)}
-                                                            </List.Description>
+                                                    <div>
+                                                        <i 
+                                                        style={{fontSize:"1.6rem"}}
+                                                        className="far fa-map"></i>
+                                                        {value.city
+                                                            .charAt(0)
+                                                            .toUpperCase() + value.city.slice(1)}
+                                                    </div>
 
-                                                            <List.Description className="searchBarResults_li">
-                                                                {/* {value.categories.map((cat, index) =>
+                                                    <div className="searchBarResults_li">
+                                                        {/* {value.categories.map((cat, index) =>
                                                                 (<li key={index}>
                                                                     {cat
                                                                         .charAt(0)
                                                                         .toUpperCase() + cat.slice(1)}</li>))} */}
-                                                            </List.Description>
+                                                    </div>
 
-                                                            <List.Description className="searchBarResults_li">
-                                                                {/* {value.subCategories.map(tag => (
+                                                    <div className="searchBarResults_li">
+                                                        {/* {value.subCategories.map(tag => (
                                                                     <li key={tag._id} tag>
                                                                         {tag.label
                                                                             .charAt(0)
                                                                             .toUpperCase() + tag.label.slice(1)}
                                                                     </li>
                                                                 ))} */}
-                                                            </List.Description>
-                                                        </Link>
-                                                    </List.Content>
-                                                </List.Item>
-                                            </List>
-                                        </Container> 
-                                    )})}
+                                                    </div>
+                                                </Link>
+
+                                            </div>
+
+                                        </div>
+
+                                    )
+                                })}
                             </div>
                         )}
                     </div>
                 </div>
+
             </Fragment>
         }
     </Fragment>

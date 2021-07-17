@@ -98,7 +98,6 @@ UserOrdersData.propTypes = {
     orders: PropTypes.object.isRequired,
     getOrdersByUserId: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    getProfileById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
