@@ -116,6 +116,17 @@ const OrderItem = ({
                 <Message.Header>{error.title}</Message.Header>
                 <p>{error.message}</p>
             </Message>}
+
+            {status === "Approved"
+                ? <i
+                    style={{
+                        top: '20rem',
+                        right: '46rem'
+                    }}
+                    className=" fas fas_approved fa-check"></i>
+                : ""
+            }
+
             <div
                 className=
                 {`orderItem--heders

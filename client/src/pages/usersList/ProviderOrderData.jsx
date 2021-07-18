@@ -21,19 +21,65 @@ const ProviderOrderData = ({
     const userProfileAvatar = user?.gender === 'female' ? woman : man;
     const userProfileImg = profile.avatar?.length > 0 ? profile.avatar : userProfileAvatar;
 
+    const linkStyle = {
+        textDecoration: 'none',
+        color: " var(--red)"
+
+    }
+    const linkStyle_denied = {
+        textDecoration: 'none',
+        background: 'var(--gray)',
+        color: " var(--red)"
+    }
+    const fasApproved = {
+        top: '23rem',
+        right: '13rem',
+    }
+
     return (
-        <div className="userOrdersData--content">
+        <div
+            className=
+            {`userOrdersData--content
+                      ${status === "Denied"
+                    ? "userOrdersData--content_denied"
+                    : ""}`}
+        >
+            {status === "Approved"
+                ? <i 
+                className=" fas fas_approved fa-check"></i>
+                : ""
+            }
+
 
             <div className="userOrdersData--borders">
-                <div className='userOrdersData--border_1'>
-                    <div className='userOrdersData--border_2'>
-                        <div className='userOrdersData--border_3'>
+                <div
+                    className=
+                    {`userOrdersData--border_1
+                             ${status === "Denied"
+                            ? "userOrdersData--border_1_denied"
+                            : ""}`}
+                >
+                    <div
+                        className=
+                        {`userOrdersData--border_2
+                                 ${status === "Denied"
+                                ? "userOrdersData--border_2_denied"
+                                : ""}`}                     >
+                        <div
+                            className=
+                            {`userOrdersData--border_3
+                                      ${status === "Denied"
+                                    ? "userOrdersData--border_3_denied"
+                                    : ""}`}                        >
                             <img
-                                className='userOrdersData--img'
-                                src={userProfileImg
-                                    ? userProfileImg
-                                    : userProfileAvatar
-                                }
+                                className=
+                                {`userOrdersData--img
+                                        ${status === "Denied"
+                                        ? "userOrdersData--img_denied"
+                                        : ""}`} src={userProfileImg
+                                            ? userProfileImg
+                                            : userProfileAvatar
+                                        }
                             />
                         </div>
                     </div>
@@ -56,10 +102,10 @@ const ProviderOrderData = ({
             <div className="userOrdersData--text">
                 <Link
                     className="userOrdersData--btn"
-                    style={{
-                        textDecoration: 'none',
-                        color: " var(--red)"
-                    }}
+                    style=
+                    {status === "Denied"
+                        ? linkStyle_denied
+                        : linkStyle}
                     to={`/userProfile/${user?._id}`}
                 >Go to {" "}
                     {user?.firstName
@@ -78,10 +124,10 @@ const ProviderOrderData = ({
 
                 <Link
                     className="userOrdersData--btn"
-                    style={{
-                        textDecoration: 'none',
-                        color: "var(--red)"
-                    }}
+                    style=
+                    {status === "Denied"
+                        ? linkStyle_denied
+                        : linkStyle}
                     to={`/orders/${_id}`}>
                     <a color="blue">
                         More detels
