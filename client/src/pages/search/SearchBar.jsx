@@ -29,7 +29,7 @@ const SearchBar = ({
 
     const handleFilter = (searchWord) => {
         setWordEntered(searchWord);
-
+        
         const newFilter = profiles?.filter((profile) => {
             return Object.values(profile)
                 .join(" ")

@@ -50,7 +50,7 @@ const UserProfileData = ({
                     </h2>
 
 
-                    <h2>More ditels about the categories
+                    <h2>More details about the categories
                         {subCategories.map(sub => (
                             <li key={sub.value}>
                                 <i className="fas fa-splotch">
@@ -81,7 +81,7 @@ const UserProfileData = ({
 
                 <div >
                     <a href={
-                        `mailto:${email && email}?subject=Hello,%20this%20is%20${auth.user.firstName}%20${auth.user.lastName}%20from%20the%20Time%20bank`}>
+                        `mailto:${email && email}?subject=Hello,%20this%20is%20${auth?.user?.firstName}%20${auth?.user?.lastName}%20from%20the%20Time%20bank`}>
                     <i className="far fa-paper-plane"></i>
                   {" "} Contact me
                     </a>
@@ -91,14 +91,14 @@ const UserProfileData = ({
             <div className="userProfile--btn">
                 <Link className="userProfileData--buttons" to="/usersList">
                     <div><i className="fas fa-arrow-left"></i>
-                        {" "} Back to profiles List
+                        {" "} Back to profiles list
                     </div>
                 </Link>
 
 
                 <Link className="userProfileData--buttons" to={`/ordersForm/userProfile/${_id}`}>
                     <div>
-                        Order one of the Services
+                        Order a Service
                     </div>
 
                 </Link>

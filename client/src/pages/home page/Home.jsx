@@ -54,7 +54,7 @@ const Home = ({
                                     <Link 
                                     style={{color:'var(--red)'}}
                                     to="/logIn">
-                                        log-in / Sign-up
+                                        Login / Sign-up
                                     </Link>
                                 </div>
 

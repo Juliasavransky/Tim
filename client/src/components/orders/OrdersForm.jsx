@@ -90,7 +90,7 @@ const OrdersForm = ({
             <FormGroup>
                 <Label
                     for="exampleEmail">
-                    Which service you want to receive
+                    Which service are you looking for?
                 </Label>
                 <Input
                     onChange={e => handleOrderChange(e)}
@@ -103,7 +103,7 @@ const OrdersForm = ({
             <FormGroup>
                 <Label
                     for="exampleText">
-                    Tell us more about
+                    Tell us more about it
                 </Label>
                 <Input
                     onChange={e => handleOrderChange(e)}
@@ -115,7 +115,7 @@ const OrdersForm = ({
 
             <FormGroup>
                 <Label>
-                    On what day would you like to receive the service
+                    When would you like to get the service?
                 </Label>
                 <Input
                     type="date"

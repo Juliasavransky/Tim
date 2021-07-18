@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from 'react';
-import { Button, FormGroup, Label, Input, Col, Container, Row, FormFeedback, Form } from 'reactstrap';
+import React, { useState } from 'react';
+import { Button, FormGroup, Label, Input, Container, Row, Form } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import './userRegistration.css'
 //redux
@@ -77,7 +77,7 @@ const UserRegistration = ({
         return <Redirect to="/userDashboard" />;
     }
     return (
-        <div className="userRegistration">
+        <Container className="userRegistration">
         <Form
             className="userRegistration--conp"
             onSubmit={e => handleSubmitForm(e)}>
@@ -192,7 +192,7 @@ const UserRegistration = ({
 
 
         </Form>
-        </div>
+        </Container>
     );
 };
 

@@ -3,8 +3,8 @@
 }
 .userDashboard--categories > * {
   margin: 2.5rem 0;
-  font-weight: 600;
   color: var(--red);
+  font-family: var(--headings-font-family);
 }
 .userDashboard--contentUp_name {
   display: flex;

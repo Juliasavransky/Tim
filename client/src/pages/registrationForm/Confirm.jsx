@@ -89,7 +89,7 @@ const Confirm = ({
                         style={{ fontSize: "1.3rem", color: "var(--blue)" }}
                     >
                         <Icon name='dropdown' />
-                        User Professional Information
+                        Basic Information
                     </Accordion.Title>
 
                     <Accordion.Content active={activeIndex === 0} >
@@ -104,6 +104,7 @@ const Confirm = ({
                                     <span>{" "}{user && user.firstName}</span>
                                 </List.Content>
                             </List.Item>
+
                             <List.Item key='1'>
                                 <List.Icon
                                     name='users'
@@ -114,6 +115,7 @@ const Confirm = ({
                                     <span>{" "}{user && user.lastName}</span>
                                 </List.Content>
                             </List.Item>
+
                             <List.Item key='2'>
                                 <List.Icon
                                     name='mail'
@@ -124,21 +126,7 @@ const Confirm = ({
                                     <span>{" "}{user && user.email} </span>
                                 </List.Content>
                             </List.Item>
-                            <List.Item key="3">
-                                <List.Icon
-                                    name='eye slash'
-                                    size='big'
-                                    color='yellow'
-                                />
-                                <List.Content className="confirm--content_title">
-                                    Password:
-                                    <span>{" "}
-                                        {/* {user && user.gender} */}
-                                        ********
-                                    </span>
-                                    I will never tell
-                                </List.Content>
-                            </List.Item>
+
                         </List>
                     </Accordion.Content>
 
@@ -151,7 +139,7 @@ const Confirm = ({
                         style={{ fontSize: "1.3rem", color: "var(--blue)" }}
                     >
                         <Icon name='dropdown' />
-                        User Professional Information
+                        Personal Information
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 1}>
                         <List>
@@ -212,7 +200,7 @@ const Confirm = ({
                         style={{ fontSize: "1.3rem", color: "var(--blue)" }}
                     >
                         <Icon name='dropdown' />
-                        Confirm Details
+                        Professional Information
                     </Accordion.Title>
                     <Accordion.Content active={activeIndex === 2} >
                         <List>

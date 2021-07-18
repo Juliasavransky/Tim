@@ -25,7 +25,7 @@ className="stepper"
                     <Step.Content
                         className="stepper-content"
                     >
-                        <Step.Title>User personal Information</Step.Title>
+                        <Step.Title> Personal Information</Step.Title>
                     </Step.Content>
                 </Step>
 
@@ -36,7 +36,7 @@ className="stepper"
 
                     />
                     <Step.Content className="stepper-content">
-                        <Step.Title>User Professional Information</Step.Title>
+                        <Step.Title> Professional Information</Step.Title>
                     </Step.Content>
                 </Step>
 

@@ -4,12 +4,10 @@
   border-radius: 40px;
   padding: 1rem 3rem;
   font-size: 1.1rem;
+  margin:0 5rem;
 }
 .userRegistration{
     margin-top: 1rem;
-}
-.userRegistration--input {
-  padding: 0.5rem;
 }
 
 .userRegistration--input input {

@@ -78,7 +78,7 @@ const Registration = ({
 
         };
       
-        sleep(3000).then(() => { createProfile(formData, history); });
+        sleep(7000).then(() => { createProfile(formData, history); });
 
     }
 

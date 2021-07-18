@@ -7,7 +7,7 @@
 }
 
 .shadows {
-    font-size: 7.5rem;
+    font-size: 6.5rem;
     color: #bc2e1e;
   text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4,
     2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd,
@@ -18,7 +18,7 @@
   color: #bc2e1e;
 }
 #success{
-    font-size:10rem;
+    font-size:9rem;
     margin-bottom: 6rem;
 }
 

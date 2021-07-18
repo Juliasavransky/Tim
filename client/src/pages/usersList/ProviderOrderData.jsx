@@ -130,7 +130,7 @@ const ProviderOrderData = ({
                         : linkStyle}
                     to={`/orders/${_id}`}>
                     <a color="blue">
-                        More detels
+                        More details
                     </a>
                 </Link>
             </div>

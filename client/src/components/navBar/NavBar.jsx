@@ -88,7 +88,7 @@ const NavBar = ({
                 <Menu.Item
                     className="navBarItem"
                 >
-                    <Link to="/logIn">LogIn</Link>
+                    <Link to="/logIn">Login</Link>
                 </Menu.Item>
 
                 <Menu.Item

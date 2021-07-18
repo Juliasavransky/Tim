@@ -39,9 +39,9 @@ export const categories = [
             />)
     },
     {
-        key: 'Art and music',
+        key: 'Art and Music',
         text: 'Classic, modern and the between',
-        value: 'Art and music',
+        value: 'Art and Music',
         id: 4,
         content: (
             <Header
@@ -75,9 +75,9 @@ export const categories = [
             />)
     },
     {
-        key: 'Technical support',
+        key: 'Technical Support',
         text: 'Installations, internet, troubleshooting ',
-        value: 'Technical support',
+        value: 'Technical Support',
         id: 7,
         content: (
             <Header
@@ -87,9 +87,9 @@ export const categories = [
             />)
     },
     {
-        key: 'Care and beauty',
+        key: 'Care and Beauty',
         text: 'Not only for women',
-        value: 'Care and beauty',
+        value: 'Care and Beauty',
         id: 8,
         content: (
             <Header
@@ -99,9 +99,9 @@ export const categories = [
             />)
     },
     {
-        key: 'Counseling and guidance',
+        key: 'Counseling and Guidance',
         text: 'In different areas',
-        value: 'Counseling and guidance',
+        value: 'Counseling and Guidance',
         id: 9,
         content: (
             <Header

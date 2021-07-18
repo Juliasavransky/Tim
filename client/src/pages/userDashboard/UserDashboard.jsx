@@ -104,7 +104,7 @@ const UserDashboard = ({
                         </div>
                         <div className='userDashboard--categories'>
                             <h3>Main Categories  {categories}</h3>
-                            <h3>More ditels about the categories  {subCategories}</h3>
+                            <h3>More details about the categories  {subCategories}</h3>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@ const UserDashboard = ({
                     {profile !== null
                         ? (<div className='userDashboard--update'>
                             <Link to="userProfileRegistration">
-                                <div className="handshake" ><i className="far fa-edit"></i>{" "}Updating the profile</div>
+                                <div className="handshake" ><i className="far fa-edit"></i>{" "}Update profile</div>
                             </Link>
                         </div>)
 
@@ -131,7 +131,7 @@ const UserDashboard = ({
                             <Link to="userProfileRegistration">
                                 <div className="handshake" >
                                     <i className="far fa-edit">
-                                    </i>{" "}Tell us more info about yourself
+                                    </i>{" "}Tell us more about yourself
                                 </div>
                             </Link>
                         </div>)
