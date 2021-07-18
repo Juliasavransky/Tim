@@ -1,6 +1,3 @@
-/* .userProfileData--comp {
-  font-family: var(--headings-font-family);
-} */
 .userProfileData--contentUp {
   display: flex;
   justify-content: space-between;
@@ -46,7 +43,6 @@
   margin: 0.5rem 0;
 }
 .userProfileData--categories h2 {
-  /* border: 3px solid var(--red); */
   margin-bottom: 2.5rem;
 }
 .userProfileData--about {

@@ -48,4 +48,4 @@ SearchItem.propTypes = {
 const mapStateToProps = state => ({
     profile: state.profile
 })
-export default connect(mapStateToProps, {  })(SearchItem);
+export default connect(mapStateToProps)(SearchItem);

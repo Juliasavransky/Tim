@@ -1,7 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import { Container } from 'semantic-ui-react';
-import SearchItem from './SearchItem'
-import Range from '../../components/Range';
 import SearchBar from './SearchBar';
 import Spinner from '../../components/Spinner';
 import { getCategories } from '../../utils/categoriesOptions'
@@ -32,22 +30,16 @@ const SearchPage = ({
             : <Fragment>
                 <Container textAlign='center' >
 
-                    {/* <Range profile={profiles} /> */}
 
                     <SearchBar 
-                    // profile={profiles} 
+                    profile={profiles} 
                     />
 
                     <SearchByCategories profile={profiles}
                         categoriesToRender={categoriesToRender} 
                         />
 
-                    {/* {profiles.length > 0 ? (
-                        <SearchItem
-                            profile={profiles}
-                            categoriesToRender={categoriesToRender}
-                        />
-                    ) : <div>No profiles found</div>} */}
+                
 
                 </Container>
             </Fragment>}

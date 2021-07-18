@@ -27,8 +27,6 @@ const OrderItem = ({
         title,
         text,
         dateOfServes,
-        firstName,
-        lastName,
         _id,
         avatar,
         date,
@@ -38,7 +36,6 @@ const OrderItem = ({
         providerEmail,
         providerFirstName,
         providerLastName,
-        providerGender,
 
     }
 
@@ -310,11 +307,4 @@ export default connect(mapStateToProps, {
     makePayment
 })(OrderItem);
 
-    //  {!auth.loading && user === auth.user._id && (
-    //                     <Link to={`/orders/${_id}`}>
-    //                         <Button color="blue">
-    //                             Confirm Or add a note
-    //                         </Button>
-    //                     </Link>
-
-    //                 )}
+ 
