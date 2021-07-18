@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import man from '../../components/man.jpg';
 import woman from '../../components/woman.jpg';

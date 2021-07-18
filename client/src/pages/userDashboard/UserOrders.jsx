@@ -46,7 +46,7 @@ const UserOrders = ({
                     width: '25rem',
                     margin:"3rem"
                 }}>
-                My Balance {" "}{orders[0]?.user?.balance}{" "}
+                My Balance {" "}{auth?.user?.balance}{" "}
                 <i className="fas fa-piggy-bank">
                 </i>
             </h2>

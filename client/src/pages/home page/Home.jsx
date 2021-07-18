@@ -1,6 +1,8 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import  './homePage.css'
+import  './homePage.css';
+import { Container } from 'reactstrap';
+
 
 
 //redux
@@ -27,7 +29,7 @@ const Home = ({
     // }
 
     return (
-        <Fragment>
+        <Container>
 
             <div className="homePage" >
                 <div className="homePage-container">
@@ -49,7 +51,9 @@ const Home = ({
                                 </div>
 
                                 <div className="homePage--hero_btn">
-                                    <Link to="/logIn">
+                                    <Link 
+                                    style={{color:'var(--red)'}}
+                                    to="/logIn">
                                         log-in / Sign-up
                                     </Link>
                                 </div>
@@ -97,7 +101,7 @@ const Home = ({
             </div>
             
           <SearchByCategories />
-        </Fragment>
+        </Container>
     );
 };
 

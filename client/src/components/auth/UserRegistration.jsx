@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { Button, FormGroup, Label, Input, Col, Container, Row, FormFeedback, Form } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
-
+import './userRegistration.css'
 //redux
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
@@ -10,7 +10,11 @@ import { register } from '../../actions/auth';
 
 
 
-const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
+const UserRegistration = ({
+    setAlert,
+    register,
+    isAuthenticated
+}) => {
 
     const [enteredFormData, setEnteredFormData] = useState({
         firstName: "",
@@ -73,125 +77,122 @@ const UserRegistration = ({ setAlert, register, isAuthenticated }) => {
         return <Redirect to="/userDashboard" />;
     }
     return (
-        <Fragment>
-            <Container  >
-                <Form onSubmit={e => handleSubmitForm(e)}>
-                    <Row>
-                        <FormGroup >
-                            <Label
-                                sm={12}
-                            >* First Name  </Label>
-                            <Col sm={10}>
-                                <Input
-                                    type="text"
-                                    placeholder="First Name"
-                                    name="firstName"
-                                    value={firstName}
-                                    onChange={e => handleDataChange(e)}
-                                />
-                                <FormFeedback
-                                >
-                                </FormFeedback>
-                            </Col>
-                        </FormGroup>
-                    </Row>
-                    <Row>
-                        <FormGroup >
-                            <Label
-                                sm={12}
-                            >* Last Name</Label>
-                            <Col sm={10}>
-                                <Input
-                                    type="text"
-                                    placeholder="Last Name"
-                                    name="lastName"
-                                    value={lastName}
-                                    onChange={e => handleDataChange(e)}
-                                />
-                            </Col>
-                        </FormGroup>
-                    </Row>
+        <div className="userRegistration">
+        <Form
+            className="userRegistration--conp"
+            onSubmit={e => handleSubmitForm(e)}>
+            <Row>
+                <FormGroup
+                    className="userRegistration--input"
+                >
+                    <Label
+                        sm={12}
+                    >* First Name  </Label>
 
-                    <Row>
-                        <FormGroup >
-                            <Label
-                                sm={12}
-                            >* Email</Label>
-                            <Col sm={10}>
-                                <Input
-                                    type="text"
-                                    placeholder="with a placeholder"
-                                    name="email"
-                                    value={email}
-                                    onChange={e => handleDataChange(e)}
-                                    onBlur={handleValidateForm}
-                                />
-                            </Col>
-                        </FormGroup>
-                    </Row>
+                    <Input
+                        type="text"
+                        placeholder="First Name"
+                        name="firstName"
+                        value={firstName}
+                        onChange={e => handleDataChange(e)}
+                    />
+                </FormGroup>
+            </Row>
+            <Row>
+                <FormGroup className="userRegistration--input">
+                    <Label
+                        sm={12}
+                    >* Last Name</Label>
 
-                    <Row>
-                        <FormGroup >
-                            <Label
-                                sm={12}
-                            >* Password</Label>
-                            <Col sm={10}>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    placeholder="password placeholder"
-                                    value={password}
-                                    onChange={e => handleDataChange(e)}
-                                    onBlur={handleValidateForm}
-                                />
-                            </Col>
-                        </FormGroup>
-                    </Row>
+                    <Input
+                        type="text"
+                        placeholder="Last Name"
+                        name="lastName"
+                        value={lastName}
+                        onChange={e => handleDataChange(e)}
+                    />
+                </FormGroup>
+            </Row>
+
+            <Row>
+                <FormGroup className="userRegistration--input">
+                    <Label
+                        sm={12}
+                    >* Email</Label>
+                    <Input
+                        type="text"
+                        placeholder="with a placeholder"
+                        name="email"
+                        value={email}
+                        onChange={e => handleDataChange(e)}
+                        onBlur={handleValidateForm}
+                    />
+                </FormGroup>
+            </Row>
+
+            <Row>
+                <FormGroup className="userRegistration--input">
+                    <Label
+                        sm={12}
+                    >* Password</Label>
+                    <Input
+                        type="password"
+                        name="password"
+                        placeholder="password placeholder"
+                        value={password}
+                        onChange={e => handleDataChange(e)}
+                        onBlur={handleValidateForm}
+                    />
+                </FormGroup>
+            </Row>
 
 
+            <div className="userRegistration-radioBtn">
+                <FormGroup tag="fieldset" >
+                    <legend className=" pt-3 ">Gender</legend>
 
-                    <FormGroup tag="fieldset" >
-                        <legend className=" pt-3 ">Gender</legend>
-                        <Col sm={10}>
-
-                            <FormGroup check>
-                                <Label check sm={10}>
-                                    <Input
-                                        type="radio"
-                                        name="gender"
-                                        value={'female'}
-                                        onChange={e => handleDataChange(e)}
-                                    />
-                                    Female
-                                </Label>
-                            </FormGroup>
-
-                            <FormGroup check >
-                                <Label check sm={10}>
-                                    <Input
-                                        type="radio"
-                                        name="gender"
-                                        value={'male'}
-                                        onChange={e => handleDataChange(e)}
-                                    />
-                                    Male
-                                </Label>
-                            </FormGroup>
-
-                            <Button
-                                size="lg"
-                                color="warning"
-                                type="submit"
-                            >
-                                Submit
-                            </Button>
-                        </Col>
+                    <FormGroup check>
+                        <Label check sm={10}>
+                            <Input
+                                type="radio"
+                                name="gender"
+                                value={'female'}
+                                onChange={e => handleDataChange(e)}
+                            />
+                            Female
+                        </Label>
                     </FormGroup>
 
+                    <FormGroup check >
+                        <Label check sm={10}>
+                            <Input
+                                type="radio"
+                                name="gender"
+                                value={'male'}
+                                onChange={e => handleDataChange(e)}
+                            />
+                            Male
+                        </Label>
+                    </FormGroup>
 
-                </Form>
-            </Container>
-        </Fragment>
+                </FormGroup>
+
+                <Button
+                    className="userRegistration-btn"
+                    size="lg"
+                    color="warning"
+                    type="submit"
+                >
+                    Submit
+                </Button>
+
+            </div>
+            <div className="fieldsMark"
+            >Fields marked with an * are required</div>
+
+
+        </Form>
+        </div>
     );
 };
 

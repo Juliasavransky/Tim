@@ -1,8 +1,8 @@
 .ordersForm--comp {
   border: 3px solid var(--black);
   border-radius: 40px;
-  margin: 5rem;
-  padding: 4rem;
+  margin:0 5rem;
+  padding: 3rem;
 }
 .ordersForm--comp input {
   border: 1px solid var(--black);
@@ -19,7 +19,7 @@
   font-size: 1.3rem;
 }
 .ordersForm--header {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 2rem;
 }
 .ordersForm--btn {

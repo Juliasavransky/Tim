@@ -58,11 +58,6 @@ const SearchBar = ({
 
                 <div className="searchBar--comp">
                     <Input
-                        onBlur={() => {
-                            setTimeout(() => {
-                                clearInput()
-                            }, 100)
-                        }}
                         value={wordEntered}
                         type="text"
                         placeholder='Search...'
@@ -79,10 +74,11 @@ const SearchBar = ({
                                         <div key={key}>
                                             <div className="searchBar--content">
                                                 <Link
+                                                    onClick={clearInput}
                                                     style={{
                                                         textDecoration: 'none',
                                                         color: 'var(--blue)',
-                                                        fontSize:"1.5rem"
+                                                        fontSize: "1.5rem"
                                                     }}
                                                     to={`/userProfile/${value.user._id}`}
                                                 >
@@ -98,30 +94,12 @@ const SearchBar = ({
                                                     </div>
 
                                                     <div>
-                                                        <i 
-                                                        style={{fontSize:"1.6rem"}}
-                                                        className="far fa-map"></i>
+                                                        <i
+                                                            style={{ fontSize: "1.6rem" }}
+                                                            className="far fa-map"></i>
                                                         {value.city
                                                             .charAt(0)
                                                             .toUpperCase() + value.city.slice(1)}
-                                                    </div>
-
-                                                    <div className="searchBarResults_li">
-                                                        {/* {value.categories.map((cat, index) =>
-                                                                (<li key={index}>
-                                                                    {cat
-                                                                        .charAt(0)
-                                                                        .toUpperCase() + cat.slice(1)}</li>))} */}
-                                                    </div>
-
-                                                    <div className="searchBarResults_li">
-                                                        {/* {value.subCategories.map(tag => (
-                                                                    <li key={tag._id} tag>
-                                                                        {tag.label
-                                                                            .charAt(0)
-                                                                            .toUpperCase() + tag.label.slice(1)}
-                                                                    </li>
-                                                                ))} */}
                                                     </div>
                                                 </Link>
 

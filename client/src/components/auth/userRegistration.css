@@ -1,26 +1,45 @@
-.userRegistration-comp {
-    border: 3px solid var(--black);
-    padding: 30px;
-    border: 3px solid var(--black);
-    font-family: var(--headings-font-family);
-    font-size: 3rem;
-    display: flex;
-    flex-direction: row;
+.userRegistration--conp {
+  font-family: var(--headings-font-family);
+  border: 3px solid var(--black);
+  border-radius: 40px;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
 }
-input{
-    border: 3px solid var(--black);
-    padding: 30px;
-    border: 3px solid var(--black);
-    font-family: var(--headings-font-family);
-    font-size: 3rem;
-    display: flex;
-    flex-direction: row;
+.userRegistration{
+    margin-top: 1rem;
 }
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-    cursor: pointer;
-    border: 3px solid var(--black);
-    background-color: aqua;
+.userRegistration--input {
+  padding: 0.5rem;
 }
-.userRegistration-btn{
-    border: 3px solid var(--black)
+
+.userRegistration--input input {
+  border: 2px solid var(--black);
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.userRegistration-radioBtn {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.userRegistration-btn {
+ width: 20%;
+ 
+ /* padding:0.75rem; */
+}
+
+.userRegistration-btn:hover,
+.userRegistration-btn:focus {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 17% 83% 11% 89% / 16% 74% 26% 84%;
+  color: var(--red);
+  border: 4px solid var(--yellow);
+}
+
+.fieldsMark {
+  font-size: 1rem;
+  color: var(--red);
+  margin-top: 2rem;
 }

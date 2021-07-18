@@ -1,27 +1,24 @@
-.usersListBySearchItem--comp {
+.usersListBySearchItem--content {
   margin: 3rem;
   padding: 3rem;
-  /* border: 3px solid var(--green);
-  display: flex; */
-
+  display: flex;
+  justify-content:space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
 }
 
-.usersListBySearchItem--borders {
-  width: 25%;
-}
 .usersListBySearchItem--imgborder1 {
   border-radius: 18% 82% 19% 81% / 71% 91% 9% 29%;
   border: 3px solid var(--yellow);
-  width: 100%;
+  width: 60%;
 }
 .usersListBySearchItem--imgborder2 {
   border-radius: 19% 81% 14% 86% / 16% 13% 87% 84%;
-  width: 100%;
   border: 3px solid var(--green);
 }
 .usersListBySearchItem--imgborder3 {
   border-radius: 34% 66% 49% 51% / 71% 40% 60% 29%;
-  width: 100%;
   border: 3px solid var(--red);
 }
 .usersListBySearchItem--img {

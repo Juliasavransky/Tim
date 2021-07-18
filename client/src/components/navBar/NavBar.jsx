@@ -16,9 +16,6 @@ const NavBar = ({
     profile: { profile }
 }) => {
 
-    const userProfileAvatar = user && user.gender === 'female' ? 'ade' : 'elliot';
-    const userProfileImg = profile && profile.avatar;
-
     const authLinks = (
         <Menu
             stackable

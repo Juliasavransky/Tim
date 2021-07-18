@@ -62,7 +62,7 @@ const OrderItem = ({
             })
 
         }
-        
+
         if (newStatus === "Denied") {
             updateStatus(_id, newStatus);
             sleep(3000).then(() => { setTouserDashboard(true) })
@@ -86,20 +86,43 @@ const OrderItem = ({
     const userProfileAvatar = user && user.gender === 'female' ? woman : man;
     const userProfileImg = avatar && avatar;
 
-    // className={`blabla ${newStatus=== "Denied"? "allgray":"allgreen"}`}
 
     //Redirect if user shange the status 
     if (touserDashboard) {
         return <Redirect to="/userDashboard" />
     }
+    const linkStyle = {
+        textDecoration: 'none',
+        color: 'var(--yellow)'
+    }
+    const mailStyle = {
+        textDecoration: 'none',
+        color: 'var(--yellow)'
+    }
+    const linkStyle_denied = {
+        textDecoration: 'none',
+        color: 'var(--gray)'
+    }
+
     return (
 
-        <div className="orderItem--comp" >
+        <div className=
+            {`orderItem--comp
+         ${status === "Denied"
+                    ? "orderItem--comp_denied"
+                    : ""}`}
+        >
             {error && <Message negative>
                 <Message.Header>{error.title}</Message.Header>
                 <p>{error.message}</p>
             </Message>}
-            <div className="orderItem--heders">
+            <div
+                className=
+                {`orderItem--heders
+                 ${status === "Denied"
+                        ? "orderItem--heders_denied"
+                        : ""}`}
+            >
                 <h1>
                     Order from:
                     {" "}{providerFirstName && providerFirstName}{' '}{providerLastName && providerLastName}
@@ -108,10 +131,15 @@ const OrderItem = ({
             </div>
 
 
-            <div className="test">
+            <div className="orderItem--content" >
 
-
-                <div className="orderItem--content-right">
+                <div
+                    className=
+                    {`orderItem--content-right 
+                    ${status === "Denied"
+                            ? "orderItem--content-right_denied"
+                            : ""}`}
+                >
 
                     <h2> Title: <br />{title && title}</h2>
                     <p> Message details: <br /> {text && text}  </p>
@@ -126,10 +154,11 @@ const OrderItem = ({
 
                     <h5>
                         <Link
-                            style={{
-                                textDecoration: 'none',
-                                color: " var(--yellow)"
-                            }}
+                            style=
+                            {status === "Denied"
+                                ? linkStyle_denied
+                                : linkStyle}
+
                             to={`/userProfile/${userProvider}`}>
                             Go back to{" "}
                             {providerFirstName && providerFirstName}{" "}
@@ -141,12 +170,20 @@ const OrderItem = ({
 
                     <h6 >
                         <a
-                            style={{
-                                textDecoration: 'none', color: "var(--pink)"
-                            }}
+                            style=
+                            {status === "Denied"
+                                ? linkStyle_denied
+                                : mailStyle}
+
                             href={`mailto:${providerEmail && providerEmail}?subject=Hello,%20this%20is%20${providerFirstName}%20${providerLastName}%20from%20the%20Time%20bank`}>
                             <br /> For more information contact <br />
-                            <i className="far fa-paper-plane"></i>{" "}
+                            <i
+                                className=
+                                {`far fa-paper-plane 
+                                    ${status === "Denied"
+                                        ? "far_denied"
+                                        : ""}`}>
+                            </i>{" "}
                             {providerFirstName && providerFirstName}
                             {' '}
                             {providerLastName && providerLastName}{" "}
@@ -162,11 +199,34 @@ const OrderItem = ({
                 <div className="orderItem--content-left">
 
                     <div className="orderItem--borders">
-                        <div className="orderItem--border1">
-                            <div className="orderItem--border2">
-                                <div className="orderItem--border3">
+                        <div
+                            className=
+                            {`orderItem--border1 
+                            ${status === "Denied"
+                                    ? "orderItem--border1_denied"
+                                    : ""}`}
+
+                        >
+                            <div
+                                className=
+                                {`orderItem--border2 
+                                ${status === "Denied"
+                                        ? "orderItem--border2_denied"
+                                        : ""}`}
+                            >
+                                <div
+                                    className=
+                                    {`orderItem--border3 
+                                    ${status === "Denied"
+                                            ? "orderItem--border3_denied"
+                                            : ""}`}
+                                >
                                     <img
-                                        className="orderItem--img"
+                                        className=
+                                        {`orderItem--img 
+                                        ${status === "Denied"
+                                                ? "orderItem--img_denied"
+                                                : ""}`}
                                         src={userProfileImg
                                             ? userProfileImg
                                             : userProfileAvatar
@@ -187,8 +247,12 @@ const OrderItem = ({
                     </div>
 
                     {!auth.loading && auth?.user?._id != user && (
-                        <div className="orderItem--btn" >
-
+                        <div
+                            className=
+                            {`orderItem--btn
+                             ${status === "Denied"
+                                    ? "orderItem--btn_denied"
+                                    : ""}`} >
                             <a
                                 style={{ color: "var(--notWhite)" }}
                                 onClick={() => chengeStatusHandler('Approved')}
@@ -204,14 +268,9 @@ const OrderItem = ({
 
                         </div>
                     )}
-
                 </div>
             </div>
-
-
-
-
-        </div>
+        </div >
     );
 };
 

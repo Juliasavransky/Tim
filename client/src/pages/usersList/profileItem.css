@@ -1,3 +1,4 @@
+
 .profileItem--comp {
   display: flex;
   flex-wrap: wrap;
@@ -7,20 +8,19 @@
 .profileItem--comp > * {
   flex: 1 1 33%;
   margin: 2rem;
+  text-align: center;
 }
 .profileItem--comp > *:last-child {
   max-width: 45%;
 }
 
-.profileItem--imgItem {
-  width: 60%;
-}
 .profileItem--img {
   border-radius: 86% 14% 9% 91% / 28% 61% 39% 72%;
 }
 .profileItem--border_1 {
   border-radius: 44% 56% 81% 19% / 14% 24% 76% 86%;
-  /* width: 100%; */
+  width: 60%;
+  margin-left: 6rem;
   border: 3px solid var(--red);
 }
 .profileItem--border_2 {

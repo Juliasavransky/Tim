@@ -1,17 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Header, Image, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import './userProfileData.css';
 import man from '../../components/man.jpg';
 import woman from '../../components/woman.jpg';
 
-
+//redux
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const UserProfileData = ({
-    profile: { city, dob, categories, subCategories, avatar, bio,
-        user: { firstName, lastName, gender, email, _id }
+    auth,
+    profile:
+    { city, dob, categories, subCategories, avatar, bio,
+        user:
+        { firstName, lastName, gender, email, _id }
     }
 }) => {
 
@@ -30,7 +33,7 @@ const UserProfileData = ({
                         <div className="userProfileData--borderRadius2">
                             <div className="userProfileData--borderRadius3">
                                 <img className="userProfile-img"
-                                  
+
                                     src={userProfileImg} />
                             </div>
                         </div>
@@ -78,18 +81,17 @@ const UserProfileData = ({
 
                 <div >
                     <a href={
-                        `mailto:${email && email}?subject=Hello,%20this%20is%20${fName}%20${lName}%20from%20the%20Time%20bank`}>
+                        `mailto:${email && email}?subject=Hello,%20this%20is%20${auth.user.firstName}%20${auth.user.lastName}%20from%20the%20Time%20bank`}>
                     <i className="far fa-paper-plane"></i>
                   {" "} Contact me
                     </a>
                 </div>
             </div>
 
-
             <div className="userProfile--btn">
                 <Link className="userProfileData--buttons" to="/usersList">
                     <div><i className="fas fa-arrow-left"></i>
-                       {" "} Back to profiles List
+                        {" "} Back to profiles List
                     </div>
                 </Link>
 
@@ -100,16 +102,21 @@ const UserProfileData = ({
                     </div>
 
                 </Link>
-         
+
             </div>
 
 
         </div>
-                );
+    );
 };
 
-                UserProfileData.propTypes = {
-                    profile: PropTypes.object.isRequired,
-};
+UserProfileData.propTypes = {
+    profile: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
 
-                export default UserProfileData;
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, {})(UserProfileData);

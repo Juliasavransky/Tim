@@ -1,6 +1,6 @@
 .ui.stackable.two.column.grid.login-container {
   border: 3px solid var(--black);
-  padding: 30px;
+  padding:3rem;
 }
 
 .ui.vertical.divider {

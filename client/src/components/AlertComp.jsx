@@ -8,7 +8,7 @@ const AlertComp = ({ alerts }) =>
     alerts !== null && alerts.length > 0 && alerts.map(alert => (
         <Alert
             style={{
-                fontSize: '2rem',
+                fontSize: '1.5rem',
                 fontFamily: 'var(--headings-font-family)',
                 textAlign: 'center',
                 padding: '2rem',
