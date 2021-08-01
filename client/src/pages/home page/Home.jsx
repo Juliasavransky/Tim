@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import  './homePage.css';
+import './homePage.css';
 import { Container } from 'reactstrap';
 
 
@@ -16,7 +16,7 @@ const Home = ({
     isAuthenticated,
     getProfiles,
     profile: { profiles, loading },
-    
+
 }) => {
 
     useEffect(() => {
@@ -51,9 +51,9 @@ const Home = ({
                                 </div>
 
                                 <div className="homePage--hero_btn">
-                                    <Link 
-                                    style={{color:'var(--red)'}}
-                                    to="/logIn">
+                                    <Link
+                                        style={{ color: 'var(--red)' }}
+                                        to="/logIn">
                                         Login / Sign-up
                                     </Link>
                                 </div>
@@ -86,12 +86,33 @@ const Home = ({
                             <div >About T.I.M.</div>
                         </div>
                         <p className="homePage--hero_aboutText">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                            ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et
-                            magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-                            quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                            <div>T.I.M. - Time Bank</div>
+                            <div>
+                                Social Network for Exchanging knowledge, abilities, creativity, and skills between members .
+                                Sign up and let us know what you can offer and  do for others.
+                            </div>
+                            <div>
+                                For each hour of service you provide, you will receive a service of your choice from another member of the community.
+                            </div>
+
+                            <div>
+                                Guitar lessons in exchange for dog training
+                            </div>
+                            <div>
+                                A stunning shirt you designed in exchange for a massage
+                            </div>
+                            <div>
+                                Arranging a closet in exchange for carpentry lessons
+                            </div>
+                            <div>  And more ...
+                            </div>
+                            <div>
+                                Let's celebrate our abundance
+                            </div>
+                            <div>
+                                Sign up now and get your first two hours for free
+                            </div>
+
 
                         </p>
                     </div>
@@ -99,8 +120,9 @@ const Home = ({
 
 
             </div>
-            
-          <SearchByCategories />
+            <div className="homePage--searchByCategories">
+                <SearchByCategories />
+            </div>
         </Container>
     );
 };

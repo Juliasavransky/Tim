@@ -37,19 +37,19 @@ const UserOrdersData = ({
         background: 'var(--gray)',
         color: " var(--red)"
     }
- 
+
     return (
         <div
-        
+
             className=
             {`userOrdersData--content
                     ${status === "Denied"
                     ? "userOrdersData--content_denied"
                     : ""}`}
         >
-              {status === "Approved"
-                ? <i 
-                className=" fas fas_approved fa-check"></i>
+            {status === "Approved"
+                ? <i
+                    className=" fas fas_approved fa-check"></i>
                 : ""
             }
 

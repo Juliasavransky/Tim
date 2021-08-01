@@ -11,7 +11,7 @@ const ImageUpload = ({ onSaveFile }) => {
         e.preventDefault();
         setError(false);
         const selected = e.target.files[0];
-        const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon'];
+        const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon','image/jfif'];
 
         if (selected && ALLOWED_TYPES.includes(selected.type)) {
             const reader = new FileReader();

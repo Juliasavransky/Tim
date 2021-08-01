@@ -118,7 +118,7 @@ const OrderItem = ({
                 ? <i
                     style={{
                         top: '20rem',
-                        right: '46rem'
+                        right: '44rem'
                     }}
                     className=" fas fas_approved fa-check"></i>
                 : ""
@@ -244,15 +244,18 @@ const OrderItem = ({
                             </div>
                         </div>
                     </div>
-                    <div className="orderItem--btn">
-                        <a
-                            style={{
-                                color: "var(--notWhite)",
-                                background: 'var(--red)',
-                            }}
-                            onClick={deleteOrderHandler}>Delete Order
-                        </a>
-                    </div>
+                    {!auth.loading && auth?.user?._id === user && (
+                        <div className="orderItem--btn">
+                            <a
+                                style={{
+                                    color: "var(--notWhite)",
+                                    background: 'var(--red)',
+                                }}
+                                onClick={deleteOrderHandler}>Delete Order
+                            </a>
+                        </div>
+                    )
+                    }
 
                     {!auth.loading && auth?.user?._id != user && (
                         <div
@@ -307,4 +310,3 @@ export default connect(mapStateToProps, {
     makePayment
 })(OrderItem);
 
- 

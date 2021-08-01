@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  padding-bottom: 5rem;
 }
 
 .homePage--hero_content {
@@ -32,6 +33,7 @@
 .homePage--img_content {
   width: 25rem;
 }
+
 img {
   max-width: 100%;
 }
@@ -108,9 +110,14 @@ img {
   display: flex;
   justify-content: space-between;
   width: 60%;
-  text-align: center;
-  align-items: center;
+  text-align: flex-start;
+  font-size: 1.5rem;
 }
 .homePage--hero_aboutText {
-  font-size: 1.35rem;
+  flex-direction: column;
+  width: 60%;
+
+}
+.homePage--searchByCategories{
+  padding-top:5rem;
 }

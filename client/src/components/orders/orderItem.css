@@ -103,7 +103,9 @@
   border-radius: 91% 9% 87% 13% / 87% 10% 90% 13%;
   color: var(--red);
 }
-
+.orderItem--content-right{
+ max-width: 50%;
+}
 .orderItem--content-right > h2,
 .orderItem--content-right > p {
   margin: 1.2rem;
